@@ -1,0 +1,67 @@
+\n🚀 Starting document extraction...
+📁 Input: ../Základy práva - kopmpletně vše, co potřebujete.docx
+📄 Reading DOCX file: ../Základy práva - kopmpletně vše, co potřebujete.docx
+📝 Extracted 52766 characters
+📦 Split text into 1 chunks
+🤖 Processing chunk 1/1 with Claude...
+⚠️  JSON appears to be truncated due to token limit, attempting to fix...
+❌ Failed to parse AI response as JSON
+Response text: Zde je strukturovaný JSON s analýzou poskytnutého právního textu:
+
+```json
+{
+  "lessons": [
+    {
+      "title": "Právo",
+      "description": "Základní charakteristika práva a jeho funkcí",
+      "order": 1,
+      "verified": true,
+      "topics": [
+        {
+          "title": "Pojem práva",
+          "order": 1,
+          "sections": [
+            {
+              "title": "Definice práva",
+              "content": "Právo je soubor pravidel chování, která jsou státem vynutitelná.",
+              "type": "DEFINITION",
+              "importance": "CRITICAL",
+              "order": 1
+            },
+            {
+              "content": "Právo má objektivní a subjektivní stránku:\n\n- Objektivnost - právo musí respektovat každý.\n- Subjektivnost - míra možného chování.",
+              "type": "TEXT",
+              "importance": "HIGH",
+              "order": 2
+            }
+          ]
+        },
+        {
+          "title": "Funkce práva",
+          "order": 2,
+          "sections": [
+
+Attempted to parse: Zde je strukturovaný JSON s analýzou poskytnutého právního textu:
+
+```json
+{
+  "lessons": [
+    {
+      "title": "Právo",
+      "description": "Základní charakteristika práva a jeho funkcí",
+      "order": 1,
+      "verified": true,
+      "topics": [
+        {
+          "title": "Pojem práva",
+          "order": 1,
+          "sections": [
+            {
+              "title": "Definice práva",
+              "content": "Právo je soubor pravidel chování, která jsou státem vynutitelná.",
+           
+\n❌ Extraction failed: Error: Failed to parse extraction result
+    at extractContentWithAI (C:\Users\lukol\Downloads\pravo-app\pravo-quiz-app\scripts\extract-documents.ts:166:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async extractDocument (C:\Users\lukol\Downloads\pravo-app\pravo-quiz-app\scripts\extract-documents.ts:254:22)
+\n❌ Error: Failed to parse extraction result

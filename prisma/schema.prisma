@@ -1,0 +1,139 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Kategorie otázek (např. Základy práva, Obchodní právo)
+model Category {
+  id          String     @id @default(uuid())
+  name        String     @unique
+  description String?
+  color       String?    // Pro barevné odlišení v UI
+  questions   Question[]
+  lessons     Lesson[]   // Lekce v této kategorii
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+// Lekce - strukturovaný studijní obsah
+model Lesson {
+  id           String        @id @default(uuid())
+  title        String        // Název lekce (např. "Právní subjekty")
+  description  String?       // Krátký popis
+  order        Int           // Pořadí v rámci kategorie
+  categoryId   String
+  category     Category      @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  topics       Topic[]       // Témata v lekci
+  questions    Question[]    // Otázky vygenerované z této lekce
+  sourceFile   String?       // Původní soubor ze kterého byla extrahována
+  verified     Boolean       @default(false) // Ověřeno právníkem/expertem
+  verifiedBy   String?       // Kdo ověřil
+  verifiedAt   DateTime?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+}
+
+// Téma v rámci lekce
+model Topic {
+  id          String      @id @default(uuid())
+  title       String      // Název tématu (např. "Fyzické osoby")
+  order       Int         // Pořadí v rámci lekce
+  lessonId    String
+  lesson      Lesson      @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  sections    Section[]   // Sekce v tématu
+  questions   Question[]  // Otázky vztahující se k tomuto tématu
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+// Sekce - konkrétní obsah
+model Section {
+  id          String       @id @default(uuid())
+  title       String?      // Nadpis sekce (volitelné)
+  content     String       // Textový obsah (markdown podporováno)
+  type        SectionType  @default(TEXT)
+  order       Int          // Pořadí v rámci tématu
+  topicId     String
+  topic       Topic        @relation(fields: [topicId], references: [id], onDelete: Cascade)
+
+  // Metadata pro právní obsah
+  legalReference String?    // Odkaz na paragraf/zákon (např. "§ 23 NOZ")
+  importance     Importance @default(MEDIUM)
+
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+
+// Typ sekce
+enum SectionType {
+  TEXT          // Běžný text/vysvětlení
+  DEFINITION    // Právní definice
+  EXAMPLE       // Praktický příklad
+  CASE_STUDY    // Kazuistika
+  IMPORTANT     // Důležité upozornění
+  LAW_QUOTE     // Citace zákona
+}
+
+// Důležitost obsahu
+enum Importance {
+  LOW           // Doplňující info
+  MEDIUM        // Standardní obsah
+  HIGH          // Klíčové informace pro zkoušku
+  CRITICAL      // Absolutně nutné znát
+}
+
+// Typ otázky
+enum QuestionType {
+  SINGLE_CHOICE    // Jedna správná odpověď
+  MULTIPLE_CHOICE  // Více správných odpovědí
+  TRUE_FALSE       // Pravda/Nepravda
+}
+
+// Obtížnost otázky
+enum Difficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
+// Otázka
+model Question {
+  id          String       @id @default(uuid())
+  text        String       // Text otázky
+  explanation String?      // Vysvětlení správné odpovědi
+  type        QuestionType @default(SINGLE_CHOICE)
+  difficulty  Difficulty   @default(MEDIUM)
+  categoryId  String
+  category    Category     @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  answers     Answer[]
+
+  // Propojení s lekcemi
+  lessonId    String?      // Z jaké lekce byla otázka vygenerována
+  lesson      Lesson?      @relation(fields: [lessonId], references: [id], onDelete: SetNull)
+  topicId     String?      // K jakému tématu se vztahuje
+  topic       Topic?       @relation(fields: [topicId], references: [id], onDelete: SetNull)
+
+  // Metadata
+  aiGenerated Boolean      @default(false) // Vygenerována AI nebo ručně
+  verified    Boolean      @default(false) // Ověřena správnost
+
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+
+// Odpověď na otázku
+model Answer {
+  id         String   @id @default(uuid())
+  text       String   // Text odpovědi
+  isCorrect  Boolean  @default(false) // Je správná?
+  questionId String
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+}
