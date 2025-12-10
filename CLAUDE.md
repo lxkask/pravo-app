@@ -4,7 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Quiz aplikace pro přípravu na zkoušku z Práva - interaktivní platforma s testovacími otázkami, flashcards a studijními materiály. MVP verze s plánovaným rozšířením o AI-powered extrakci obsahu z dokumentů.
+**Moderní digitální učebnice práva** - AI-powered studijní platforma pro přípravu na zkoušku z Práva.
+
+**Hlavní koncept:** Zpracovat všechny dostupné studijní materiály pomocí AI do moderní, čitelné učebnice s garantovanou důvěryhodností obsahu (zero hallucinations, 100% source tracking).
+
+**Viz kompletní koncept:** `KONCEPT-MODERNICH-UCEBNIC.md`
 
 ## Tech Stack
 
@@ -119,44 +123,80 @@ See `scripts/README.md` for detailed documentation.
 ## Development Phases
 
 ### ✅ Fáze 1: MVP Core (DOKONČENO)
-- Next.js aplikace s SQLite
+- Next.js aplikace s PostgreSQL
 - Quiz režim s různými typy otázek
 - Admin rozhraní pro správu
 - LocalStorage progres tracking
 
-### 🚧 Fáze 2: AI Extrakce (V PROCESU)
-- ✅ Rozšířené databázové schéma (Lesson, Topic, Section)
-- ✅ AI extraction script s Claude API
-- ✅ Strukturované prompty pro přesnou extrakci
-- ✅ Import pipeline do databáze
-- 🔜 UI pro prohlížení lekcí a teorie
-- 🔜 Validace a review systém
-- 🔜 Automatické generování kvízů z obsahu
+### 🔄 Fáze 2: PIVOT - Moderní Učebnice (CURRENT)
 
-### 🔜 Fáze 3: Rozšíření funkcí (PLÁNOVÁNO)
-- Flashcards mode
-- Přehled teorie
-- Praktické případy (kazusy)
-- Pokročilé statistiky
+**Důvod změny směru:** Původní přístup (Lesson → Topic → Section s collapsible UI) byl příliš fragmentovaný a nepřirozený pro učení. Nový koncept se zaměřuje na plynulé čtení jako v moderní učebnici.
+
+**NOVÝ PŘÍSTUP:**
+- ✅ Koncept schválen (viz KONCEPT-MODERNICH-UCEBNIC.md)
+- 🔜 Redesign databázového schématu (Chapter → Lesson structure)
+- 🔜 AI pipeline pro master osnovu ze VŠECH dokumentů
+- 🔜 Source tracking system (zero hallucinations)
+- 🔜 Conflict detection mezi dokumenty
+- 🔜 Human validation workflow
+- 🔜 Nové UI: Moderní učebnice (desktop + mobile optimized)
+- 🔜 Reading progress, bookmarks, notes
+
+**Zpracování dokumentů:**
+- 🔜 CELÉ PRÁVO DLE NOZ - NIKOLA KUCHAŘÍKOVÁ.docx
+- 🔜 Základy práva - kompletně vše, co potřebujete.docx
+- 🔜 obchodnipravo_zapisky_1-4.docx
+- 🔜 zápočtový test.doc
+- 🔜 gl-obchodnipravo/ (složka)
+- 🔜 Komplet teorie s otázkami ke zkoušce ZP,OP/ (složka)
+
+### 🔜 Fáze 3: Quiz generování z učebnice (PLÁNOVÁNO)
+- Automatické generování kvízů z ověřeného obsahu lekcí
+- Propojení konceptů z učebnice s testovými otázkami
+- Adaptivní obtížnost na základě čtení
 
 ### 🔜 Fáze 4: Full-stack upgrade (PLÁNOVÁNO)
 - Autentizace (NextAuth.js)
-- PostgreSQL/MySQL
 - Synchronizace mezi zařízeními
+- Pokročilé statistiky a analytics
 
 ## Important Notes
 
-- SQLite databáze je uložena v `prisma/dev.db`
-- Progres uživatele je v LocalStorage pod klíčem 'quizProgress'
-- V MVP není autentizace - všichni sdílejí stejnou databázi
-- Seed data obsahují 2 kategorie a 6 testovacích otázek
+- **Database:** PostgreSQL (Prisma) - production ready
+- **Progres:** LocalStorage pro MVP, později server-side tracking
+- **Autentizace:** V MVP není autentizace - všichni sdílejí stejnou databázi
+- **AI Safety:** KRITICKÉ - AI nesmí nic vymýšlet, pouze citovat z dokumentů!
 
-## Future AI Integration Plan
+## Core Principles (MUST FOLLOW)
 
-Dokumenty v nadřazeném adresáři obsahují zdrojové materiály:
-- `CELÉ PRÁVO DLE NOZ - NIKOLA KUCHAŘÍKOVÁ.docx`
-- `gl-obchodnipravo(vseborec.cz-b8227)/` složka
-- `Komplet teorie s otázkami ke zkoušce ZP,OP/` složka
-- PDF soubory s teorií
+### 1. Content Integrity (Nejvyšší priorita)
+- ✅ **ZERO AI HALLUCINATIONS** - AI pouze zpracovává existující dokumenty
+- ✅ **100% SOURCE TRACKING** - každý kus textu má odkaz na zdroj
+- ✅ **MULTI-SOURCE VALIDATION** - když se něco opakuje → důležité
+- ✅ **CONFLICT DETECTION** - rozpory mezi dokumenty → oznámit
+- ✅ **HUMAN VALIDATION** - obsah musí být schválen před publikací
 
-Tyto budou zpracovány v Fázi 2 pomocí Claude API pro automatickou extrakci otázek.
+### 2. UX Principles
+- ✅ **MOBILE FIRST** - primární optimalizace pro mobil
+- ✅ **HIGH READABILITY** - velké písmo, vysoký kontrast, dark mode
+- ✅ **CONTINUOUS READING** - ne fragmentované klikání
+- ✅ **FLEXIBLE NAVIGATION** - čti jako knihu NEBO skoč na téma
+
+### 3. Reading Experience
+- Typography: 16-18px base, line-height 1.75
+- Max content width: 800px (čitelnost)
+- Sections: přehledné, ale ne přetížené
+- Dark mode: deep dark s high contrast
+- No visual noise: minimální boxy, ikony, badges
+
+## AI Workflow Guidelines
+
+Když pracuješ s extrakcí obsahu:
+
+1. **NIKDY nevymýšlej text** - pouze cituj z dokumentů
+2. **VŽDY trackuj zdroj** - každý odstavec = odkaz na původní soubor + stránka
+3. **Označ konflikty** - když se dokumenty liší
+4. **99% doslovné citace** - jen minimální úpravy pro plynulost
+5. **Validace před uložením** - nejdřív preview, pak schválení
+
+Viz `KONCEPT-MODERNICH-UCEBNIC.md` pro detailní AI workflow.

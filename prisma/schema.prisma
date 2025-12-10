@@ -6,95 +6,161 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("POSTGRES_URL")
+  provider  = "postgresql"
+  url       = env("POSTGRES_URL")
   directUrl = env("POSTGRES_URL_NON_POOLING")
 }
+
+// ============================================================================
+// QUIZ MODELS (Fáze 1 - zachováno pro kompatibilitu)
+// ============================================================================
 
 // Kategorie otázek (např. Základy práva, Obchodní právo)
 model Category {
   id          String     @id @default(uuid())
   name        String     @unique
   description String?
-  color       String?    // Pro barevné odlišení v UI
+  color       String? // Pro barevné odlišení v UI
   questions   Question[]
-  lessons     Lesson[]   // Lekce v této kategorii
+  chapters    Chapter[] // Kapitoly v této kategorii (nový model)
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
 }
 
-// Lekce - strukturovaný studijní obsah
+// ============================================================================
+// MODERNÍ UČEBNICE MODELS (Fáze 2 - nový přístup)
+// ============================================================================
+
+// Kapitola - hlavní organizační jednotka (např. "Právní subjekty")
+model Chapter {
+  id          String   @id @default(uuid())
+  title       String // Název kapitoly
+  description String? // Krátký popis kapitoly
+  slug        String   @unique // URL-friendly identifikátor
+  order       Int // Pořadí v rámci kategorie
+  categoryId  String
+  category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  lessons     Lesson[] // Lekce v této kapitole
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([categoryId, order])
+}
+
+// Lekce - hlavní jednotka obsahu (15-30 min čtení)
 model Lesson {
-  id           String        @id @default(uuid())
-  title        String        // Název lekce (např. "Právní subjekty")
-  description  String?       // Krátký popis
-  order        Int           // Pořadí v rámci kategorie
-  categoryId   String
-  category     Category      @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-  topics       Topic[]       // Témata v lekci
-  questions    Question[]    // Otázky vygenerované z této lekce
-  sourceFile   String?       // Původní soubor ze kterého byla extrahována
-  verified     Boolean       @default(false) // Ověřeno právníkem/expertem
-  verifiedBy   String?       // Kdo ověřil
-  verifiedAt   DateTime?
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
+  id          String  @id @default(uuid())
+  title       String // Název lekce
+  slug        String  @unique // URL-friendly identifikátor
+  description String? // Krátký úvod k lekci
+  order       Int // Pořadí v rámci kapitoly
+
+  // Obsah
+  content String @db.Text // Markdown obsah lekce (hlavní text)
+
+  // Relace
+  chapterId String
+  chapter   Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+
+  // Source tracking (JSON)
+  sourceMapping Json? // Mapování částí textu na zdroje
+  // Formát: { paragraphs: [{startLine, endLine, source, page, confidence}], conflicts: [...] }
+
+  // Metadata
+  estimatedReadingTime Int? // Odhadovaná doba čtení v minutách
+  verified             Boolean   @default(false) // Ověřeno expertem
+  verifiedBy           String? // Kdo ověřil
+  verifiedAt           DateTime?
+
+  // Klíčové koncepty pro generování kvízů
+  concepts  Concept[]
+  questions Question[] // Otázky vygenerované z této lekce
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([chapterId, order])
+  @@index([verified])
 }
 
-// Téma v rámci lekce
-model Topic {
-  id          String      @id @default(uuid())
-  title       String      // Název tématu (např. "Fyzické osoby")
-  order       Int         // Pořadí v rámci lekce
-  lessonId    String
-  lesson      Lesson      @relation(fields: [lessonId], references: [id], onDelete: Cascade)
-  sections    Section[]   // Sekce v tématu
-  questions   Question[]  // Otázky vztahující se k tomuto tématu
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
-}
+// Koncept - klíčový pojem pro kvízy (extrahovaný z lekce)
+model Concept {
+  id         String     @id @default(uuid())
+  term       String // Název konceptu (např. "Svéprávnost")
+  definition String     @db.Text // Definice
+  lessonId   String
+  lesson     Lesson     @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  importance Importance @default(MEDIUM)
 
-// Sekce - konkrétní obsah
-model Section {
-  id          String       @id @default(uuid())
-  title       String?      // Nadpis sekce (volitelné)
-  content     String       // Textový obsah (markdown podporováno)
-  type        SectionType  @default(TEXT)
-  order       Int          // Pořadí v rámci tématu
-  topicId     String
-  topic       Topic        @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  // Odkaz na zdroj v lekci
+  sourceLineStart Int?
+  sourceLineEnd   Int?
 
-  // Metadata pro právní obsah
-  legalReference String?    // Odkaz na paragraf/zákon (např. "§ 23 NOZ")
-  importance     Importance @default(MEDIUM)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
-}
-
-// Typ sekce
-enum SectionType {
-  TEXT          // Běžný text/vysvětlení
-  DEFINITION    // Právní definice
-  EXAMPLE       // Praktický příklad
-  CASE_STUDY    // Kazuistika
-  IMPORTANT     // Důležité upozornění
-  LAW_QUOTE     // Citace zákona
+  @@index([lessonId])
 }
 
 // Důležitost obsahu
 enum Importance {
-  LOW           // Doplňující info
-  MEDIUM        // Standardní obsah
-  HIGH          // Klíčové informace pro zkoušku
-  CRITICAL      // Absolutně nutné znát
+  LOW // Doplňující info
+  MEDIUM // Standardní obsah
+  HIGH // Klíčové informace pro zkoušku
+  CRITICAL // Absolutně nutné znát
+}
+
+// ============================================================================
+// DEPRECATED MODELS (Fáze 2 v1 - ponecháno pro migraci dat)
+// TODO: Odstranit po dokončení migrace
+// ============================================================================
+
+// DEPRECATED: Téma v rámci lekce (starý model)
+model Topic {
+  id          String     @id @default(uuid())
+  title       String
+  order       Int
+  lessonOldId String     @map("lessonId")
+  sections    Section[]
+  questions   Question[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  @@map("topics")
+}
+
+// DEPRECATED: Sekce - konkrétní obsah (starý model)
+model Section {
+  id             String      @id @default(uuid())
+  title          String?
+  content        String
+  type           SectionType @default(TEXT)
+  order          Int
+  topicId        String
+  topic          Topic       @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  legalReference String?
+  importance     Importance  @default(MEDIUM)
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+
+  @@map("sections")
+}
+
+// DEPRECATED: Typ sekce (starý enum)
+enum SectionType {
+  TEXT
+  DEFINITION
+  EXAMPLE
+  CASE_STUDY
+  IMPORTANT
+  LAW_QUOTE
 }
 
 // Typ otázky
 enum QuestionType {
-  SINGLE_CHOICE    // Jedna správná odpověď
-  MULTIPLE_CHOICE  // Více správných odpovědí
-  TRUE_FALSE       // Pravda/Nepravda
+  SINGLE_CHOICE // Jedna správná odpověď
+  MULTIPLE_CHOICE // Více správných odpovědí
+  TRUE_FALSE // Pravda/Nepravda
 }
 
 // Obtížnost otázky
@@ -104,35 +170,106 @@ enum Difficulty {
   HARD
 }
 
-// Otázka
+// ============================================================================
+// PRŮBĚŽNÝ TEST (Midterm Quiz) - Nový model pro webové otázky
+// ============================================================================
+
+// Otázky z průběžného testu (z http://beta2.naxera.eu/)
+model QuizQuestion {
+  id           String       @id @default(uuid())
+  questionText String       @db.Text // Text otázky
+  explanation  String?      @db.Text // Vysvětlení správné odpovědi (volitelné)
+
+  // Metadata
+  originalId   Int?         // Původní číslo otázky z webu
+  source       String       @default("http://beta2.naxera.eu/") // Odkud pochází
+  category     String?      // ZP, OP, nebo MIXED
+
+  // Relace
+  answers      QuizAnswer[]
+
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  @@index([category])
+  @@index([originalId])
+}
+
+// Odpovědi na otázky z průběžného testu
+model QuizAnswer {
+  id             String       @id @default(uuid())
+  text           String       @db.Text // Text odpovědi
+  isCorrect      Boolean      @default(false) // Je správná?
+  order          Int          @default(0) // Pořadí zobrazení
+
+  questionId     String
+  question       QuizQuestion @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  createdAt      DateTime     @default(now())
+
+  @@index([questionId])
+}
+
+// ============================================================================
+// ZKOUŠKOVÉ OTÁZKY (Exam Questions) - Nový model
+// ============================================================================
+
+// Zkouškové otázky k ústní zkoušce (z Patocka PDF)
+model ExamQuestion {
+  id           String   @id @default(uuid())
+  order        Int      @unique // Pořadí otázky (1-40)
+  title        String   @db.Text // Název/title otázky
+  shortAnswer  String   @db.Text // Krátká odpověď (aktuální)
+  longAnswer   String?  @db.Text // Dlouhá odpověď (pro budoucnost)
+
+  // Metadata
+  source       String   @default("Patocka_Ustni_2024-1.pdf")
+
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([order])
+}
+
+// ============================================================================
+// QUIZ QUESTION MODELS (DEPRECATED - používáno v Fázi 1)
+// TODO: Migrovat na QuizQuestion nebo smazat
+// ============================================================================
+
+// DEPRECATED: Otázka (starý model)
 model Question {
   id          String       @id @default(uuid())
-  text        String       // Text otázky
-  explanation String?      // Vysvětlení správné odpovědi
+  text        String // Text otázky
+  explanation String? // Vysvětlení správné odpovědi
   type        QuestionType @default(SINGLE_CHOICE)
   difficulty  Difficulty   @default(MEDIUM)
   categoryId  String
   category    Category     @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   answers     Answer[]
 
-  // Propojení s lekcemi
-  lessonId    String?      // Z jaké lekce byla otázka vygenerována
-  lesson      Lesson?      @relation(fields: [lessonId], references: [id], onDelete: SetNull)
-  topicId     String?      // K jakému tématu se vztahuje
-  topic       Topic?       @relation(fields: [topicId], references: [id], onDelete: SetNull)
+  // Propojení s lekcemi (nový model)
+  lessonId String? // Z jaké lekce byla otázka vygenerována
+  lesson   Lesson? @relation(fields: [lessonId], references: [id], onDelete: SetNull)
+
+  // DEPRECATED: Propojení se starými modely
+  topicId String? // K jakému tématu se vztahuje (starý model)
+  topic   Topic?  @relation(fields: [topicId], references: [id], onDelete: SetNull)
 
   // Metadata
-  aiGenerated Boolean      @default(false) // Vygenerována AI nebo ručně
-  verified    Boolean      @default(false) // Ověřena správnost
+  aiGenerated Boolean @default(false) // Vygenerována AI nebo ručně
+  verified    Boolean @default(false) // Ověřena správnost
 
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([categoryId])
+  @@index([lessonId])
 }
 
-// Odpověď na otázku
+// DEPRECATED: Odpověď na otázku (starý model)
 model Answer {
   id         String   @id @default(uuid())
-  text       String   // Text odpovědi
+  text       String // Text odpovědi
   isCorrect  Boolean  @default(false) // Je správná?
   questionId String
   question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)

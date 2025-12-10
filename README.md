@@ -1,6 +1,6 @@
-# 📚 Pravo Quiz App
+# 📚 Moderní Učebnice Práva
 
-Interaktivní webová aplikace pro přípravu na zkoušku z Práva s kvízy, flashcards a studijními materiály.
+AI-powered digitální učebnice pro přípravu na zkoušku z Práva - čitelná, důvěryhodná, optimalizovaná pro mobil i desktop.
 
 ## 🚀 Rychlý Start
 
@@ -20,20 +20,22 @@ npm run dev
 
 Aplikace poběží na `http://localhost:3000`
 
-## ✨ Funkce (MVP - Fáze 1)
+## ✨ Hlavní Funkce
 
-### Pro studenty:
-- ✅ **Kvízový režim** - Testovací otázky s okamžitou zpětnou vazbou
-- ✅ **Různé typy otázek** - Single choice, Multiple choice, True/False
-- ✅ **Kategorie** - Základy práva, Obchodní právo, atd.
-- ✅ **Obtížnosti** - Lehká, Střední, Těžká
+### 📖 Moderní Učebnice (Fáze 2 - CURRENT)
+- 🔜 **Souvislé čtení** - Dlouhé lekce bez fragmentace
+- 🔜 **Flexibilní navigace** - Čti jako knihu NEBO skoč na téma
+- 🔜 **Mobile-first design** - Perfektně optimalizováno pro mobil
+- 🔜 **High readability** - Vysoký kontrast, velké písmo, dark mode
+- 🔜 **Source tracking** - Každý text má odkaz na původní dokument
+- 🔜 **Zero hallucinations** - AI pouze cituje, nevymýšlí
+- 🔜 **Multi-source consolidation** - 6 dokumentů → jedna koherentní učebnice
+
+### ✅ Kvízový Režim (Fáze 1 - DOKONČENO)
+- ✅ **Testovací otázky** - Single/Multiple choice, True/False
+- ✅ **Kategorie** - Základy práva, Obchodní právo
 - ✅ **Vysvětlení** - Detailní vysvětlení správných odpovědí
-- ✅ **Progres tracking** - Sledování skóre a pokroku (LocalStorage)
-
-### Pro správu obsahu:
-- ✅ **Admin rozhraní** - Přidávání kategorií a otázek
-- ✅ **Barevné značení** - Vizuální odlišení kategorií
-- ✅ **Testovací data** - 6 připravených otázek ze 2 kategorií
+- ✅ **Admin rozhraní** - Správa kategorií a otázek
 
 ## 🛠️ Technologie
 
@@ -85,68 +87,105 @@ pravo-quiz-app/
 - `isCorrect` - Boolean
 - `questionId` - Vazba na otázku
 
-## 🔄 Další Fáze Vývoje
+## 🔄 Development Roadmap
 
-### Fáze 2: AI Extrakce (✅ MVP DOKONČENO)
-- [x] Rozšířené databázové schéma (Lesson, Topic, Section)
-- [x] Script pro čtení .docx dokumentů
-- [x] Claude API integrace s přesnými prompty
-- [x] Strukturovaná extrakce obsahu (ne jen otázky!)
-- [x] Import pipeline do databáze
-- [x] UI pro prohlížení lekcí a teorie
-- [x] Mobilně přívětivé rozhraní s markdown renderingem
-- [ ] Validace a review systém (plánováno)
-- [ ] Automatické generování kvízů z ověřeného obsahu (plánováno)
+### ✅ Fáze 1: MVP Core (DOKONČENO)
+- [x] Next.js aplikace s PostgreSQL
+- [x] Quiz režim s různými typy otázek
+- [x] Admin rozhraní
+- [x] LocalStorage progres tracking
 
-**📖 Kompletní návod: [FAZE-2-NAVOD.md](./FAZE-2-NAVOD.md)**
+### 🔄 Fáze 2: Moderní Učebnice (CURRENT - PROOF OF CONCEPT)
 
-### Fáze 3: Rozšíření Funkcí (Plánováno)
-- [ ] Flashcards režim
-- [ ] Přehled teorie po kapitolách
-- [ ] Praktické případy (kazusy)
-- [ ] Pokročilé statistiky a analytics
-- [ ] Export/import otázek (JSON/CSV)
+**🎯 Nový směr:** Pivot od fragmentovaného UI k moderní, plynulé učebnici
 
-### Fáze 4: Full-stack Upgrade (Plánováno)
-- [ ] Uživatelská autentizace (NextAuth.js)
-- [ ] PostgreSQL databáze
-- [ ] Synchronizace mezi zařízeními
-- [ ] Cloud deployment (Vercel)
+**📖 Koncept:** [KONCEPT-MODERNICH-UCEBNIC.md](./KONCEPT-MODERNICH-UCEBNIC.md)
 
-## 🎯 Použití
+**✅ Hotovo:**
+- [x] Redesign databázového schématu (Chapter → Lesson → Concept)
+- [x] AI pipeline script (generate-master-outline.ts)
+- [x] Master osnova vygenerována (12 kapitol, 44 lekcí)
+- [x] Source tracking system implementován
+- [x] Conflict detection funguje (3 konflikty nalezeny)
 
-### 1. Pro studenty
+**🔜 Next Steps (Varianta A - Proof of Concept):**
+- [ ] Vyřešit konflikty v master outline
+- [ ] Content assembly script (assemble-lesson-content.ts)
+- [ ] Vygenerovat 2-3 ukázkové lekce
+- [ ] Implementovat základní UI (kapitoly → lekce → detail)
+- [ ] Demo & feedback
 
-1. Otevři `http://localhost:3000`
-2. Vyber si kategorii (např. "Základy práva")
-3. Procvičuj otázky, sleduj své skóre
-4. Čti vysvětlení u správných odpovědí
-
-### 2. Pro přidání vlastních otázek
-
-1. Otevři Admin panel na `/admin`
-2. Vytvoř novou kategorii (pokud neexistuje)
-3. Přidej otázku s odpověďmi
-4. Označ správné odpovědi checkboxem
-
-### 3. Pro práci s databází
-
-```bash
-# Otevřít Prisma Studio (GUI pro databázi)
-npx prisma studio
-
-# Resetovat databázi a naplnit testovacími daty
-npx prisma migrate reset
-
-# Přidat seed data ručně
-npm run db:seed
+**📊 Aktuální stav:**
 ```
+✅ Master Outline: extractions/master-outline-2025-12-08T23-14-59-201Z.json
+   - 12 kapitol
+   - 44 lekcí
+   - 98% pokrytí hlavního dokumentu
+   - 3 konflikty ke kontrole
+```
+
+**Zpracování materiálů:**
+```
+✅ CELÉ PRÁVO DLE NOZ - NIKOLA KUCHAŘÍKOVÁ.docx (174 KB) → 98% pokryto
+✅ Základy práva - kompletně vše, co potřebujete.docx (59 KB) → 95% pokryto
+✅ obchodnipravo_zapisky_1-4.docx (81 KB) → 92% pokryto
+⚠️  zápočtový test.doc (444 KB) → 85% pokryto (starý .doc formát)
+🔜 gl-obchodnipravo/ (složka) - ještě nezpracováno
+🔜 Komplet teorie s otázkami ke zkoušce ZP,OP/ (složka) - ještě nezpracováno
+```
+
+### 🔜 Fáze 3: Quiz z Učebnice (Plánováno)
+- [ ] Automatické generování kvízů z ověřeného obsahu lekcí
+- [ ] Propojení konceptů z učebnice s testovými otázkami
+- [ ] Adaptivní obtížnost na základě čtení
+
+### 🔜 Fáze 4: Full-stack Upgrade (Plánováno)
+- [ ] Uživatelská autentizace (NextAuth.js)
+- [ ] Synchronizace mezi zařízeními
+- [ ] Pokročilé statistiky a analytics
+
+## 🎯 Design Principles
+
+### Content Integrity (KRITICKÉ)
+- ✅ **ZERO AI HALLUCINATIONS** - AI pouze zpracovává dokumenty, nic nevymýšlí
+- ✅ **100% SOURCE TRACKING** - každý text má odkaz na původní zdroj
+- ✅ **MULTI-SOURCE VALIDATION** - opakování napříč dokumenty = důležité
+- ✅ **CONFLICT DETECTION** - rozpory mezi dokumenty → označit ke kontrole
+- ✅ **HUMAN VALIDATION** - obsah musí být schválen před publikací
+
+### UX Principles
+- 📱 **MOBILE FIRST** - primární optimalizace pro mobil
+- 📖 **HIGH READABILITY** - velké písmo (16-18px), line-height 1.75, vysoký kontrast
+- 🌊 **CONTINUOUS READING** - ne fragmentované klikání, plynulý scroll
+- 🧭 **FLEXIBLE NAVIGATION** - čti jako knihu NEBO skoč na téma
+- 🎨 **MINIMAL NOISE** - čisté UI bez přehnaných boxů, ikon, badges
+
+### Reading Experience
+- Typography: System fonts, 16-18px base, vysoké řádkování
+- Max content width: 800px (optimální čitelnost)
+- Dark mode: Deep dark (#0f1419) s high contrast text
+- Sections: Přehledné H2/H3 nadpisy, ne collapsible boxy
 
 ## 📝 Poznámky
 
-- V MVP verzi není autentizace - všichni uživatelé sdílejí stejnou databázi
-- Progres se ukládá pouze v LocalStorage (nemigrovatelné mezi zařízeními)
-- Zdrojové právní dokumenty jsou v nadřazeném adresáři pro budoucí AI zpracování
+- **Database:** PostgreSQL (Prisma) - production ready
+- **Autentizace:** V MVP není - všichni sdílejí stejnou databázi
+- **Progres:** LocalStorage pro MVP, později server-side tracking
+- **Zdrojové dokumenty:** 6 materiálů v nadřazeném adresáři
+- **AI Safety:** KRITICKÉ - AI nesmí nic vymýšlet, pouze citovat!
+
+## 📚 Dokumentace
+
+### Začni tady! 👇
+- **[QUICKSTART-NEXT-SESSION.md](./QUICKSTART-NEXT-SESSION.md)** - ⚡ Quick start pro příští session
+- **[SESSION-STATUS.md](./SESSION-STATUS.md)** - 📍 Kde jsme skončili + co dělat příště
+
+### Detailní dokumenty:
+- **[KONCEPT-MODERNICH-UCEBNIC.md](./KONCEPT-MODERNICH-UCEBNIC.md)** - Kompletní koncept a vize aplikace
+- **[DECISIONS.md](./DECISIONS.md)** - Klíčová rozhodnutí + aktuální progress
+- **[CLAUDE.md](./CLAUDE.md)** - Technická dokumentace pro AI asistenty
+- **[scripts/README-MODERN-TEXTBOOK.md](./scripts/README-MODERN-TEXTBOOK.md)** - Návod na AI scripty
+- **[FAZE-2-NAVOD.md](./FAZE-2-NAVOD.md)** - Původní návod (deprecated)
 
 ## 🤝 Vývoj
 

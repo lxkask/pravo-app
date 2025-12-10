@@ -1,0 +1,2340 @@
+[
+  {
+    "number": 33,
+    "question": "33. 52. Zastoupení rozlišujeme:",
+    "answers": [
+      {
+        "text": "D) Zákonné a smluvní, kdy příkladem zastoupení na základě zákona je zastoupení právnické osoby statutárním orgánem",
+        "correct": true
+      },
+      {
+        "text": "C) Zákonné a smluvní, kdy příkladem smluvního zastoupení je zastoupení fyzické osoby opatrovníkem",
+        "correct": false
+      },
+      {
+        "text": "B) Zákonné a smluvní, kdy příkladem zákonného zastoupení je zastoupení zástupcem, který se prokazuje plnou mocí",
+        "correct": false
+      },
+      {
+        "text": "A) Legální a nelegální, kdy příkladem nelegálního zastoupení je prokura",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 34,
+    "question": "34. 53.Právnické osoby mají:",
+    "answers": [
+      {
+        "text": "B) Svéprávnost od svého vzniku, ale právní osobnost nemají, neboť nemohou samy za sebe právně jednat",
+        "correct": false
+      },
+      {
+        "text": "A) Právní osobnost od svého založení, ale svéprávnost mají pouze členové jejich statutárních orgánů",
+        "correct": false
+      },
+      {
+        "text": "D) Právní osobnost od svého vzniku, ale svéprávnost nemají, a proto musí být při jednání vždy zastoupeny",
+        "correct": true
+      },
+      {
+        "text": "C) Právní osobnost už od svého založení, ale svéprávnost až od svého vzniku, tedy od zápisu do veřejného rejstříku",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 35,
+    "question": "35. 54. Obchodních korporací se rozumí:",
+    "answers": [
+      {
+        "text": "D) Podílem peněžní vyjádření hodnoty předmětu vkladu do základního kapitálu, přičemž podílem mohou být například i peníze –",
+        "correct": false
+      },
+      {
+        "text": "C) Základním kapitálem součet všech podílů a vkladů, které do obchodní korporace vnesou společníci nebo akcionáři –",
+        "correct": false
+      },
+      {
+        "text": "A) Vkladem účast společníka nebo akcionáře v obchodní společnosA nebo družstvu, vyjádřená typicky v procentech",
+        "correct": false
+      },
+      {
+        "text": "B) Vkladem peněžní vyjádření hodnoty předmětu vkladu do základního kapitálu, přičemž předmětem vkladu může být například i traktor",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "number": 36,
+    "question": "36. 55. Postoupení pohledávky je změna závazku na straně věřitele, kdy namísto původního věřitele přichází věřitel nový; přitom pro postoupení pohledávky se souhlas dlužníka vyžaduje:",
+    "answers": [
+      {
+        "text": "• ANO",
+        "correct": false
+      },
+      {
+        "text": "• NE",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "number": 37,
+    "question": "37. 56. Obchodní firmu může mít:",
+    "answers": [
+      {
+        "text": "C) Každá fyzická nebo právnická osoba, která má právní osobnost a je tedy schopna v rámci právního řádu mít subjekAvní práva, včetně práva vlastnického",
+        "correct": false
+      },
+      {
+        "text": "D) Pouze podnikatel, který je plně svéprávný, bezúhonný a splňuje podmínky pro získání živnostenského či neživnostenského oprávnění stanovené příslušným zákonem",
+        "correct": false
+      },
+      {
+        "text": "A) Pouze fyzická nebo právnická osoba zapsaná v obchodním rejstříku, zaFmco podnikatelé nezapsaní v obchodním rejstříku mít obchodní firmu nemohou –",
+        "correct": false
+      },
+      {
+        "text": "B) Každý podnikatel bez ohledu na to, zda je zapsán v obchodním rejstříku či nikoli, ale pouze za předpokladu, že podniká živnostenským nebo obdobným způsobem",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 37,
+    "question": "37. 56. Obchodní firmu může mít:",
+    "answers": [
+      {
+        "text": "C) Každá fyzická nebo právnická osoba, která má právní osobnost a je tedy schopna v rámci právního řádu mít subjekAvní práva, včetně práva vlastnického",
+        "correct": false
+      },
+      {
+        "text": "D) Pouze podnikatel, který je plně svéprávný, bezúhonný a splňuje podmínky pro získání živnostenského či neživnostenského oprávnění stanovené příslušným zákonem",
+        "correct": false
+      },
+      {
+        "text": "A) Pouze fyzická nebo právnická osoba zapsaná v obchodním rejstříku, zaFmco podnikatelé nezapsaní v obchodním rejstříku mít obchodní firmu nemohou –",
+        "correct": false
+      },
+      {
+        "text": "B) Každý podnikatel bez ohledu na to, zda je zapsán v obchodním rejstříku či nikoli, ale pouze za předpokladu, že podniká živnostenským nebo obdobným způsobem",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 37,
+    "question": "37. 56. Obchodní firmu může mít:",
+    "answers": [
+      {
+        "text": "C) Každá fyzická nebo právnická osoba, která má právní osobnost a je tedy schopna v rámci právního řádu mít subjekAvní práva, včetně práva vlastnického",
+        "correct": false
+      },
+      {
+        "text": "D) Pouze podnikatel, který je plně svéprávný, bezúhonný a splňuje podmínky pro získání živnostenského či neživnostenského oprávnění stanovené příslušným zákonem",
+        "correct": false
+      },
+      {
+        "text": "A) Pouze fyzická nebo právnická osoba zapsaná v obchodním rejstříku, zaFmco podnikatelé nezapsaní v obchodním rejstříku mít obchodní firmu nemohou –",
+        "correct": true
+      },
+      {
+        "text": "B) Každý podnikatel bez ohledu na to, zda je zapsán v obchodním rejstříku či nikoli, ale pouze za předpokladu, že podniká živnostenským nebo obdobným způsobem",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 38,
+    "question": "38. 57. živnosti ohlašovací jsou živnosti:",
+    "answers": [
+      {
+        "text": "b) Řemeslné, vázané a volné, k jejichž oprávnění provozování je třeba získat živnostenské oprávnění, na jehož udělení má podnikatel při splnění zákonem stanovených podmínek právní nárok",
+        "correct": true
+      },
+      {
+        "text": "d) Řemeslné, vázané a koncesované, k jejichž oprávněnému provozování postačuje jejich ohlášení podnikatelem na živnostenském úřadě, aniž by bylo nutné získat živnostenské nebo jiné oprávnění –",
+        "correct": false
+      },
+      {
+        "text": "a) Řemeslné, vázané a koncesované, k jejichž oprávněnému provozování je nutné získat státní povolení o jehož udělení rozhodne příslušný správní orgán rozhodnuFm, které je pro živnostenský úřad závazn",
+        "correct": false
+      },
+      {
+        "text": "c) Řemeslné, vázané a volné, k jejichž oprávněnému provozování, za předpokladu splnění zákonem stanovených všeobecných podmínek a odborné způsobilosA, již není potřeba získat žádné živnostenské ani jiné oprávněn",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 39,
+    "question": "39. 58. Mohl by pan Dlouhý v daném případě zastupovat společnost Polotovary a.s. jako zaměstnanec?** Úředník banky přijde za panem Dlouhým, zástupcem finanční ředitelky společnosA Polotovary a.s., a nabídne mu uzavření úvěrové smlouvy na částku 2.000.000,- Kč. V daný den se schůzky nemůže zúčastnit finanční ředitelka, paní Spořivá, která je mimo sídlo společnosA na pracovní cestě. Pan Dlouhý má za to, že je nabídka výhodná, ale není si jistý dohodou s paní Spořivou. Po urgencích úředníka smlouvu podepíše, jelikož si nemůže u paní Spořivé informaci ověřit a nechce způsobit problém. V obchodním rejstříku je uvedeno, že smlouvy s hodnotou nad 5.000 Kč mohou uzavírat dva členové představenstva společně",
+    "answers": [
+      {
+        "text": "• NE.",
+        "correct": true
+      },
+      {
+        "text": "• ANO",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 40,
+    "question": "40. 59. Smlouva, kterou se jedna strana zavazuje přenechat druhé straně věc k dočasnému užívání (nikoli požívání) a tato druhá strana se zavazuje pla*t za to první straně určitou odměnu, je:",
+    "answers": [
+      {
+        "text": "c) Smlouva o zápůjčce",
+        "correct": false
+      },
+      {
+        "text": "a) Nájemní smlouva",
+        "correct": true
+      },
+      {
+        "text": "d) Pachtovní smlouva –",
+        "correct": false
+      },
+      {
+        "text": "b) Smlouva o výpůjčce",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 41,
+    "question": "41. 60. Závazek zaniká typicky splněním dluhu, ale:",
+    "answers": [
+      {
+        "text": "b) Nemůže za žádných okolnosF zaniknout na základě smrA dlužníka ani věřitele",
+        "correct": false
+      },
+      {
+        "text": "a) Nemůže zaniknout jednostranně, neboť závazek vzniká také jen na základě dvoustranného právního jednání",
+        "correct": false
+      },
+      {
+        "text": "d) Může podle okolnosF zaniknout též jednostranně například výpovědí nebo odstoupením od smlouvy či dvoustranně například dohodou",
+        "correct": true
+      },
+      {
+        "text": "c) Může podle okolnosF zaniknout též jednostrannou dohodou, případně též splynuFm, vždy však zaniká smrF dlužníka",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 42,
+    "question": "42. 61. Porušením smluvní povinnosti:",
+    "answers": [
+      {
+        "text": "d) Povinnost splnit tuto primární smluvní povinnost trvá a sekundárně vzniká povinnost nahradit škodu Fm způsobenou, jestliže strana porušení smluvní povinnosA zavinila nedbalostně",
+        "correct": false
+      },
+      {
+        "text": "c) Zaniká povinnost tuto primární smluvní povinnost splnit a vzniká povinnost nahradit škodu, jako povinnost sekundární",
+        "correct": false
+      },
+      {
+        "text": "a) Povinnost splnit primární smluvní povinnost trvá a sekundárně vzniká povinnost nahradit škodu Fm způsobenou, přičemž v tomto případě nehraje roli, jestli strana porušení povinnosA zavinila",
+        "correct": true
+      },
+      {
+        "text": "b) Povinnost splnit primární smluvní povinnost trvá a sekundárně vzniká povinnost nahradit škodu Fm způsobenou, jestliže strana porušení smluvní povinnosA zavinila úmyslně",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 43,
+    "question": "43. 62. Jestliže dlužník nesplní svůj dluh včas:",
+    "answers": [
+      {
+        "text": "d) Pak ze zákona vzniká povinnost osob blízkých dlužníkovi uhradit tyto dluhy za dlužníka, což poté mohou požadovat po dlužníkovi",
+        "correct": false
+      },
+      {
+        "text": "b) Pak odpovídá za vady na věci, která byla předmětem plnění dlužníka, například za nefunkční součástku na věci",
+        "correct": false
+      },
+      {
+        "text": "c) Je v prodlení, což opravňuje věřitele peněžitého dluhu, aby po dlužníkovi požadoval navíc úroky z prodlení, i když o žádných úrocích z prodlení",
+        "correct": true
+      },
+      {
+        "text": "a) Pak věřiteli vždy vznikne škoda, což musí věřitel uplatnit u soudu žalobou na náhradu škody vzniklé porušením smluvní povinnosA",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 44,
+    "question": "44. 63. Vyberte správné tvrzení:",
+    "answers": [
+      {
+        "text": "b) Veřejná obchodní společnost může být tvořena i jediným společníkem, v takovém případě se zakládá zakladatelskou lisAnou, která musí být sepsána formou veřejné lisAny (notářského zápisu)",
+        "correct": false
+      },
+      {
+        "text": "d) Veřejná obchodní společnost (vos) a komanditní společnost (ks) musí být tvořena alespoň dvěma společníky, kdy u ks musí mít alespoň jednoho komandiAstu a komplementáře",
+        "correct": false
+      },
+      {
+        "text": "c) Alespoň jednoho komandiAstu (ručícího neomezeně) a komplementáře (ručícího omezeně)",
+        "correct": false
+      },
+      {
+        "text": "e) Komanditní společnost je osobní společnosF, jejímž statutárním orgánem jsou komandiAsté a nejvyšším orgánem valná hromada tvořená komplementáři",
+        "correct": false
+      },
+      {
+        "text": "a) Veřejná obchodní společnost (vos) i komanditní společnost (ks) musí být tvořena alespoň dvěma společníky, kdy u ks musí mít alespoň jednoho komandiAstu (ručícího omezeně) a komplementáře (ručícího neomezeně)",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "number": 45,
+    "question": "45. 64. Závazky vznikají například ze smlouvy o zápůjčce, protože závazkem se rozumí jen povinnost dlužníka zapla*t věřiteli určitý peněžní obnos",
+    "answers": [
+      {
+        "text": "• NE",
+        "correct": true
+      },
+      {
+        "text": "• ANO",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 46,
+    "question": "46. 65. Pan Rozumný a pan Chytrý jsou společníci společnosti s ručením omezeným, přičemž každý se zavázal ke vkladové povinnosti 150 000 Kč. Pan Rozumný splatil 50 000 Kč, pan Chytrý splatil 80 000 Kč, což je zapsáno v obchodním rejstříku. V případě, že s.r.o. vznikne dluh ve výši 1 000 000 Kč, může věřitel požadovat:",
+    "answers": [
+      {
+        "text": "d) Po s.r.o. celý dluh, přičemž pan Rozumný ručí za závazky do výše 70 000 Kč a pan Chytrý ručí do výše 100 000 Kč",
+        "correct": false
+      },
+      {
+        "text": "a) Po s.r.o. celý dluh, přičemž jak po panu Rozumném, tak po panu Chytrém (společně a nerozdílně) 170 000 Kč",
+        "correct": true
+      },
+      {
+        "text": "b) Po s.r.o. celý dluh, přičemž jak po panu Rozumném, tak po panu Chytrém (společně a nerozdílně) 110 000 Kč",
+        "correct": false
+      },
+      {
+        "text": "c) Po s.r.o. celý dluh, přičemž pan Rozumný ručí za závazky do výše 100 000 Kč a pan Chytrý ručí do výše 70 000 Kč",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 47,
+    "question": "47. 66. Pan Novák poskytl panu Rychlému v únoru 2021 zápůjčku ve výši 280 000KČ. Smlouva mezi panem Novákem a panem Rychlým byla vypracována písemné a bylo sjednáno, že dlužník je povinen vrá*t peněžité prostředky do 3 let, tedy do konce února roku 2024. Zápůjčka byla úročena úrokem ve výší 8% ročně. Strany sjednaly také smluvní pokutu ve výši 500 KČ za každý započatý den prodlení, pokud by dlužník svůj dluh včas neuhradil. Dlužník do duševního dne zápůjčku neuhradil. Může nyní pan Novák po panu Rychlém nárokovat zákonný úrok z prodlení?",
+    "answers": [
+      {
+        "text": "o ANO",
+        "correct": true
+      },
+      {
+        "text": "o NE",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 48,
+    "question": "48. 67 Pan Svoboda s paní Svobodovou si chtěli pořídit nové vybavení do jídelny. Nejprve obešli obchodní domy s nábytkem a navšLvili několik truhlářů a stále se nemohli rozhodnout, jaký nábytek si koupí. Tak nechali truhlářem zhotovit stůl podle vzoru a na stůl dodali své dřevo. Při odvozu stolu uhradili truhláři cenu stolu a židlí. Jakou smlouvu Svobodovi s truhlářem uzavřeli?",
+    "answers": [
+      {
+        "text": "c) Darovací smlouvu",
+        "correct": false
+      },
+      {
+        "text": "e) Smlouvu o dílo",
+        "correct": true
+      },
+      {
+        "text": "d) Kupní smlouvu",
+        "correct": false
+      },
+      {
+        "text": "a) Smlouvu o výpůjčce",
+        "correct": false
+      },
+      {
+        "text": "b) Pracovní smlouvu",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 49,
+    "question": "49. 68. Závazky vznikají například ze smlouvy o zápůjčce nebo pracovní smlouvy, protože závazek je souhrn práv a povinnosL, a závazky mohou vznikat také z pro*právního jednání:",
+    "answers": [
+      {
+        "text": "a) NE",
+        "correct": false
+      },
+      {
+        "text": "b) ANO",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "number": 50,
+    "question": "50. 69. Společnost s ručením omezeným:",
+    "answers": [
+      {
+        "text": "d) Založená společenskou smlouvou může mít základní kapitál 1,- Kč",
+        "correct": false
+      },
+      {
+        "text": "a) Může být založena jediným společníkem, který je v takové situaci také jediným členem správní rady",
+        "correct": false
+      },
+      {
+        "text": "b) Ustanovuje jako obligatorní kontrolní orgán dozorčí radu",
+        "correct": false
+      },
+      {
+        "text": "c) Odpovídá za své dluhy celým svým majetkem",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "number": 51,
+    "question": "51. 71.Promlčecí lhůta je lhůta:",
+    "answers": [
+      {
+        "text": "(b) jejíž marné uplynuF má za následek zánik práva a případné plnění po jejím uplynuFm by bylo plněním bez právního důvodu",
+        "correct": false
+      },
+      {
+        "text": "(a) která běží od okamžiku vzniku závazku",
+        "correct": false
+      },
+      {
+        "text": "(e) k jejímž marnému uplynuF soud přihlíží pouze tehdy, je-li vznesena námitka promlčení",
+        "correct": false
+      },
+      {
+        "text": "(c) jejímž uplynuFm právo sice nezaniká, ale je oslabeno v tom smyslu, že je možné namítnout promlčení u soudu",
+        "correct": true
+      },
+      {
+        "text": "(d) jejímž marným uplynuFm je stále možné dobrovolně plnit, aniž by se jednalo o plnění bez právního důvodu.",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 52,
+    "question": "52. 76.Označte tvrzení, které je pravdivé:",
+    "answers": [
+      {
+        "text": "b) Soud je synonymum pro slovo justice",
+        "correct": false
+      },
+      {
+        "text": "a) Soud je nositelem státní moci",
+        "correct": false
+      },
+      {
+        "text": "c) Soud je součástí státního aparátu",
+        "correct": false
+      },
+      {
+        "text": "d) Soudy rozhoduji spory v rámci své pravomoci",
+        "correct": true
+      },
+      {
+        "text": "e) Žádná odpověď není správná",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 53,
+    "question": "53. 77. Absolutně neplatné je právní jednání:",
+    "answers": [
+      {
+        "text": "c) Které vyvolává jen částečně právní následky",
+        "correct": false
+      },
+      {
+        "text": "e) Které je platné až do okamžiku, kdy se jeho neplatnosti oprávněná strana dovolá",
+        "correct": false
+      },
+      {
+        "text": "d) Které nevyvolává předpokládané právní následky",
+        "correct": false
+      },
+      {
+        "text": "a) Jehož neplatnost se může dovolat každý",
+        "correct": true
+      },
+      {
+        "text": "b) Které je neplatné jen do okamžiku, který stanoví na návrh oprávněného soud",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 54,
+    "question": "54. 78. Preventivní funkce právní odpovědnosti směřuje především k:",
+    "answers": [
+      {
+        "text": "b) Omezení svéprávnosti",
+        "correct": false
+      },
+      {
+        "text": "a) Předcházení porušování právních povinností",
+        "correct": true
+      },
+      {
+        "text": "e) Satisfakci formou veřejné omluvy",
+        "correct": false
+      },
+      {
+        "text": "d) Postihu odpovědného subjektu (např. uložení pokuty)",
+        "correct": false
+      },
+      {
+        "text": "c) Náhradě způsobené újmy",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 55,
+    "question": "55. 80. Na úrovni Evropské unie má monopol na legislativní iniciativu:",
+    "answers": [
+      {
+        "text": "d) Evropská komise",
+        "correct": true
+      },
+      {
+        "text": "a) Evropský parlament",
+        "correct": false
+      },
+      {
+        "text": "e) Rada EU",
+        "correct": false
+      },
+      {
+        "text": "b) Rada Evropy",
+        "correct": false
+      },
+      {
+        "text": "c) Evropská rada",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 56,
+    "question": "56. 81. Trestně odpovědný není ten, kdo:",
+    "answers": [
+      {
+        "text": "a) dovršil 18. rok věku",
+        "correct": false
+      },
+      {
+        "text": "c) mohl rozpoznat jeho protiprávnost nebo ovládat své jednání",
+        "correct": false
+      },
+      {
+        "text": "e) nedovršil 15. rok věku",
+        "correct": true
+      },
+      {
+        "text": "b) dovršil 15. rok věku",
+        "correct": false
+      },
+      {
+        "text": "d) nedovršil 14. rok věku",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 57,
+    "question": "57. 83. Návrh zákona nemůže podat:",
+    "answers": [
+      {
+        "text": "e) zastupitelstvo vyššího územního samosprávného celku",
+        "correct": false
+      },
+      {
+        "text": "b) předseda Nejvyššího kontrolního úřad",
+        "correct": false
+      },
+      {
+        "text": "c) skupina poslanců",
+        "correct": false
+      },
+      {
+        "text": "d) ombudsman",
+        "correct": true
+      },
+      {
+        "text": "a) poslanec",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 58,
+    "question": "58. 84. Právo je:",
+    "answers": [
+      {
+        "text": "a) soubor všech pravidel chování v dané společnosti",
+        "correct": false
+      },
+      {
+        "text": "e) soubor všech morálních norem, které daná společnost uznává za správné",
+        "correct": false
+      },
+      {
+        "text": "b) soubor pravidel chování stanovovaných soudními orgány",
+        "correct": false
+      },
+      {
+        "text": "c) soubor obecně závazných pravidel chování, která stanovily státní orgány a jejichž dodržování je vynutitelné státní mocí",
+        "correct": true
+      },
+      {
+        "text": "d) soubor pravidel chování na daném území",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 59,
+    "question": "59. 85. subjektivní lhůta:",
+    "answers": [
+      {
+        "text": "c) Není rozhodující pro uplatnění práva",
+        "correct": false
+      },
+      {
+        "text": "b) Je vždy kratší nebo stejně dlouhá jako objektivní",
+        "correct": false
+      },
+      {
+        "text": "d) Začíná běžet od okamžiku, kdy se oprávněný subjekt dozví o skutečnosti rozhodné pro její počátek",
+        "correct": true
+      },
+      {
+        "text": "e) Žádná odpověď není správná",
+        "correct": false
+      },
+      {
+        "text": "a) Je vždy delší než lhůta objektivní",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 60,
+    "question": "60. 86. \"Kdo si přisvojí cizí věc tím, že se jí zmocní, a čin spáchá vloupáním bude potrestán odnětím svobody až na dvě léta, zákazem činnosti nebo propadnutím věci nebo jiné majetkové hodnoť\" o tomto trestném činu platí:",
+    "answers": [
+      {
+        "text": "b) jedná se o trestný čin spáchaný z nedbalosti",
+        "correct": false
+      },
+      {
+        "text": "a) jedná se o přečin Jedná se o zločin",
+        "correct": false
+      },
+      {
+        "text": "d) jedná se o trestný čin spáchaný úmyslně",
+        "correct": true
+      },
+      {
+        "text": "c) objektem trestného činu je život",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 61,
+    "question": "61. 87. vyvlastnění majetku je možné:",
+    "answers": [
+      {
+        "text": "a) není možné",
+        "correct": false
+      },
+      {
+        "text": "d) jen ve veřejném zájmu, na základě zákona a za náhradu",
+        "correct": true
+      },
+      {
+        "text": "b) jen na základě rozhodnutí státního zástupce",
+        "correct": false
+      },
+      {
+        "text": "e) jen na základě rozhodnutí správního úřadu",
+        "correct": false
+      },
+      {
+        "text": "c) jen se souhlasem vlastníka a za úplatu",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 62,
+    "question": "62. 88. Mezi právnické osoby založené pouze na majetkovém substrátu řadíme:",
+    "answers": [
+      {
+        "text": "a) korporace",
+        "correct": false
+      },
+      {
+        "text": "d) sdružení",
+        "correct": false
+      },
+      {
+        "text": "b) fundace",
+        "correct": true
+      },
+      {
+        "text": "e) společnost ve smyslu § 2716 občanského zákoníku",
+        "correct": false
+      },
+      {
+        "text": "c) družstva",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 63,
+    "question": "63. 89. Obsahem právního poměru nejsou:",
+    "answers": [
+      {
+        "text": "c) objekt",
+        "correct": false
+      },
+      {
+        "text": "b) právní odpovědnost",
+        "correct": true
+      },
+      {
+        "text": "a) subjekty",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 64,
+    "question": "64. 93 represivní funkce právní odpovědnosti neznamená:",
+    "answers": [
+      {
+        "text": "d) satisfakci formou veřejné omluvy",
+        "correct": false
+      },
+      {
+        "text": "b) postih odpovědného subjektu (např. uložení pokuty)",
+        "correct": false
+      },
+      {
+        "text": "e) žádná z výše uvedených odpovědí není správná",
+        "correct": false
+      },
+      {
+        "text": "c) předcházení porušení zákona",
+        "correct": true
+      },
+      {
+        "text": "a) náhradu způsobené újmy",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 65,
+    "question": "65. 99 Preventivní funkce právní odpovědnosti směřuje převedším k:",
+    "answers": [
+      {
+        "text": "e) předcházení porušování právních povinností",
+        "correct": true
+      },
+      {
+        "text": "a) postihu odpovědného subjektu (např. uložením pokuty)",
+        "correct": false
+      },
+      {
+        "text": "b) náhradě způsobené újmy",
+        "correct": false
+      },
+      {
+        "text": "c) satisfakci formou veřejné omluvy",
+        "correct": false
+      },
+      {
+        "text": "d) omezení svéprávnosti",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 66,
+    "question": "66. 100 Neujednají-li si strany, zda je čas plnění určen v prospěch jich obou, nebo jen jedné z nich, platí, že je určen v prospěch obou stran\" je tvrzení, které lze označit jako:",
+    "answers": [
+      {
+        "text": "e) nevyvratitelnou domněnku – právní předpoklad, který se považuje za pravdivý, bez možnosti prokázání opaku",
+        "correct": false
+      },
+      {
+        "text": "d) vyvratitelnou domněnku – určitý fakt nebo situace je považována za pravdivou",
+        "correct": true
+      },
+      {
+        "text": "b) fikci – právní domněnka, která se považuje za pravdivou",
+        "correct": false
+      },
+      {
+        "text": "a) apelaci – odvolání proti rozhodnutí soudu",
+        "correct": false
+      },
+      {
+        "text": "c) derogaci – zrušení nebo změna určitého předpisu",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 67,
+    "question": "67. 101 Subjektivní lhůta:",
+    "answers": [
+      {
+        "text": "c) Není rozhodující pro uplatnění práva",
+        "correct": false
+      },
+      {
+        "text": "e) Žádná odpověď není správná",
+        "correct": false
+      },
+      {
+        "text": "d) Začíná běžet od okamžiku, kdy se oprávněný subjekt dozví o skutečnosti rozhodné pro její počátek",
+        "correct": true
+      },
+      {
+        "text": "a) Je vždy delší než lhůta objektivní",
+        "correct": false
+      },
+      {
+        "text": "b) Je vždy kratší nebo stejně dlouhá jako objektivní",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 68,
+    "question": "68. 104 Právo je",
+    "answers": [
+      {
+        "text": "d) soubor všech morálních norem, které daná společnost uznává za správné",
+        "correct": false
+      },
+      {
+        "text": "a) soubor všech pravidel chování v dané společnosti",
+        "correct": false
+      },
+      {
+        "text": "e) soubor obecně závazných pravidel chování, která stanovily státní orgány a jejichž dodržování je vynutitelné státní moci",
+        "correct": true
+      },
+      {
+        "text": "b) soubor pravidel chovám stanovovaných soudními orgány",
+        "correct": false
+      },
+      {
+        "text": "c) soubor pravidel chování na daném území",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 69,
+    "question": "69. 105 Nabytí práva vydržením",
+    "answers": [
+      {
+        "text": "e) je možné jen se souhlasem vlastníka",
+        "correct": false
+      },
+      {
+        "text": "c) je možné trvá-li nepřerušena držba alespoň dva roky",
+        "correct": false
+      },
+      {
+        "text": "b) je možné drží-li poctivý držitel vlastnické právo po zákonem určenou dobu",
+        "correct": true
+      },
+      {
+        "text": "a) je možné jen se souhlasem soudu",
+        "correct": false
+      },
+      {
+        "text": "d) není možné",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 70,
+    "question": "70. 109 na úrovni evropské unie má monopol na legislativní iniciativu",
+    "answers": [
+      {
+        "text": "d) rada EU",
+        "correct": false
+      },
+      {
+        "text": "e) evropský parlament",
+        "correct": false
+      },
+      {
+        "text": "c) rada Evropy",
+        "correct": false
+      },
+      {
+        "text": "a) evropská rada",
+        "correct": false
+      },
+      {
+        "text": "b) evropská komise",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "number": 71,
+    "question": "71. 114 Právo je:",
+    "answers": [
+      {
+        "text": "e) soubor všech pravidel chovaní v dané společnosti",
+        "correct": false
+      },
+      {
+        "text": "a) soubor obecně závazných pravidel chování která stanovily statni organy a jenž dodržován",
+        "correct": true
+      },
+      {
+        "text": "d) Soubor pravidel chovaní na daném území",
+        "correct": false
+      },
+      {
+        "text": "c) soubor všech morálních norem které daná společnost uznává za správné",
+        "correct": false
+      },
+      {
+        "text": "b) soubor pravidel chování stanovovaných soudními orgány",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 72,
+    "question": "72. 123……..vlastnického práva vydržením:",
+    "answers": [
+      {
+        "text": "d) je možné, drží-li poctivý držitel vlastnické právo po zákonem určenou dobu",
+        "correct": true
+      },
+      {
+        "text": "e) je možné jen se souhlasem soudu",
+        "correct": false
+      },
+      {
+        "text": "a) není možné",
+        "correct": false
+      },
+      {
+        "text": "c) je možné jen se souhlasem vlastníka",
+        "correct": false
+      },
+      {
+        "text": "b) je možné, trvá-li nepřerušená držba alespoň dva roky",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 73,
+    "question": "73. 126 \"Kdo si přisvojí cizí věc tím, že se jí zmocní, a čin spáchá vloupáním bude potrestán odnětím svobody…:",
+    "answers": [
+      {
+        "text": "d) jedná se o trestný čin spáchaný úmyslně objektem trestného činu je majetek",
+        "correct": true
+      },
+      {
+        "text": "c) jedná se o zločin",
+        "correct": false
+      },
+      {
+        "text": "a) jedná se o přečin",
+        "correct": false
+      },
+      {
+        "text": "b) jedná se o trestný čin spáchaný z nedbalosti",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 74,
+    "question": "74. 128 Rozhodnutí Evropské unie:",
+    "answers": [
+      {
+        "text": "b) je od okamžiku jeho účinnosti závazné pro všechny fyzické a právnické osoby ve všech členských státech Evropské unie",
+        "correct": false
+      },
+      {
+        "text": "c) je závazné pro adresáta v celém rozsahu",
+        "correct": true
+      },
+      {
+        "text": "e) je pro členské státy Evropské unie nezávazný právní předpis vydaný Evropskou unií",
+        "correct": false
+      },
+      {
+        "text": "d) mohou se ho dovolávat všechny osoby",
+        "correct": false
+      },
+      {
+        "text": "a) je závazné jen pro ty členské státy Evropské unie, které s ní vysloví souhlas",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 75,
+    "question": "75. 129 O zastoupení na základě rozhodnutí platí:",
+    "answers": [
+      {
+        "text": "d) je vyžadováno v případě potřeby ochrany zájmů člověka, jehož svéprávnost byla omezena",
+        "correct": false
+      },
+      {
+        "text": "a) vzniká rozhodnutím soudu o jmenování opatrovníka",
+        "correct": true
+      },
+      {
+        "text": "e) vzniká přímo ze zákona",
+        "correct": false
+      },
+      {
+        "text": "c) existence zastoupení se prokazuje rozhodnutím soudu",
+        "correct": false
+      },
+      {
+        "text": "b) zastoupený jedná na účet zástupce",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 76,
+    "question": "76. 130 Právo je definováno jako:",
+    "answers": [
+      {
+        "text": "d) soubor pravidel chování stanovených a vynutitelných státem",
+        "correct": true
+      },
+      {
+        "text": "b) soubor soudních rozhodnutí",
+        "correct": false
+      },
+      {
+        "text": "a) soubor pravidel chování existujících bez státu",
+        "correct": false
+      },
+      {
+        "text": "e) soubor představ o právu",
+        "correct": false
+      },
+      {
+        "text": "c) soubor smluv",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 77,
+    "question": "77. 131 \"Na počaté dítě se hledí jako na již narozené, pokud to vyhovuje jeho zájmům\" je tvrzení, které lze označit jako:",
+    "answers": [
+      {
+        "text": "b) vyvratitelnou domněnku – předpoklad, který lze vyvrátit důkazem",
+        "correct": false
+      },
+      {
+        "text": "a) derogaci – omezení nebo zrušení práva",
+        "correct": false
+      },
+      {
+        "text": "d) nevyvratitelnou domněnku – předpoklad, který nelze vyvrátit",
+        "correct": false
+      },
+      {
+        "text": "e) fikci – stav, který ve skutečnosti nenastal",
+        "correct": true
+      },
+      {
+        "text": "c) apelaci – odvolání proti soudnímu rozhodnutí",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 78,
+    "question": "78. 132 Dispozitivní jsou právní normy:",
+    "answers": [
+      {
+        "text": "d) které převažují v soukromém právu",
+        "correct": false
+      },
+      {
+        "text": "a) od nichž se mohou strany odchýlit tím, že si ujednají něco jiného",
+        "correct": true
+      },
+      {
+        "text": "e) které nejsou obecně závazné",
+        "correct": false
+      },
+      {
+        "text": "c) které převažují ve veřejném právu",
+        "correct": false
+      },
+      {
+        "text": "b) od nichž se nelze ujednáním stran odchýlit",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 79,
+    "question": "79. 133 Dítě",
+    "answers": [
+      {
+        "text": "d) nemůže vlastnit majetek",
+        "correct": false
+      },
+      {
+        "text": "a) může právně jednat ve všech věcech",
+        "correct": false
+      },
+      {
+        "text": "c) může být stranou smlouvy – za dítě jedná zákonný zástupce",
+        "correct": false
+      },
+      {
+        "text": "e) nemůže vůbec právně jednat",
+        "correct": false
+      },
+      {
+        "text": "b) má vždy právní osobnost",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "number": 80,
+    "question": "80. 136 Spolek:",
+    "answers": [
+      {
+        "text": "c) má plnou svéprávnost",
+        "correct": false
+      },
+      {
+        "text": "a) má právní osobnost od svého založení",
+        "correct": false
+      },
+      {
+        "text": "b) nemá svéprávnost a musí být při právním jednání vždy zastoupen",
+        "correct": false
+      },
+      {
+        "text": "d) je po celou dobu své právní existence způsobilý mít v mezích právního řádu práva a povinnosti",
+        "correct": true
+      },
+      {
+        "text": "e) povinně zřizuje statutární orgán",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 81,
+    "question": "81. 141 Příkladem dvoustranného právního jednání je:",
+    "answers": [
+      {
+        "text": "c) podání výpovědi",
+        "correct": false
+      },
+      {
+        "text": "a) narození člověka",
+        "correct": false
+      },
+      {
+        "text": "e) pořízení závěti",
+        "correct": false
+      },
+      {
+        "text": "d) uplynutí výpovědní doby",
+        "correct": false
+      },
+      {
+        "text": "b) uzavření kupní smlouvy",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "number": 82,
+    "question": "82. 142 Zdánlivé právní jednání:",
+    "answers": [
+      {
+        "text": "d) vyvolává jen částečné právní následky",
+        "correct": false
+      },
+      {
+        "text": "c) se nepovažuje za právní jednání",
+        "correct": true
+      },
+      {
+        "text": "b) je takové, u kterého nelze pro nesrozumitelnost zjistit jeho obsah",
+        "correct": false
+      },
+      {
+        "text": "a) je jednáním, u kterého nebyla projevena vážná vůle",
+        "correct": false
+      },
+      {
+        "text": "e) je platné až do okamžiku, kdy se jeho neplatnosti oprávněná strana dovolá",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 83,
+    "question": "83. 150 Prekluzivní lhůta je lhůta:",
+    "answers": [
+      {
+        "text": "c) jejíž marného uplynuF se může kdokoli dovolat",
+        "correct": false
+      },
+      {
+        "text": "a) jejíž marné uplynuF má za následek zánik práva a případné plnění po jejím uplynuF by bylo plněním bez právního důvodu",
+        "correct": true
+      },
+      {
+        "text": "e) jejíž marné uplynuF nevyvolává žádné právní následky",
+        "correct": false
+      },
+      {
+        "text": "d) k jejímuž marnému uplynuF soud přihlíží z úřední povinnosA (i bez návrhu)",
+        "correct": false
+      },
+      {
+        "text": "b) jejímž uplynuFm právo sice nezaniká, ale je omezeno v tom smyslu, že je možné namítnout jeho prekluzi u soudu",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 84,
+    "question": "84. 152 \"Neujednaji-li si strany, zda je čas plnění určen v prospěch jich obou, nebo jen jedné z nich, plaL, že je určen v prospěch obou stran\" je tvrzení, které lze označit jako:",
+    "answers": [
+      {
+        "text": "e) nevyvraAtelnou domněnku",
+        "correct": false
+      },
+      {
+        "text": "a) vyvraAtelnou domněnku",
+        "correct": true
+      },
+      {
+        "text": "b) fikci",
+        "correct": false
+      },
+      {
+        "text": "d) derogaci",
+        "correct": false
+      },
+      {
+        "text": "c) apelaci",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 85,
+    "question": "85. 153 Absolutně neplatné je právní jednání:",
+    "answers": [
+      {
+        "text": "e) které nevyvolává předpokládané právní následky",
+        "correct": false
+      },
+      {
+        "text": "c) jehož neplatnosA se může dovolat každý",
+        "correct": true
+      },
+      {
+        "text": "a) které je platné až do okamžiku, kdy se jeho neplatnosA oprávněná strana dovolá",
+        "correct": false
+      },
+      {
+        "text": "d) které vyvolává jen částečné právní následky",
+        "correct": false
+      },
+      {
+        "text": "b) které je neplatné jen do okamžiku, který stanoví na návrh oprávněného soud",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 86,
+    "question": "86. 156 Návrh zákona nemůže podat:",
+    "answers": [
+      {
+        "text": "d) ombudsman",
+        "correct": true
+      },
+      {
+        "text": "b) zastupitelstvo vyššího územního samosprávného celku",
+        "correct": false
+      },
+      {
+        "text": "c) poslanec",
+        "correct": false
+      },
+      {
+        "text": "e) předseda Nejvyššího kontrolního úřadu",
+        "correct": false
+      },
+      {
+        "text": "a) skupina poslanců",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 87,
+    "question": "87. 158 Právo v objektivním smyslu:",
+    "answers": [
+      {
+        "text": "c) znamená oprávnění (či soubor oprávnění) konkrétní osoby",
+        "correct": false
+      },
+      {
+        "text": "b) je souborem právních norem",
+        "correct": true
+      },
+      {
+        "text": "a) je subjekAvním právem zaručená možnost osoby chovat se určitým způsobem",
+        "correct": false
+      },
+      {
+        "text": "d) je souborem všech pravidel chování obsažených v zákonech a soudních rozhodnuF",
+        "correct": false
+      },
+      {
+        "text": "e) je kompletně obsažené ve Sbírce zákonů",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 88,
+    "question": "88. 159 Mezi věcná práva k věci cizí neřadíme:",
+    "answers": [
+      {
+        "text": "c) zadržovací právo",
+        "correct": false
+      },
+      {
+        "text": "a) vlastnické právo",
+        "correct": true
+      },
+      {
+        "text": "d) reálná břemena",
+        "correct": false
+      },
+      {
+        "text": "e) právo stavby",
+        "correct": false
+      },
+      {
+        "text": "b) držbu",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 89,
+    "question": "89. 162 Směrnice Evropské unie:",
+    "answers": [
+      {
+        "text": "e) je pro členské státy Evropské unie nezávazný právní předpis vydaný Evropskou unií",
+        "correct": false
+      },
+      {
+        "text": "c) je od okamžiku její účinnosA závazná pro všechny fyzické a právnické osoby ve všech členských státech Evropské unie",
+        "correct": false
+      },
+      {
+        "text": "d) má nižší právní sílu než nařízení Evropské unie",
+        "correct": false
+      },
+      {
+        "text": "b) je závazná jen pro ty členské státy Evropské unie, které s ní vysloví souhlas",
+        "correct": false
+      },
+      {
+        "text": "a) je povinně transponována členskými státy Evropské unie do vnitrostátních právních řádů ve stanovené lhůtě",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "number": 90,
+    "question": "90. 163 Každá právnická osoba:",
+    "answers": [
+      {
+        "text": "d) povinně zřizuje statutární orgán",
+        "correct": false
+      },
+      {
+        "text": "c) je po celou dobu své právní existence způsobilá mít v mezích právního řádu práva a povinnosA",
+        "correct": false
+      },
+      {
+        "text": "a) má právní osobnost od svého založení",
+        "correct": false
+      },
+      {
+        "text": "b) nemá svéprávnost a musí být při právním jednání vždy zastoupena",
+        "correct": true
+      },
+      {
+        "text": "e) má plnou svéprávnost",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 91,
+    "question": "91. 169 Společnost s ručením omezeným ze zákona zastupuje:",
+    "answers": [
+      {
+        "text": "b) každý její zaměstnanec ve všech záležitostech",
+        "correct": false
+      },
+      {
+        "text": "d) jednatel nebo jednatelé, a to ve všech věcech",
+        "correct": true
+      },
+      {
+        "text": "e) člen představenstva, pokud ho k tomu zmocní valná hromada",
+        "correct": false
+      },
+      {
+        "text": "a) prokurista, kterého společnosA zákon stanoví",
+        "correct": false
+      },
+      {
+        "text": "c) kterýkoli ze společníků",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 92,
+    "question": "92. 170 Závazek může na základě jednostranného právního jednání zaniknout:",
+    "answers": [
+      {
+        "text": "b) narovnáním",
+        "correct": true
+      },
+      {
+        "text": "a) dohodou",
+        "correct": false
+      },
+      {
+        "text": "c) prodlením dlužníka u fixních závazků",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 93,
+    "question": "93. 171 Při vyplácení podílů na zisku společníkům (fyzickým osobám) musí kapitálová obchodní společnost (a.s. nebo s.r.o.) dle platných právních předpisů:",
+    "answers": [
+      {
+        "text": "d) část podílu na zisku zadržet pro pozdější využiF managementem účetní jednotky",
+        "correct": false
+      },
+      {
+        "text": "b) část podílu na zisku zadržet pro pozdější využiF zaměstnanci pro rekreaci, vzdělávání, sportovní a kulturní vyžiF",
+        "correct": false
+      },
+      {
+        "text": "a) provést zdanění podílu na zisku a daň před vyplacením podílu na zisku společníkovi srazit a odvést ji státu",
+        "correct": true
+      },
+      {
+        "text": "c) vyplaAt společníkovi plnou výši přiznaného podílu na zisku a informovat společníka o tom, že jej musí zdanit sám ve svém daňovém přiznání",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 94,
+    "question": "94. 172 Provedení anuitní splátky se v účetnictví dlužníka zachyL jako snížení zůstatku bankovního účtu podvojně se zachycením:",
+    "answers": [
+      {
+        "text": "e) vzniku výnosu a zvýšení pohledávky",
+        "correct": false
+      },
+      {
+        "text": "b) pouze snížením dluhu",
+        "correct": false
+      },
+      {
+        "text": "a) pouze zvýšením pohledávky",
+        "correct": false
+      },
+      {
+        "text": "d) vzniku nákladu a snížení dluhu",
+        "correct": true
+      },
+      {
+        "text": "c) pouze zvýšením nákladu",
+        "correct": false
+      },
+      {
+        "text": "f) pouze zvýšením dluhu",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 95,
+    "question": "95. 173 Rozhodne-li vrcholný orgán účetní jednotky o přidělení čás* zisku do fondů ze zisku (např. sociální fond), musí účetní jednotka:",
+    "answers": [
+      {
+        "text": "a) stejnou částku převést do základního kapitálu",
+        "correct": false
+      },
+      {
+        "text": "b) odpovídající částku v penězích umísAt (deponovat) na zvláštním bankovním účtu",
+        "correct": false
+      },
+      {
+        "text": "c) provést zdanění této částky sazbou daně 15%",
+        "correct": false
+      },
+      {
+        "text": "d) žádná z těchto nabízených možnosF není správná",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "number": 96,
+    "question": "96. 174 Předpokládejme, že naše společnost mu možnost získat bankovní úvěr ve výši 1 mil. Korun. Úroková sazba by byla 5% p.a. a roční anuitní splátka činí 255 *síc korun. Jakou část z první anuitní splátky bude představovat úhrada úroku?",
+    "answers": [
+      {
+        "text": "a) 255 Asíc korun",
+        "correct": false
+      },
+      {
+        "text": "d) 50 Asíc korun",
+        "correct": true
+      },
+      {
+        "text": "b) 205 Asíc korun",
+        "correct": false
+      },
+      {
+        "text": "c) 55 Asíc korun",
+        "correct": false
+      },
+      {
+        "text": "e) 200 Asíc korun",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 97,
+    "question": "97. 175 Vyberte správné tvrzení o základním kapitálu v s.r.o.:",
+    "answers": [
+      {
+        "text": "a) Základní kapitál může být splacen v penězích i nepeněžně (např. vložením nemovité věci)",
+        "correct": true
+      },
+      {
+        "text": "e) Plně splacený základní kapitál vyjadřuje výší ručení společníka za dluhy obchodní společnosA.",
+        "correct": false
+      },
+      {
+        "text": "b) Minimální výše základního kapitálu je podle zákona u s.r.o. stanovena na 200 As. Kč.",
+        "correct": false
+      },
+      {
+        "text": "c) Základní kapitál představuje záruku, že daná částka je v účetní jednotce vždy k dispozici k pokryF splatných dluhů.",
+        "correct": false
+      },
+      {
+        "text": "d) Základní kapitál je možné pouze na základě rozhodnuF jednatele kdykoli vyplaAt z s.r.o. zpět společníkům",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 1,
+    "question": "1. 1. Živnosti ohlašovací jsou živnosti:",
+    "answers": [
+      {
+        "text": "e) řemeslné, vázané a koncesované, k jejichž oprávněnému provozování je nutné získat státní povolení, o jehož udělení rozhodne příslušný správní orgán rozhodnuFm, které je pro Živnostenský úřad závazné",
+        "correct": false
+      },
+      {
+        "text": "c) řemeslné, vázané a volné, k jejichž oprávněnému provozování postačuje jejich ohlášení podnikatelem na živnostenském úřadě, aniž by bylo nutné získat živnostenské nebo jiné oprávnění",
+        "correct": false
+      },
+      {
+        "text": "d) řemeslné, vázané a volné, k jejichž oprávněnému provozování je třeba získat živnostenské oprávnění, na jehož udělení má podnikatel při splnění zákonem stanovených podmínek právní nárok",
+        "correct": true
+      },
+      {
+        "text": "a) žádná z ostatních odpovědí není správná",
+        "correct": false
+      },
+      {
+        "text": "b) řemeslné, vázané a volné, k jejichž oprávněnému provozování, za předpokladu splnění zákonem stanovených všeobecných podmínek a odborné způsobilosA, již není potřeba získat žádné živnostenské ani jiné oprávnění",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 3,
+    "question": "3. 3. Označte pravdivé tvrzení o obchodním rejstříku:",
+    "answers": [
+      {
+        "text": "c) údaje v něm zapsané jsou považovány za platné a aktuální, pokud by se lišily od údajů skutečných, pak zákon chrání každého, kdo by na základě zapsaných údajů právně jednal",
+        "correct": true
+      },
+      {
+        "text": "b) jedná se o informačním systému veřejné správy, do kterého se povinně zapisují všechny právnické osoby a z fyzických osob jen ty, které jsou podnikateli a o zápis požádají",
+        "correct": false
+      },
+      {
+        "text": "a) žádná z ostatních odpovědí není správná",
+        "correct": false
+      },
+      {
+        "text": "e) nahlížet do něj a pořizovat si z něj opisy je oprávněn jen ten, kdo prokáže právní zájem u příslušného rejstříkového soudu, který tento obchodní rejstřík vede",
+        "correct": false
+      },
+      {
+        "text": "d) zapisují se do něj povinně všechny fyzické osoby, které jsou podnikateli, avšak podnikající právnické osoby jen tehdy, pokud dosáhly za stanovenou dobu zákonem stanoveného obratu",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 5,
+    "question": "5. 8. O právním jednání podnikatele platí, že:",
+    "answers": [
+      {
+        "text": "b) podnikatel může právně jednat sám; pokud mu však byla rozhodnuFm soudu omezena svéprávnost, je povinen zřídit statutární orgán, jehož členové jej pak v právním jednání zastupují",
+        "correct": false
+      },
+      {
+        "text": "c) podnikatel, pokud je fyzickou osobou, je povinen ze zákona zřídit statutární orgán, jehož člen je oprávněn podnikatele zastupovat ve všech záležitostech, které s podnikáním souvisejí",
+        "correct": false
+      },
+      {
+        "text": "d) žádná z ostatních odpovědí není správná",
+        "correct": false
+      },
+      {
+        "text": "e) podnikatel, pokud je právnickou osobou, musí být při svém právním jednání vždy zastoupen, například členem svého statutárního orgánu",
+        "correct": true
+      },
+      {
+        "text": "a) podnikatel nemůže nikdy právně jednat sám, a proto vždy za něj musí jednat zástupce, a to buď stanovený zákonem (zákonné zastoupení), nebo ujednaný ve smlouvě (smluvní zastoupení)",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 6,
+    "question": "6. 9. Převzetí dluhu je:",
+    "answers": [
+      {
+        "text": "e) změna závazku na straně dlužníka, kdy namísto původního dlužníka přichází dlužník nový, přitom pro převzeF dluhu se souhlas věřitele nevyžaduje",
+        "correct": false
+      },
+      {
+        "text": "c) změna závazku na straně dlužníka, kdy namísto původního dlužníka přichází dlužník nový, přitom pro převzeF dluhu se souhlas věřitele vyžaduje vždy",
+        "correct": true
+      },
+      {
+        "text": "a) změna závazku na straně věřitele, kdy namísto původního věřitele přichází věřitel nový, přitom pro převzeF dluhu se souhlas dlužníka vyžaduje vždy",
+        "correct": false
+      },
+      {
+        "text": "d) žádná z ostatních odpovědí není správná",
+        "correct": false
+      },
+      {
+        "text": "b) změna závazku na straně věřitele, kdy namísto původního věřitele přichází věřitel nový, přitom pro převzeF dluhu se souhlas dlužníka nevyžaduje",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 7,
+    "question": "7. 13. Obchodní korporace:",
+    "answers": [
+      {
+        "text": "b) vzniká zápisem do obchodního rejstříku, a to na základě příslušného zakladatelského právního jednání, jakým jsou například stanovy",
+        "correct": true
+      },
+      {
+        "text": "d) žádná z ostatních odpovědí není správná",
+        "correct": false
+      },
+      {
+        "text": "a) musí vždy ve společenské smlouvě či zakladatelské lisAně určit správce vkladu",
+        "correct": false
+      },
+      {
+        "text": "c) musí mít alespoň dva společníky",
+        "correct": false
+      },
+      {
+        "text": "e) může být založena jen za podnikatelským účelem nebo za účelem správy vlastního majetku",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 8,
+    "question": "8. 14. Ručení:",
+    "answers": [
+      {
+        "text": "b) žádná z ostatních odpovědí není správná",
+        "correct": false
+      },
+      {
+        "text": "a) patří mezi sankce za porušení povinnosA dlužníka splnit svůj dluh řádně a včas, a proto může být zabaven dlužníkův majetek",
+        "correct": false
+      },
+      {
+        "text": "e) patří mezi zajištění dluhu, které vzniká prohlášením určité osoby vůči věřiteli, že věřitele uspokojí, pokud dlužník svůj dluh nesplní",
+        "correct": true
+      },
+      {
+        "text": "c) patří mezi věcněprávní zajištění dluhu, které vzniká zástavní smlouvou mezi dlužníkem a věřitelem a předáním movité věci věřiteli",
+        "correct": false
+      },
+      {
+        "text": "d) patří mezi způsoby zajištění dluhu cenným papírem, kdy se ručí například směnkou, dluhopisem nebo akciemi",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 10,
+    "question": "10. 17. Právní poměry (právní vztahy) jsou charakteristické tím, že:",
+    "answers": [
+      {
+        "text": "b) žádná z ostatních odpovědí není správná",
+        "correct": false
+      },
+      {
+        "text": "c) nevznikají jinak, nežli na základě dvoustranného jednání nebo spáchání přestupku nebo trestného činu",
+        "correct": false
+      },
+      {
+        "text": "d) soukromoprávní právní poměr může představovat vztah mezi občanem České republiky a okresním soudem, který bude rozhodovat o vině a trestu",
+        "correct": false
+      },
+      {
+        "text": "e) Česká republika jako stát nemůže vstoupit do právního vztahu a nemůže na základě právního jednání založit právní vztah na pronájem budovy, kterou Česká republika vlastní",
+        "correct": false
+      },
+      {
+        "text": "a) představují společenské vztahy, které můžeme dělit na relevantní a absolutní, a v těchto vztazích má dvě nebo více osob mezi sebou vzájemná práva a povinnosA",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "number": 11,
+    "question": "11. 18. Pokud jde o soudy v České republice",
+    "answers": [
+      {
+        "text": "a) o souladu zákonů s ústavními zákony rozhoduje ústavní kolegium Nejvyššího správního soudu",
+        "correct": false
+      },
+      {
+        "text": "d) existuje soustava soudů občanskoprávních (civilních), soustava soudů obchodních, soustava soudů trestních a soustava soudů vojenských",
+        "correct": false
+      },
+      {
+        "text": "c) existují v soustavě obecných soudů pouze tři stupně, a to soudy okresní, krajské a na vrcholu Nejvyšší soud České republiky",
+        "correct": false
+      },
+      {
+        "text": "e) existuje soustava obecných soudů, které rozhodují například ve věcech občanskoprávních či trestních, a Ústavní soud, který nepatří mezi obecné soudy",
+        "correct": true
+      },
+      {
+        "text": "b) žádná z ostatních odpovědí není správná",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 13,
+    "question": "13. 20. Právo v České republice třídíme mimo jiné na:",
+    "answers": [
+      {
+        "text": "a) právo soukromé, kam patří právo občanské, obchodní a trestní, a právo veřejné kam se řadí právo ústavní, správní, rodinné a finanční",
+        "correct": false
+      },
+      {
+        "text": "c) právo hmotné, které je obsažené např. v občanském zákoníku, trestním zákoníku či zákoníku práce a právo procesní, které je obsaženo například v občanském soudním řádu, trestním řádu, daňovém řádu",
+        "correct": true
+      },
+      {
+        "text": "d) žádná z ostatních odpovědí není správná",
+        "correct": false
+      },
+      {
+        "text": "b) právo mezinárodní a právo vnitrostátní, jehož součásF je i právo evropské včetně zřizovacích smluv",
+        "correct": false
+      },
+      {
+        "text": "e) právo veřejné, kam patří právo občanské, obchodní a pracovní, a právo soukromé, kam se řadí právo ústavní, správní a finanční",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 14,
+    "question": "14. 21. Mezi primární prameny práva Evropské unie patří:",
+    "answers": [
+      {
+        "text": "c) směrnice, které nemají bezprostřední (přímý) účinek, tedy nejsou bezprostředně (přímo) použitelné v jednotlivých členských státech a je třeba je transponovat (v ČR například zákonem) do vnitrostátního práva",
+        "correct": false
+      },
+      {
+        "text": "d) žádná z ostatních odpovědí není správná",
+        "correct": false
+      },
+      {
+        "text": "a) nařízení, která mají bezprostřední (přímý) účinek, tedy jsou bezprostředně (přímo) použitelná v jednotlivých členských státech, aniž je třeba je jakkoli transponovat (v ČR například zákonem) do vnitrostátního práva",
+        "correct": false
+      },
+      {
+        "text": "e) zákony, ústavní zákony a zákonná opatření Senátu",
+        "correct": false
+      },
+      {
+        "text": "b) Pařížská smlouva, Římské smlouvy, Jednotný evropský akt, Maastrichtská smlouva, Smlouva o fungování Evropské unie",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "number": 16,
+    "question": "16. 25. Pro vznik odpovědnos*:",
+    "answers": [
+      {
+        "text": "a) objekAvní se vyžaduje, aby došlo k proAprávnímu jednání, došlo ke vzniku újmy, a zároveň existoval příčinný vztah (souvislost) mezi proAprávním jednáním a vznikem újmy, navíc je nutné zavinění (úmyslné či nedbalostní)",
+        "correct": false
+      },
+      {
+        "text": "b) subjekAvní se vyžaduje, aby došlo k proAprávnímu jednání, došlo ke vzniku újmy a zároveň existoval příčinný vztah (souvislost) mezi proAprávním jednáním a vznikem újmy, navíc je nutné zavinění (úmyslné či nedbalostní",
+        "correct": true
+      },
+      {
+        "text": "d) žádná z ostatních odpovědí není správná",
+        "correct": false
+      },
+      {
+        "text": "c) objekAvní se vyžaduje, aby došlo k proAprávnímu jednání, došlo ke vzniku újmy, avšak příčinný vztah (souvislost) mezi proAprávním jednáním a vznikem újmy není podstatný",
+        "correct": false
+      },
+      {
+        "text": "e) subjekAvní se vyžaduje, aby došlo k proAprávnímu jednání, došlo ke vzniku újmy, avšak příčinný vztah (souvislost) mezi proAprávním jednáním a vznikem újmy není podstatný",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 17,
+    "question": "17. 26. Právo:",
+    "answers": [
+      {
+        "text": "e) je soubor pravidel chování, vytvořený státem v určité době a ve zvláštní formě, která jsou, na rozdíl od např. mravních pravidel, vynuAtelná",
+        "correct": true
+      },
+      {
+        "text": "b) je prostředkem teroru populace, zejména studentů základů práva ze strany vyučujících na VŠE",
+        "correct": false
+      },
+      {
+        "text": "c) žádná z ostatních odpovědí není správná",
+        "correct": false
+      },
+      {
+        "text": "d) je soubor pravidel chování, která si každý jednotlivec určuje dle vlastní vůle",
+        "correct": false
+      },
+      {
+        "text": "a) není soubor pravidel chování, vytvořený státem v určité době a ve zvláštní formě, která jsou, na rozdíl od např. mravních pravidel, vynuAtelná",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 18,
+    "question": "18. 27. Zdánlivé právní jednání:",
+    "answers": [
+      {
+        "text": "d) je takové jednání, které je platné jen do okamžiku, kdy se jeho neplatnosA u soudu dovolá osoba, která je k tomu ze zákona oprávněna",
+        "correct": false
+      },
+      {
+        "text": "e) je takové jednání, které je platné pouze omezeně a jehož neplatnosA se může u soudu dovolat pouze osoba k tomu oprávněná",
+        "correct": false
+      },
+      {
+        "text": "c) žádná z ostatních odpovědí není správná",
+        "correct": false
+      },
+      {
+        "text": "b) je takové jednání, které je neplatné a každý se může jeho neplatnosA u soudu dovolat",
+        "correct": false
+      },
+      {
+        "text": "a) vůbec právním jednáním není, a proto nemůže vyvolat žádné právní následky",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "number": 19,
+    "question": "19. 28. Po marném uplynutí promlčecí lhůty:",
+    "answers": [
+      {
+        "text": "a) právo věřitele sice nezaniká, ale dlužník může u soudu vznést námitku promlčení",
+        "correct": true
+      },
+      {
+        "text": "d) se právo stává absolutně neplatným a pokud by dlužník plnil, jednalo by se o bezdůvodné obohacení, které by věřitel byl povinen vráAt",
+        "correct": false
+      },
+      {
+        "text": "b) žádná z ostatních odpovědí není správná",
+        "correct": false
+      },
+      {
+        "text": "e) dluh dlužníka zaniká, a proto již nemusí plnit",
+        "correct": false
+      },
+      {
+        "text": "c) právo věřitele sice nezaniká, ale omezuje se v tom smyslu, že ho již nemůže vymáhat u soudu",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 20,
+    "question": "20. 29. Právnické osoby:",
+    "answers": [
+      {
+        "text": "a) žádná z ostatních odpovědí není správná",
+        "correct": false
+      },
+      {
+        "text": "e) mají svéprávnost od svého vzniku, ale právní osobnost nemají, neboť nemohou samy za sebe právně jednat",
+        "correct": false
+      },
+      {
+        "text": "c) mají právní osobnost od svého vzniku, ale svéprávnost nemají, a proto musí být při jednání vždy zastoupeny",
+        "correct": true
+      },
+      {
+        "text": "b) mají právní osobnost už od svého založení, ale svéprávnost až od svého vzniku, tedy od zápisu do veřejného rejstříku",
+        "correct": false
+      },
+      {
+        "text": "d) mají právní osobnost od svého založení, ale svéprávnost mají pouze členové jejich statutárních orgánů",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 21,
+    "question": "21. 30. Služebnosti:",
+    "answers": [
+      {
+        "text": "e) patří mezi věcná břemena, která vlastníka omezují tak, že musí něco strpět nebo něčeho se zdržet",
+        "correct": true
+      },
+      {
+        "text": "b) žádná z ostatních odpovědí není správná",
+        "correct": false
+      },
+      {
+        "text": "c) patří mezi reálná břemena, která slouží k zajištění dluhu vlastníka vůči věřiteli",
+        "correct": false
+      },
+      {
+        "text": "a) patří mezi reálná břemena, která slouží k zajištění dluhu dlužníka vůči vlastníkovi",
+        "correct": false
+      },
+      {
+        "text": "d) patří mezi věcná břemena, které vlastníka omezují tak, že musí něco konat nebo něco dát",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 23,
+    "question": "23. 32. Smlouva, kterou se jedna strana zavazuje přenechat druhé straně tzv. plodonosnou věc k dočasnému užívání a zároveň požívání plodů vzešlých z této věci a tato druhá strana se zavazuje platit za to první straně určitou odměnu, je:",
+    "answers": [
+      {
+        "text": "c) smlouva o zápůjčce",
+        "correct": false
+      },
+      {
+        "text": "d) nájemní smlouva",
+        "correct": false
+      },
+      {
+        "text": "b) žádná z ostatních odpovědí není správná",
+        "correct": false
+      },
+      {
+        "text": "a) pachtovní smlouva",
+        "correct": true
+      },
+      {
+        "text": "e) smlouva o výpůjčce",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 24,
+    "question": "24. 33. Pan Rozumný a pan Chytrý jsou společníci společnos* s ručením omezeným, přičemž každý se zavázal ke vkladové povinnos* 100 000 Kč. Pan Rozumný spla*l 30 000 Kč, pan Chytrý spla*l 60 000 Kč, což je zapsáno v obchodním rejstříku. V případě, že s.r.o. vznikne dluh ve výši 1 000 000 Kč, může věřitel požadovat:",
+    "answers": [
+      {
+        "text": "b) po s.r.o. celý dluh, přičemž pan Rozumný ručí za závazky do výše 30 000 Kč a pak Chytrý ručí do výše 60 000 Kč",
+        "correct": false
+      },
+      {
+        "text": "a) po s.r.o. celý dluh, přičemž pan Rozumný ručí za závazky do výše 70 000 Kč a pak Chytrý ručí do výše 40 000 Kč",
+        "correct": false
+      },
+      {
+        "text": "e) po s.r.o. celý dluh, přičemž jak po panu Rozumném, tak po panu Chytrém (společně a nerozdílně) 110 000 Kč",
+        "correct": true
+      },
+      {
+        "text": "c) po s.r.o. celý dluh, přičemž jak po panu Rozumném, tak po panu Chytrém (společně a nerozdílně) 90 000 Kč",
+        "correct": false
+      },
+      {
+        "text": "d) žádná z ostatních odpovědí není správná",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 25,
+    "question": "25. 35. Pro veřejné rejstříky platí",
+    "answers": [
+      {
+        "text": "c) jedná se o veřejně přístupný informační systém veřejné správy, který je veden tzv. rejstříkovými soudy, a jako příklad lze uvést obchodní rejstřík",
+        "correct": true
+      },
+      {
+        "text": "b) jedná se o informační systém, do kterého se zapisují pouze fyzické osoby, které vykonávají živnostenské podnikání",
+        "correct": false
+      },
+      {
+        "text": "a) žádná z ostatních odpovědí není správná",
+        "correct": false
+      },
+      {
+        "text": "e) jedná se o informační systém, v němž jsou povinně evidovány veškeré příjmy a výdaje podnikatelských subjektů, a je veden finančními úřady",
+        "correct": false
+      },
+      {
+        "text": "d) právnické i fyzické osoby se do veřejných rejstříků zapisují na bázi dobrovolnosA (fakultaAvně)",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 27,
+    "question": "27. 37. Šetřislav Vychytrálek je společníkem veřejné obchodní společnos* se Svatoslavem Svěceným. Šetřislav jako společník uzavřel za v.o.s. s bankou smlouvu o úvěru na 10.000.000,- Kč. Banka peníze vypla*la na účet v.o.s., Šetřislav je vybral a zmizel. Banka může po splatnos* úvěru požadovat:",
+    "answers": [
+      {
+        "text": "a) po v.o.s. 10.000.000,- Kč a i pokud v.o.s. vše zaplaF, může po Svatoslavovi Svěceném také požadovat až 10.000.000,- Kč",
+        "correct": false
+      },
+      {
+        "text": "e) po v.o.s. 10.000.000,- Kč a pokud v.o.s. nezaplaF, může po Svatoslavovi Svěceném také požadovat až 10.000.000,- Kč** (Solidární ručení společníků v v.o.s.) –",
+        "correct": true
+      },
+      {
+        "text": "c) po v.o.s. 10.000.000,- Kč a pokud v.o.s. nezaplaF, může po Svatoslavovi Svěceném požadovat nejvýše 5.000.000,- Kč",
+        "correct": false
+      },
+      {
+        "text": "d) po v.o.s. 10.000.000,- Kč a pokud v.o.s. nezaplaF, ale po Svatoslavovi Svěceném požadovat nic nemůže, protože smlouvu uzavřel Šetřislav",
+        "correct": false
+      },
+      {
+        "text": "b) žádná z ostatních odpovědí není správná",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 28,
+    "question": "28. 38. Povinnost nahradit škodu:",
+    "answers": [
+      {
+        "text": "c) vzniká mimo jiné v důsledku porušení povinnosA stanovené zákonem, přičemž v tomto případě nehraje roli, jestli strana porušení povinnosA zavinila",
+        "correct": true
+      },
+      {
+        "text": "d) vzniká mimo jiné v důsledku porušení smluvní povinnosA, přičemž v tomto případě je podstatné, zda strana porušení povinnosA zavinila úmyslně či z nedbalosA",
+        "correct": false
+      },
+      {
+        "text": "a) vzniká mimo jiné v důsledku porušení smluvní povinnosA, přičemž v tomto případě nehraje roli, jestli strana porušení povinnosA zavinila",
+        "correct": false
+      },
+      {
+        "text": "e) vzniká mimo jiné v důsledku porušení dobrých mravů, přičemž v tomto případě nehraje roli, jestli strana porušení povinnosA zavinila",
+        "correct": false
+      },
+      {
+        "text": "b) žádná z ostatních odpovědí není správná",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 29,
+    "question": "29. 39. Vyberte správné tvrzení:",
+    "answers": [
+      {
+        "text": "e) veřejná obchodní společnost může být tvořena i jediným společníkem, v takovém případě se zakládá zakladatelskou lisAnou, která musí být sepsána formou veřejné lisAny (notářského zápisu)",
+        "correct": false
+      },
+      {
+        "text": "a) veřejná obchodní společnost (v. o. s.) i komanditní společnost (k. s.) musí být tvořena alespoň dvěma společníky, kdy u k. s. musí mít alespoň jednoho komandiAstu (ručícího omezeně) a komplementáře (ručícího neomezeně)",
+        "correct": true
+      },
+      {
+        "text": "d) veřejná obchodní společnost (v. o. s.) i komanditní společnost (k. s.) musí být tvořena alespoň dvěma společníky, kdy u k. s. musí mít alespoň jednoho komandiAstu (ručícího neomezeně) a komplementáře (ručícího omezeně)",
+        "correct": false
+      },
+      {
+        "text": "c) komanditní společnost je osobní společnosF, jejímž statutárním orgánem jsou komandiAsté a nejvyšším orgánem valná hromada tvořená komplementáři",
+        "correct": false
+      },
+      {
+        "text": "b) žádná z ostatních odpovědí není správná",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 30,
+    "question": "30. 40. Ustanovení § 190 odst. 2 písm. e) zákona o obchodních korporacích, které zní: \"Do působnos* valné hromady patří schvalování udělení a odvolání prokury, ledaže společenská smlouva určí jinak,\" je:",
+    "answers": [
+      {
+        "text": "d) žádná z ostatních odpovědí není správná",
+        "correct": false
+      },
+      {
+        "text": "c) je příkladem normy kogentní, neboť neumožňuje společníkům se odchýlit od tohoto zákonného ustanovení ve společenské smlouvě a neumožňuje schvalování udělení a odvolání prokury upravit odlišně",
+        "correct": false
+      },
+      {
+        "text": "b) je příkladem normy dispoziAvní, neboť umožňuje společníkům odchýlit se od tohoto zákonného ustanovení ve společenské smlouvě a umožňuje schvalování udělení a odvolání prokury upravit odlišně",
+        "correct": true
+      },
+      {
+        "text": "e) je příkladem normy kogentní, neboť umožňuje společníkům se odchýlit od tohoto zákonného ustanovení ve společenské smlouvě a umožňuje schvalování udělení a odvolání prokury upravit odlišně",
+        "correct": false
+      },
+      {
+        "text": "a) je příkladem normy dispoziAvní, neboť se společníci nemohou od tohoto ustanovení odchýlit ve společenské smlouvě a umožňuje schvalování udělení a odvolání prokury upravit odlišně",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 31,
+    "question": "31. 50. Mezi vnitrostátní prameny práva v České republice řadíme ústavní zákony, zákony, nařízení ministerstev a jiných ústředních správních úřadů, obecně závazné vyhlášky krajů nebo obcí a vyhlášky Ústavního soudu",
+    "answers": [
+      {
+        "text": "• ANO",
+        "correct": false
+      },
+      {
+        "text": "• NE",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "number": 32,
+    "question": "32. 51. Mezi sekundární prameny práva Evropské unie řadíme směrnice, které mají bezprostřední (přímý) účinek, tedy jsou bezprostředně (přímo) použitelné v jednotlivých členských státech, aniž by je bylo třeba transponovat (v ČR například zákonem) do vnitrostátního práva:",
+    "answers": [
+      {
+        "text": "• ANO",
+        "correct": false
+      },
+      {
+        "text": "• NE",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "number": 33,
+    "question": "33. 52. Zastoupení rozlišujeme:",
+    "answers": [
+      {
+        "text": "D) Zákonné a smluvní, kdy příkladem zastoupení na základě zákona je zastoupení právnické osoby statutárním orgánem",
+        "correct": true
+      },
+      {
+        "text": "A) Legální a nelegální, kdy příkladem nelegálního zastoupení je prokura",
+        "correct": false
+      },
+      {
+        "text": "C) Zákonné a smluvní, kdy příkladem smluvního zastoupení je zastoupení fyzické osoby opatrovníkem",
+        "correct": false
+      },
+      {
+        "text": "B) Zákonné a smluvní, kdy příkladem zákonného zastoupení je zastoupení zástupcem, který se prokazuje plnou mocí",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 34,
+    "question": "34. 53.Právnické osoby mají:",
+    "answers": [
+      {
+        "text": "C) Právní osobnost už od svého založení, ale svéprávnost až od svého vzniku, tedy od zápisu do veřejného rejstříku",
+        "correct": false
+      },
+      {
+        "text": "B) Svéprávnost od svého vzniku, ale právní osobnost nemají, neboť nemohou samy za sebe právně jednat",
+        "correct": false
+      },
+      {
+        "text": "A) Právní osobnost od svého založení, ale svéprávnost mají pouze členové jejich statutárních orgánů",
+        "correct": false
+      },
+      {
+        "text": "D) Právní osobnost od svého vzniku, ale svéprávnost nemají, a proto musí být při jednání vždy zastoupeny",
+        "correct": true
+      }
+    ]
+  },
+  {
+    "number": 35,
+    "question": "35. 54. Obchodních korporací se rozumí:",
+    "answers": [
+      {
+        "text": "D) Podílem peněžní vyjádření hodnoty předmětu vkladu do základního kapitálu, přičemž podílem mohou být například i peníze –",
+        "correct": false
+      },
+      {
+        "text": "B) Vkladem peněžní vyjádření hodnoty předmětu vkladu do základního kapitálu, přičemž předmětem vkladu může být například i traktor",
+        "correct": true
+      },
+      {
+        "text": "A) Vkladem účast společníka nebo akcionáře v obchodní společnosA nebo družstvu, vyjádřená typicky v procentech",
+        "correct": false
+      },
+      {
+        "text": "C) Základním kapitálem součet všech podílů a vkladů, které do obchodní korporace vnesou společníci nebo akcionáři –",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 37,
+    "question": "37. 56. Obchodní firmu může mít:",
+    "answers": [
+      {
+        "text": "A) Pouze fyzická nebo právnická osoba zapsaná v obchodním rejstříku, zaFmco podnikatelé nezapsaní v obchodním rejstříku mít obchodní firmu nemohou –",
+        "correct": true
+      },
+      {
+        "text": "B) Každý podnikatel bez ohledu na to, zda je zapsán v obchodním rejstříku či nikoli, ale pouze za předpokladu, že podniká živnostenským nebo obdobným způsobem",
+        "correct": false
+      },
+      {
+        "text": "C) Každá fyzická nebo právnická osoba, která má právní osobnost a je tedy schopna v rámci právního řádu mít subjekAvní práva, včetně práva vlastnického",
+        "correct": false
+      },
+      {
+        "text": "D) Pouze podnikatel, který je plně svéprávný, bezúhonný a splňuje podmínky pro získání živnostenského či neživnostenského oprávnění stanovené příslušným zákonem",
+        "correct": false
+      }
+    ]
+  },
+  {
+    "number": 38,
+    "question": "38. 57. živnosti ohlašovací jsou živnosti:",
+    "answers": [
+      {
+        "text": "d) Řemeslné, vázané a koncesované, k jejichž oprávněnému provozování postačuje jejich ohlášení podnikatelem na živnostenském úřadě, aniž by bylo nutné získat živnostenské nebo jiné oprávnění –",
+        "correct": false
+      },
+      {
+        "text": "c) Řemeslné, vázané a volné, k jejichž oprávněnému provozování, za předpokladu splnění zákonem stanovených všeobecných podmínek a odborné způsobilosA, již není potřeba získat žádné živnostenské ani jiné oprávněn",
+        "correct": false
+      },
+      {
+        "text": "a) Řemeslné, vázané a koncesované, k jejichž oprávněnému provozování je nutné získat státní povolení o jehož udělení rozhodne příslušný správní orgán rozhodnuFm, které je pro živnostenský úřad závazn",
+        "correct": false
+      },
+      {
+        "text": "b) Řemeslné, vázané a volné, k jejichž oprávnění provozování je třeba získat živnostenské oprávnění, na jehož udělení má podnikatel při splnění zákonem stanovených podmínek právní nárok",
+        "correct": true
+      }
+    ]
+  }
+]
