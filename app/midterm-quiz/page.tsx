@@ -241,8 +241,8 @@ export default function MidtermQuizPage() {
           handleSkip()
         }
       }
-      // Numbers 1-4 - select answer by number
-      else if (['1', '2', '3', '4'].includes(e.key)) {
+      // Numbers 1-9 - select answer by number
+      else if (['1', '2', '3', '4', '5', '6', '7', '8', '9'].includes(e.key)) {
         const answerIndex = parseInt(e.key) - 1
         if (!showResult && answerIndex < answersCount) {
           setFocusedAnswerIndex(answerIndex)
@@ -510,7 +510,7 @@ export default function MidtermQuizPage() {
               <p className="text-sm font-semibold text-blue-900 dark:text-blue-200 mb-2">Klávesové zkratky:</p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-1 text-xs text-blue-800 dark:text-blue-300">
                 <div><kbd className="px-1.5 py-0.5 bg-white dark:bg-slate-700 rounded border border-blue-300 dark:border-blue-600 font-mono">↑↓</kbd> navigace</div>
-                <div><kbd className="px-1.5 py-0.5 bg-white dark:bg-slate-700 rounded border border-blue-300 dark:border-blue-600 font-mono">1-4</kbd> výběr</div>
+                <div><kbd className="px-1.5 py-0.5 bg-white dark:bg-slate-700 rounded border border-blue-300 dark:border-blue-600 font-mono">1-9</kbd> výběr</div>
                 <div><kbd className="px-1.5 py-0.5 bg-white dark:bg-slate-700 rounded border border-blue-300 dark:border-blue-600 font-mono">Enter</kbd> potvrdit/skip</div>
                 <div><kbd className="px-1.5 py-0.5 bg-white dark:bg-slate-700 rounded border border-blue-300 dark:border-blue-600 font-mono">S</kbd> přeskočit</div>
               </div>
