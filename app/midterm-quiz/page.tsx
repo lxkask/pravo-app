@@ -41,6 +41,7 @@ export default function MidtermQuizPage() {
   const [quizCompleted, setQuizCompleted] = useState(false)
   const [timeLeft, setTimeLeft] = useState<number | null>(null)
   const [timerActive, setTimerActive] = useState(false)
+  const [focusedAnswerIndex, setFocusedAnswerIndex] = useState(0)
 
   useEffect(() => {
     if (mode && questions.length === 0) {
@@ -65,6 +66,71 @@ export default function MidtermQuizPage() {
 
     return () => clearInterval(interval)
   }, [timerActive, timeLeft])
+
+  // Keyboard navigation
+  useEffect(() => {
+    if (!currentQuestion || quizCompleted) return
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const answersCount = currentQuestion.answers.length
+
+      // Arrow Up/Down - navigate between answers
+      if (e.key === 'ArrowDown') {
+        e.preventDefault()
+        if (!showResult) {
+          setFocusedAnswerIndex(prev => (prev + 1) % answersCount)
+        }
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault()
+        if (!showResult) {
+          setFocusedAnswerIndex(prev => (prev - 1 + answersCount) % answersCount)
+        }
+      }
+      // Space - select focused answer
+      else if (e.key === ' ') {
+        e.preventDefault()
+        if (!showResult) {
+          const focusedAnswer = currentQuestion.answers[focusedAnswerIndex]
+          handleAnswerSelect(focusedAnswer.id)
+        }
+      }
+      // Enter - confirm answer, go to next, or skip
+      else if (e.key === 'Enter') {
+        e.preventDefault()
+        if (showResult) {
+          handleNext()
+        } else if (selectedAnswer) {
+          handleSubmit()
+        } else {
+          // Skip if no answer selected
+          handleSkip()
+        }
+      }
+      // Numbers 1-4 - select answer by number
+      else if (['1', '2', '3', '4'].includes(e.key)) {
+        const answerIndex = parseInt(e.key) - 1
+        if (!showResult && answerIndex < answersCount) {
+          setFocusedAnswerIndex(answerIndex)
+          const answer = currentQuestion.answers[answerIndex]
+          handleAnswerSelect(answer.id)
+        }
+      }
+      // S key - skip question
+      else if (e.key === 's' || e.key === 'S') {
+        if (!showResult) {
+          handleSkip()
+        }
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [currentQuestion, showResult, focusedAnswerIndex, selectedAnswer, quizCompleted])
+
+  // Reset focused answer when question changes
+  useEffect(() => {
+    setFocusedAnswerIndex(0)
+  }, [currentIndex])
 
   const fetchQuestions = async () => {
     if (!mode) return
@@ -436,6 +502,22 @@ export default function MidtermQuizPage() {
           </div>
         </div>
 
+        {/* Keyboard shortcuts hint */}
+        <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-4 mb-6">
+          <div className="flex items-start gap-3">
+            <span className="text-2xl">⌨️</span>
+            <div className="flex-1">
+              <p className="text-sm font-semibold text-blue-900 dark:text-blue-200 mb-2">Klávesové zkratky:</p>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-1 text-xs text-blue-800 dark:text-blue-300">
+                <div><kbd className="px-1.5 py-0.5 bg-white dark:bg-slate-700 rounded border border-blue-300 dark:border-blue-600 font-mono">↑↓</kbd> navigace</div>
+                <div><kbd className="px-1.5 py-0.5 bg-white dark:bg-slate-700 rounded border border-blue-300 dark:border-blue-600 font-mono">1-4</kbd> výběr</div>
+                <div><kbd className="px-1.5 py-0.5 bg-white dark:bg-slate-700 rounded border border-blue-300 dark:border-blue-600 font-mono">Enter</kbd> potvrdit/skip</div>
+                <div><kbd className="px-1.5 py-0.5 bg-white dark:bg-slate-700 rounded border border-blue-300 dark:border-blue-600 font-mono">S</kbd> přeskočit</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Question */}
         <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8 mb-6 border border-slate-200 dark:border-slate-700">
           <div className="mb-4 flex gap-2">
@@ -457,8 +539,9 @@ export default function MidtermQuizPage() {
 
           {/* Answers */}
           <div className="space-y-3">
-            {currentQuestion?.answers.map((answer) => {
+            {currentQuestion?.answers.map((answer, idx) => {
               const isSelected = selectedAnswer === answer.id
+              const isFocused = focusedAnswerIndex === idx && !showResult
               const showCorrect = showResult && answer.isCorrect
               const showIncorrect = showResult && isSelected && !answer.isCorrect
 
@@ -474,22 +557,38 @@ export default function MidtermQuizPage() {
                       ? 'bg-red-50 dark:bg-red-900/20 border-red-500 dark:border-red-400'
                       : isSelected
                       ? 'bg-indigo-50 dark:bg-indigo-900/20 border-indigo-500 dark:border-indigo-400'
+                      : isFocused
+                      ? 'bg-slate-100 dark:bg-slate-800 border-indigo-400 dark:border-indigo-500 shadow-md ring-2 ring-indigo-400 dark:ring-indigo-500 ring-opacity-50'
                       : 'bg-slate-50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-700 hover:border-indigo-300 dark:hover:border-indigo-500'
                   } ${showResult ? 'cursor-default' : 'cursor-pointer hover:shadow-md'}`}
                 >
                   <div className="flex items-start gap-4">
-                    <div className={`mt-1 flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${
-                      showCorrect
-                        ? 'bg-green-500 dark:bg-green-400 border-green-500 dark:border-green-400'
-                        : showIncorrect
-                        ? 'bg-red-500 dark:bg-red-400 border-red-500 dark:border-red-400'
-                        : isSelected
-                        ? 'bg-indigo-500 dark:bg-indigo-400 border-indigo-500 dark:border-indigo-400'
-                        : 'border-slate-300 dark:border-slate-600'
-                    }`}>
-                      {showCorrect && <CheckCircle2 className="w-4 h-4 text-white" />}
-                      {showIncorrect && <XCircle className="w-4 h-4 text-white" />}
-                      {isSelected && !showResult && <div className="w-3 h-3 bg-white rounded-full" />}
+                    <div className="flex items-center gap-3">
+                      {/* Number indicator */}
+                      <span className={`text-sm font-semibold ${
+                        showCorrect ? 'text-green-600 dark:text-green-400' :
+                        showIncorrect ? 'text-red-600 dark:text-red-400' :
+                        isSelected ? 'text-indigo-600 dark:text-indigo-400' :
+                        isFocused ? 'text-indigo-600 dark:text-indigo-400' :
+                        'text-slate-400 dark:text-slate-500'
+                      }`}>
+                        {idx + 1}.
+                      </span>
+                      <div className={`mt-1 flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${
+                        showCorrect
+                          ? 'bg-green-500 dark:bg-green-400 border-green-500 dark:border-green-400'
+                          : showIncorrect
+                          ? 'bg-red-500 dark:bg-red-400 border-red-500 dark:border-red-400'
+                          : isSelected
+                          ? 'bg-indigo-500 dark:bg-indigo-400 border-indigo-500 dark:border-indigo-400'
+                          : isFocused
+                          ? 'border-indigo-400 dark:border-indigo-500'
+                          : 'border-slate-300 dark:border-slate-600'
+                      }`}>
+                        {showCorrect && <CheckCircle2 className="w-4 h-4 text-white" />}
+                        {showIncorrect && <XCircle className="w-4 h-4 text-white" />}
+                        {isSelected && !showResult && <div className="w-3 h-3 bg-white rounded-full" />}
+                      </div>
                     </div>
                     <span className="flex-1 text-slate-700 dark:text-slate-300 leading-relaxed">
                       {answer.text}
