@@ -162,16 +162,9 @@ export default async function Home() {
               <div className="w-16 h-16 bg-slate-100 dark:bg-slate-700 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <ClipboardCheck className="w-8 h-8 text-slate-400" />
               </div>
-              <p className="text-slate-600 dark:text-slate-400 mb-6 text-lg">
+              <p className="text-slate-600 dark:text-slate-400 text-lg">
                 Zatím nejsou k dispozici žádné kategorie.
               </p>
-              <Link
-                href="/admin"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 dark:bg-indigo-500 text-white rounded-xl hover:bg-indigo-700 dark:hover:bg-indigo-600 transition-colors font-semibold"
-              >
-                <Settings className="w-5 h-5" />
-                Přidat první kategorii
-              </Link>
             </div>
           ) : (
             <div className="grid gap-6 md:grid-cols-2">
@@ -210,17 +203,6 @@ export default async function Home() {
               ))}
             </div>
           )}
-
-          {/* Admin Link */}
-          <div className="mt-12 text-center">
-            <Link
-              href="/admin"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-white rounded-xl hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors font-semibold border-2 border-slate-300 dark:border-slate-700"
-            >
-              <Settings className="w-5 h-5" />
-              Správa otázek (Admin)
-            </Link>
-          </div>
         </div>
 
         {/* Footer */}
