@@ -67,71 +67,6 @@ export default function MidtermQuizPage() {
     return () => clearInterval(interval)
   }, [timerActive, timeLeft])
 
-  // Keyboard navigation
-  useEffect(() => {
-    if (!currentQuestion || quizCompleted) return
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      const answersCount = currentQuestion.answers.length
-
-      // Arrow Up/Down - navigate between answers
-      if (e.key === 'ArrowDown') {
-        e.preventDefault()
-        if (!showResult) {
-          setFocusedAnswerIndex(prev => (prev + 1) % answersCount)
-        }
-      } else if (e.key === 'ArrowUp') {
-        e.preventDefault()
-        if (!showResult) {
-          setFocusedAnswerIndex(prev => (prev - 1 + answersCount) % answersCount)
-        }
-      }
-      // Space - select focused answer
-      else if (e.key === ' ') {
-        e.preventDefault()
-        if (!showResult) {
-          const focusedAnswer = currentQuestion.answers[focusedAnswerIndex]
-          handleAnswerSelect(focusedAnswer.id)
-        }
-      }
-      // Enter - confirm answer, go to next, or skip
-      else if (e.key === 'Enter') {
-        e.preventDefault()
-        if (showResult) {
-          handleNext()
-        } else if (selectedAnswer) {
-          handleSubmit()
-        } else {
-          // Skip if no answer selected
-          handleSkip()
-        }
-      }
-      // Numbers 1-4 - select answer by number
-      else if (['1', '2', '3', '4'].includes(e.key)) {
-        const answerIndex = parseInt(e.key) - 1
-        if (!showResult && answerIndex < answersCount) {
-          setFocusedAnswerIndex(answerIndex)
-          const answer = currentQuestion.answers[answerIndex]
-          handleAnswerSelect(answer.id)
-        }
-      }
-      // S key - skip question
-      else if (e.key === 's' || e.key === 'S') {
-        if (!showResult) {
-          handleSkip()
-        }
-      }
-    }
-
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [currentQuestion, showResult, focusedAnswerIndex, selectedAnswer, quizCompleted])
-
-  // Reset focused answer when question changes
-  useEffect(() => {
-    setFocusedAnswerIndex(0)
-  }, [currentIndex])
-
   const fetchQuestions = async () => {
     if (!mode) return
 
@@ -266,6 +201,71 @@ export default function MidtermQuizPage() {
 
   const score = Array.from(answers.values()).filter(a => a.correct).length
   const totalAnswered = answers.size
+
+  // Keyboard navigation
+  useEffect(() => {
+    if (!currentQuestion || quizCompleted) return
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const answersCount = currentQuestion.answers.length
+
+      // Arrow Up/Down - navigate between answers
+      if (e.key === 'ArrowDown') {
+        e.preventDefault()
+        if (!showResult) {
+          setFocusedAnswerIndex(prev => (prev + 1) % answersCount)
+        }
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault()
+        if (!showResult) {
+          setFocusedAnswerIndex(prev => (prev - 1 + answersCount) % answersCount)
+        }
+      }
+      // Space - select focused answer
+      else if (e.key === ' ') {
+        e.preventDefault()
+        if (!showResult) {
+          const focusedAnswer = currentQuestion.answers[focusedAnswerIndex]
+          handleAnswerSelect(focusedAnswer.id)
+        }
+      }
+      // Enter - confirm answer, go to next, or skip
+      else if (e.key === 'Enter') {
+        e.preventDefault()
+        if (showResult) {
+          handleNext()
+        } else if (selectedAnswer) {
+          handleSubmit()
+        } else {
+          // Skip if no answer selected
+          handleSkip()
+        }
+      }
+      // Numbers 1-4 - select answer by number
+      else if (['1', '2', '3', '4'].includes(e.key)) {
+        const answerIndex = parseInt(e.key) - 1
+        if (!showResult && answerIndex < answersCount) {
+          setFocusedAnswerIndex(answerIndex)
+          const answer = currentQuestion.answers[answerIndex]
+          handleAnswerSelect(answer.id)
+        }
+      }
+      // S key - skip question
+      else if (e.key === 's' || e.key === 'S') {
+        if (!showResult) {
+          handleSkip()
+        }
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [currentQuestion, showResult, focusedAnswerIndex, selectedAnswer, quizCompleted])
+
+  // Reset focused answer when question changes
+  useEffect(() => {
+    setFocusedAnswerIndex(0)
+  }, [currentIndex])
 
   // Mode selection screen
   if (!mode) {
