@@ -22,11 +22,17 @@ Aplikace poběží na `http://localhost:3000`
 
 ## ✨ Hlavní Funkce
 
-### 📖 Moderní Učebnice (Fáze 2 - CURRENT)
+### ✅ Otázky ke Zkoušce (Fáze 2.5 - DOKONČENO)
+- ✅ **40 zkouškových otázek** - Kompletní seznam otázek k ústní zkoušce
+- ✅ **Krátké odpovědi** - Základní body, které musíš umět říct
+- ✅ **AI formátování** - Přehledný markdown s headingy, bold, seznamy, citacemi
+- ✅ **Toggle režim** - Přepínání mezi krátkou a dlouhou odpovědí (dlouhé zatím "brzy")
+- ✅ **Mobile-first UI** - Perfektně optimalizováno pro mobil i desktop
+- ✅ **Navigace** - Předchozí/Další otázka, číslo otázky, zpět na seznam
+
+### 📖 Moderní Učebnice (Fáze 2 - PLÁNOVÁNO)
 - 🔜 **Souvislé čtení** - Dlouhé lekce bez fragmentace
 - 🔜 **Flexibilní navigace** - Čti jako knihu NEBO skoč na téma
-- 🔜 **Mobile-first design** - Perfektně optimalizováno pro mobil
-- 🔜 **High readability** - Vysoký kontrast, velké písmo, dark mode
 - 🔜 **Source tracking** - Každý text má odkaz na původní dokument
 - 🔜 **Zero hallucinations** - AI pouze cituje, nevymýšlí
 - 🔜 **Multi-source consolidation** - 6 dokumentů → jedna koherentní učebnice
@@ -67,13 +73,21 @@ pravo-quiz-app/
 
 ## 📊 Databázové Schéma
 
-### Category
+### ExamQuestion (Zkouškové otázky)
+- `id` - UUID
+- `order` - Pořadové číslo (1-40)
+- `title` - Název otázky
+- `shortAnswer` - Krátká odpověď (markdown)
+- `longAnswer` - Dlouhá odpověď (markdown, nullable)
+- `source` - Zdroj PDF
+
+### Category (Kvízy)
 - `id` - UUID
 - `name` - Název kategorie (unique)
 - `description` - Popis
 - `color` - Barva pro UI
 
-### Question
+### Question (Kvízy)
 - `id` - UUID
 - `text` - Text otázky
 - `explanation` - Vysvětlení správné odpovědi
@@ -81,7 +95,7 @@ pravo-quiz-app/
 - `difficulty` - EASY | MEDIUM | HARD
 - `categoryId` - Vazba na kategorii
 
-### Answer
+### Answer (Kvízy)
 - `id` - UUID
 - `text` - Text odpovědi
 - `isCorrect` - Boolean
@@ -95,7 +109,27 @@ pravo-quiz-app/
 - [x] Admin rozhraní
 - [x] LocalStorage progres tracking
 
-### 🔄 Fáze 2: Moderní Učebnice (CURRENT - PROOF OF CONCEPT)
+### ✅ Fáze 2.5: Otázky ke Zkoušce (DOKONČENO - 2025-12-10)
+
+**🎯 Cíl:** Rychlé nasazení 40 zkouškových otázek s krátkými odpověďmi
+
+**✅ Kompletně hotovo:**
+- [x] Extrakce 40 otázek z PDF (Patocka_Ustni_2024-1.pdf)
+- [x] AI-powered formátování všech odpovědí do čistého markdownu
+- [x] Database model ExamQuestion + API endpoints
+- [x] Seznam otázek (`/exam-questions`) s přehlednými kartami
+- [x] Detail otázky (`/exam-questions/[id]`) s toggle short/long
+- [x] Mobile-first UI design s gradientními barvami
+- [x] Navigace předchozí/další + zpět na seznam
+- [x] react-markdown rendering s custom komponenty
+- [x] Deployment na Vercel: [pravo-quiz-ebka3ddug-lukass-projects-2757878c.vercel.app](https://pravo-quiz-ebka3ddug-lukass-projects-2757878c.vercel.app)
+
+**📊 Výsledek:**
+- 40 zkouškových otázek s AI-formátovanými krátkými odpověďmi
+- Placeholder "brzy" pro dlouhé odpovědi (připraveno pro budoucí rozšíření)
+- Plně funkční a nasazeno do produkce
+
+### 🔄 Fáze 2: Moderní Učebnice (PLÁNOVÁNO - PROOF OF CONCEPT)
 
 **🎯 Nový směr:** Pivot od fragmentovaného UI k moderní, plynulé učebnici
 
