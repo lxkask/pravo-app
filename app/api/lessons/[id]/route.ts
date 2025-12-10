@@ -10,7 +10,6 @@ export async function GET(
     const lesson = await prisma.lesson.findUnique({
       where: { id },
       include: {
-        category: true,
         topics: {
           include: {
             sections: {
