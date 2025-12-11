@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import { prisma } from '@/lib/prisma'
-import { BookOpen, ClipboardCheck, Settings, ArrowRight, Target, Clock, BookMarked } from 'lucide-react'
+import { BookOpen, ArrowRight, Target, BookMarked, TrendingUp, Award, Calendar } from 'lucide-react'
+import { StudyStreak } from '@/components/study-streak'
+import { FadeIn } from '@/components/fade-in'
 
 export default async function Home() {
   const categories = await prisma.category.findMany({
@@ -14,159 +16,181 @@ export default async function Home() {
     }
   })
 
+  // Get total counts for stats
+  const [midtermCount, examCount] = await Promise.all([
+    prisma.quizQuestion.count(),
+    prisma.examQuestion.count(),
+  ])
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-950 dark:via-slate-900 dark:to-indigo-950">
-      <div className="container mx-auto px-4 py-12">
-        {/* Hero Section */}
-        <header className="text-center mb-16 max-w-4xl mx-auto">
-          <div className="mb-6">
-            <div className="inline-block p-4 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl shadow-lg mb-6">
-              <BookOpen className="w-12 h-12 text-white" />
+      <div className="container mx-auto px-4 py-8 md:py-16 max-w-7xl">
+
+        {/* Hero Section - Compact & Focused */}
+        <header className="text-center mb-12 md:mb-20">
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
+            <div className="inline-flex items-center gap-3 px-6 py-3 bg-white/60 dark:bg-slate-800/60 backdrop-blur-md rounded-full border border-slate-200/50 dark:border-slate-700/50 shadow-lg">
+              <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center">
+                <BookOpen className="w-5 h-5 text-white" />
+              </div>
+              <span className="text-sm font-semibold text-slate-700 dark:text-slate-300">Study Hub</span>
             </div>
+            <StudyStreak />
           </div>
-          <h1 className="text-6xl font-black text-slate-900 dark:text-white mb-6 leading-tight">
-            Příprava na zkoušku<br/>
-            <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-              z Práva
+
+          <h1 className="text-5xl md:text-7xl font-black text-slate-900 dark:text-white mb-4 leading-tight">
+            Příprava na
+            <span className="block bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+              Zkoušku z Práva
             </span>
           </h1>
-          <p className="text-xl text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
-            Připrav se na test a zkoušku s interaktivními kvízy a studijními materiály.<br/>
-            Vše na jednom místě. Moderní. Efektivní.
+          <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+            Interaktivní kvízy, zkouškové otázky a studijní materiály na jednom místě
           </p>
-
-          {/* Quick Actions */}
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link
-              href="#midterm"
-              className="group inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl hover:from-indigo-700 hover:to-purple-700 transition-all font-bold text-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1"
-            >
-              <Target className="w-5 h-5 group-hover:rotate-12 transition-transform" />
-              Začít testovat
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <Link
-              href="/exam-questions"
-              className="group inline-flex items-center gap-2 px-8 py-4 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700 transition-all font-semibold text-lg shadow-lg border-2 border-slate-200 dark:border-slate-700"
-            >
-              <BookMarked className="w-5 h-5 group-hover:scale-110 transition-transform" />
-              Otázky ke zkoušce
-            </Link>
-          </div>
         </header>
 
-        {/* Průběžný test - Hero Card */}
-        <div className="max-w-5xl mx-auto mb-16" id="midterm">
-          <Link
-            href="/midterm-quiz"
-            className="block group"
-          >
-            <div className="relative overflow-hidden bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 rounded-3xl shadow-2xl p-10 hover:shadow-3xl transition-all transform hover:-translate-y-2">
-              {/* Decorative elements */}
-              <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32 group-hover:scale-150 transition-transform duration-500" />
-              <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full -ml-24 -mb-24 group-hover:scale-150 transition-transform duration-500" />
-
-              <div className="relative flex flex-col md:flex-row items-center justify-between gap-6">
-                <div className="flex items-center gap-6">
-                  <div className="bg-white/20 backdrop-blur-sm p-6 rounded-2xl group-hover:scale-110 transition-transform">
-                    <Target className="w-14 h-14 text-white" />
-                  </div>
-                  <div>
-                    <h2 className="text-4xl font-black text-white mb-3">
-                      🎯 Průběžný test
-                    </h2>
-                    <p className="text-indigo-100 text-lg mb-2">
-                      94 otázek • 4 režimy testování
-                    </p>
-                    <div className="flex flex-wrap gap-2 mt-3">
-                      <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-lg text-white text-sm font-semibold">
-                        Procvičování
-                      </span>
-                      <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-lg text-white text-sm font-semibold">
-                        Časované testy
-                      </span>
-                      <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-lg text-white text-sm font-semibold">
-                        Skip funkce
-                      </span>
-                    </div>
+        {/* Quick Stats Dashboard */}
+        <FadeIn delay={0.2}>
+          <div className="max-w-4xl mx-auto mb-12 md:mb-16">
+            <div className="grid grid-cols-3 gap-4 md:gap-6">
+              {/* Stat 1 */}
+              <div className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-md rounded-2xl p-4 md:p-6 border border-slate-200/50 dark:border-slate-700/50 shadow-lg hover:shadow-xl transition-shadow">
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-8 h-8 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg flex items-center justify-center">
+                    <Target className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
                   </div>
                 </div>
-                <div className="text-white/80 group-hover:text-white group-hover:translate-x-2 transition-all">
-                  <ArrowRight className="w-16 h-16" />
+                <div className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white">{midtermCount}</div>
+                <div className="text-xs md:text-sm text-slate-600 dark:text-slate-400">Testových otázek</div>
+              </div>
+
+              {/* Stat 2 */}
+              <div className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-md rounded-2xl p-4 md:p-6 border border-slate-200/50 dark:border-slate-700/50 shadow-lg hover:shadow-xl transition-shadow">
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-8 h-8 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center">
+                    <BookMarked className="w-4 h-4 text-purple-600 dark:text-purple-400" />
+                  </div>
                 </div>
+                <div className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white">{examCount}</div>
+                <div className="text-xs md:text-sm text-slate-600 dark:text-slate-400">Zkouškových otázek</div>
               </div>
-            </div>
-          </Link>
-        </div>
 
-        {/* Features Grid */}
-        <div className="max-w-6xl mx-auto mb-16">
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8 text-center">
-            Proč naše aplikace?
-          </h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {/* Feature 1 */}
-            <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-lg">
-              <div className="bg-blue-100 dark:bg-blue-900/30 w-12 h-12 rounded-xl flex items-center justify-center mb-4">
-                <Clock className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+              {/* Stat 3 */}
+              <div className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-md rounded-2xl p-4 md:p-6 border border-slate-200/50 dark:border-slate-700/50 shadow-lg hover:shadow-xl transition-shadow">
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-8 h-8 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center">
+                    <Award className="w-4 h-4 text-green-600 dark:text-green-400" />
+                  </div>
+                </div>
+                <div className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white">{categories.length}</div>
+                <div className="text-xs md:text-sm text-slate-600 dark:text-slate-400">Kategorií kvízů</div>
               </div>
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">
-                Časované testy
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400">
-                Realistické podmínky s timerem. Připrav se na skutečný test.
-              </p>
-            </div>
-
-            {/* Feature 2 */}
-            <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-lg">
-              <div className="bg-green-100 dark:bg-green-900/30 w-12 h-12 rounded-xl flex items-center justify-center mb-4">
-                <Target className="w-6 h-6 text-green-600 dark:text-green-400" />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">
-                Procvičování
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400">
-                Všechny otázky bez limitu. Skipuj, vracej se, učíš se svým tempem.
-              </p>
-            </div>
-
-            {/* Feature 3 */}
-            <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-lg">
-              <div className="bg-purple-100 dark:bg-purple-900/30 w-12 h-12 rounded-xl flex items-center justify-center mb-4">
-                <BookMarked className="w-6 h-6 text-purple-600 dark:text-purple-400" />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">
-                Studijní materiály
-              </h3>
-              <p className="text-slate-600 dark:text-slate-400">
-                Učebnice s detailními vysvětleními pro hloubkové studium.
-              </p>
             </div>
           </div>
-        </div>
+        </FadeIn>
 
-        {/* Category Quizzes */}
-        <div className="max-w-5xl mx-auto" id="kviz">
-          <div className="mb-8">
-            <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">
-              Kvízy podle kategorií
+        {/* Main Study Cards - 3 Column Grid */}
+        <FadeIn delay={0.3}>
+          <div className="max-w-6xl mx-auto mb-12 md:mb-20">
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-6 md:mb-8 text-center">
+              Začni studovat
             </h2>
-            <p className="text-slate-600 dark:text-slate-400">
-              Zaměř se na konkrétní oblast práva
-            </p>
-          </div>
 
-          {categories.length === 0 ? (
-            <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl shadow-lg p-12 text-center border border-slate-200 dark:border-slate-700">
-              <div className="w-16 h-16 bg-slate-100 dark:bg-slate-700 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <ClipboardCheck className="w-8 h-8 text-slate-400" />
+            <div className="grid md:grid-cols-3 gap-6">
+            {/* Card 1: Midterm Quiz */}
+            <Link href="/midterm-quiz" className="group">
+              <div className="relative overflow-hidden bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 min-h-[280px] flex flex-col">
+                {/* Decorative blob */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
+
+                <div className="relative flex-1 flex flex-col">
+                  <div className="bg-white/20 backdrop-blur-sm w-14 h-14 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <Target className="w-8 h-8 text-white" />
+                  </div>
+
+                  <h3 className="text-2xl font-black text-white mb-2">
+                    Průběžný test
+                  </h3>
+                  <p className="text-indigo-100 text-sm mb-4 flex-1">
+                    {midtermCount} otázek • Časovaný režim • Progress tracking
+                  </p>
+
+                  <div className="flex items-center text-white font-semibold group-hover:gap-2 transition-all">
+                    Začít testovat
+                    <ArrowRight className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </div>
               </div>
-              <p className="text-slate-600 dark:text-slate-400 text-lg">
-                Zatím nejsou k dispozici žádné kategorie.
-              </p>
+            </Link>
+
+            {/* Card 2: Exam Questions */}
+            <Link href="/exam-questions" className="group">
+              <div className="relative overflow-hidden bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 min-h-[280px] flex flex-col">
+                {/* Decorative blob */}
+                <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/10 rounded-full -ml-16 -mb-16 group-hover:scale-150 transition-transform duration-500" />
+
+                <div className="relative flex-1 flex flex-col">
+                  <div className="bg-white/20 backdrop-blur-sm w-14 h-14 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <BookMarked className="w-8 h-8 text-white" />
+                  </div>
+
+                  <h3 className="text-2xl font-black text-white mb-2">
+                    Otázky ke zkoušce
+                  </h3>
+                  <p className="text-purple-100 text-sm mb-4 flex-1">
+                    {examCount} otázek • Krátké i dlouhé odpovědi • Offline režim
+                  </p>
+
+                  <div className="flex items-center text-white font-semibold group-hover:gap-2 transition-all">
+                    Zobrazit otázky
+                    <ArrowRight className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </div>
+              </div>
+            </Link>
+
+            {/* Card 3: Category Quizzes */}
+            <Link href="#categories" className="group">
+              <div className="relative overflow-hidden bg-gradient-to-br from-blue-500 to-cyan-600 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 min-h-[280px] flex flex-col">
+                {/* Decorative blob */}
+                <div className="absolute top-0 left-0 w-24 h-24 bg-white/10 rounded-full -ml-12 -mt-12 group-hover:scale-150 transition-transform duration-500" />
+
+                <div className="relative flex-1 flex flex-col">
+                  <div className="bg-white/20 backdrop-blur-sm w-14 h-14 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <TrendingUp className="w-8 h-8 text-white" />
+                  </div>
+
+                  <h3 className="text-2xl font-black text-white mb-2">
+                    Kvízy podle témat
+                  </h3>
+                  <p className="text-blue-100 text-sm mb-4 flex-1">
+                    {categories.length} kategorií • Zaměřené procvičování • Adaptivní učení
+                  </p>
+
+                  <div className="flex items-center text-white font-semibold group-hover:gap-2 transition-all">
+                    Procházet kategorie
+                    <ArrowRight className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </div>
+              </div>
+            </Link>
             </div>
-          ) : (
+          </div>
+        </FadeIn>
+
+        {/* Category Quizzes Section */}
+        {categories.length > 0 && (
+          <FadeIn delay={0.4}>
+            <div className="max-w-5xl mx-auto" id="categories">
+              <div className="mb-8">
+                <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-2">
+                  Kvízy podle kategorií
+                </h2>
+                <p className="text-slate-600 dark:text-slate-400">
+                  Procvičuj konkrétní oblasti právní nauky
+                </p>
+              </div>
+
             <div className="grid gap-6 md:grid-cols-2">
               {categories.map((category) => (
                 <Link
@@ -174,27 +198,27 @@ export default async function Home() {
                   href={`/quiz/${category.id}`}
                   className="group"
                 >
-                  <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl shadow-lg p-8 hover:shadow-2xl transition-all transform hover:-translate-y-2 border-2 border-slate-200 dark:border-slate-700 hover:border-indigo-300 dark:hover:border-indigo-500">
+                  <div className="bg-white/60 dark:bg-slate-800/60 backdrop-blur-md rounded-2xl shadow-lg p-6 md:p-8 hover:shadow-2xl transition-all transform hover:-translate-y-2 border border-slate-200/50 dark:border-slate-700/50 hover:border-indigo-300 dark:hover:border-indigo-500">
                     <div className="flex items-start justify-between mb-4">
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-3 flex-1">
                         <div
-                          className="w-3 h-12 rounded-full"
+                          className="w-3 h-12 rounded-full flex-shrink-0"
                           style={{ backgroundColor: category.color || '#6366f1' }}
                         />
-                        <h3 className="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                        <h3 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                           {category.name}
                         </h3>
                       </div>
-                      <span className="text-sm px-4 py-2 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-800 dark:text-indigo-200 rounded-xl font-bold">
+                      <span className="text-xs md:text-sm px-3 py-1.5 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-800 dark:text-indigo-200 rounded-lg font-bold whitespace-nowrap ml-2">
                         {category._count.questions} otázek
                       </span>
                     </div>
                     {category.description && (
-                      <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+                      <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
                         {category.description}
                       </p>
                     )}
-                    <div className="mt-4 flex items-center text-indigo-600 dark:text-indigo-400 font-semibold group-hover:gap-2 transition-all">
+                    <div className="flex items-center text-indigo-600 dark:text-indigo-400 font-semibold text-sm group-hover:gap-2 transition-all">
                       Začít kvíz
                       <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                     </div>
@@ -202,12 +226,18 @@ export default async function Home() {
                 </Link>
               ))}
             </div>
-          )}
-        </div>
+            </div>
+          </FadeIn>
+        )}
 
         {/* Footer */}
-        <footer className="mt-20 text-center text-slate-500 dark:text-slate-500 text-sm">
-          <p>Moderní příprava na zkoušku z Práva</p>
+        <footer className="mt-16 md:mt-24 text-center">
+          <div className="inline-flex items-center gap-2 px-6 py-3 bg-white/40 dark:bg-slate-800/40 backdrop-blur-md rounded-full border border-slate-200/50 dark:border-slate-700/50">
+            <Calendar className="w-4 h-4 text-slate-500 dark:text-slate-400" />
+            <span className="text-sm text-slate-500 dark:text-slate-400">
+              Moderní příprava na zkoušku z Práva
+            </span>
+          </div>
         </footer>
       </div>
     </div>

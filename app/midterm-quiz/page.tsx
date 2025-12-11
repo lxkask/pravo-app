@@ -4,6 +4,9 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { Clock, CheckCircle2, XCircle, SkipForward, Home, RotateCcw, Play, RefreshCcw } from 'lucide-react'
 import { MidtermProgressTracker } from '@/lib/midterm-progress-tracker'
+import { updateStudyStreak } from '@/components/study-streak'
+import { ConfettiEffect } from '@/components/confetti-effect'
+import { AchievementToast, ACHIEVEMENTS } from '@/components/achievement-toast'
 
 type QuizAnswer = {
   id: string
@@ -43,6 +46,8 @@ export default function MidtermQuizPage() {
   const [timeLeft, setTimeLeft] = useState<number | null>(null)
   const [timerActive, setTimerActive] = useState(false)
   const [focusedAnswerIndex, setFocusedAnswerIndex] = useState(0)
+  const [showConfetti, setShowConfetti] = useState(false)
+  const [achievement, setAchievement] = useState<typeof ACHIEVEMENTS[keyof typeof ACHIEVEMENTS] | null>(null)
 
   // Load progress stats on mount
   useEffect(() => {
@@ -107,6 +112,38 @@ export default function MidtermQuizPage() {
 
   const handleTimeUp = () => {
     setQuizCompleted(true)
+    updateStudyStreak() // Update streak when quiz is completed
+    checkAchievements()
+  }
+
+  const checkAchievements = () => {
+    const percentage = Math.round((score / questions.length) * 100)
+
+    // Perfect score achievement
+    if (percentage === 100) {
+      setShowConfetti(true)
+      setAchievement(ACHIEVEMENTS.PERFECT_SCORE)
+    } else if (percentage >= 80) {
+      setShowConfetti(true)
+    }
+
+    // First quiz achievement
+    const completedQuizzes = parseInt(localStorage.getItem('completed-quizzes') || '0')
+    if (completedQuizzes === 0) {
+      setTimeout(() => {
+        setAchievement(ACHIEVEMENTS.FIRST_QUIZ)
+      }, 1000)
+    }
+
+    // Update quiz counter
+    localStorage.setItem('completed-quizzes', String(completedQuizzes + 1))
+
+    // Check for 10 quizzes
+    if (completedQuizzes + 1 === 10) {
+      setTimeout(() => {
+        setAchievement(ACHIEVEMENTS.TEN_QUIZZES)
+      }, 2000)
+    }
   }
 
   const currentQuestion = questions[currentIndex]
@@ -164,6 +201,8 @@ export default function MidtermQuizPage() {
       } else {
         setQuizCompleted(true)
         setTimerActive(false)
+        updateStudyStreak() // Update streak when all questions answered
+        checkAchievements()
         return
       }
     }
@@ -523,7 +562,10 @@ export default function MidtermQuizPage() {
   const config = MODE_CONFIG[mode]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-950 dark:via-slate-900 dark:to-indigo-950 p-4">
+    <>
+      <ConfettiEffect trigger={showConfetti} />
+      <AchievementToast achievement={achievement} onClose={() => setAchievement(null)} />
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-950 dark:via-slate-900 dark:to-indigo-950 p-4">
       <div className="max-w-5xl mx-auto py-6">
         {/* Header */}
         <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl shadow-lg p-6 mb-6 border border-slate-200 dark:border-slate-700">
@@ -752,6 +794,7 @@ export default function MidtermQuizPage() {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   )
 }
