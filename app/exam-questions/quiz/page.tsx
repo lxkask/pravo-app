@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { Home, ChevronLeft, ChevronRight, Clock, CheckCircle, Circle } from 'lucide-react'
@@ -15,7 +15,7 @@ interface ExamQuestion {
   longAnswer: string | null
 }
 
-export default function QuizPage() {
+function QuizContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
 
@@ -306,5 +306,20 @@ export default function QuizPage() {
         </div>
       </main>
     </div>
+  )
+}
+
+export default function QuizPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-950 dark:via-slate-900 dark:to-indigo-950 flex items-center justify-center">
+        <div className="text-center">
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 dark:border-indigo-400"></div>
+          <p className="mt-4 text-slate-600 dark:text-slate-400">Načítání...</p>
+        </div>
+      </div>
+    }>
+      <QuizContent />
+    </Suspense>
   )
 }
