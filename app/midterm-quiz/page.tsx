@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { Clock, CheckCircle2, XCircle, SkipForward, Home, RotateCcw } from 'lucide-react'
+import { Clock, CheckCircle2, XCircle, SkipForward, Home, RotateCcw, Play, RefreshCcw } from 'lucide-react'
+import { MidtermProgressTracker } from '@/lib/midterm-progress-tracker'
 
 type QuizAnswer = {
   id: string
@@ -19,17 +20,17 @@ type QuizQuestion = {
   answers: QuizAnswer[]
 }
 
-type QuizMode = 'practice' | 'timed-10' | 'timed-20' | 'timed-40'
+type QuizMode = 'practice' | 'test'
 
 const MODE_CONFIG = {
-  'practice': { name: 'Procvičování', questions: 94, time: null, desc: 'Všechny otázky, žádný časový limit' },
-  'timed-10': { name: 'Test 10 min', questions: 10, time: 10, desc: '10 otázek za 10 minut' },
-  'timed-20': { name: 'Test 20 min', questions: 20, time: 20, desc: '20 otázek za 20 minut' },
-  'timed-40': { name: 'Test 40 min', questions: 40, time: 40, desc: '40 otázek za 40 minut' },
+  'practice': { name: 'Procvičování', questions: 94, time: null, desc: 'Všechny otázky, žádný časový limit', shuffle: false },
+  'test': { name: 'Zkouškový test', questions: 25, time: 25, desc: '25 náhodných otázek za 25 minut', shuffle: true },
 }
 
 export default function MidtermQuizPage() {
   const [mode, setMode] = useState<QuizMode | null>(null)
+  const [shuffleEnabled, setShuffleEnabled] = useState(false)
+  const [progressStats, setProgressStats] = useState({ totalQuestions: 94, completedQuestions: 0, percentage: 0, lastPosition: 0 })
   const [questions, setQuestions] = useState<QuizQuestion[]>([])
   const [currentIndex, setCurrentIndex] = useState(0)
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null)
@@ -42,6 +43,12 @@ export default function MidtermQuizPage() {
   const [timeLeft, setTimeLeft] = useState<number | null>(null)
   const [timerActive, setTimerActive] = useState(false)
   const [focusedAnswerIndex, setFocusedAnswerIndex] = useState(0)
+
+  // Load progress stats on mount
+  useEffect(() => {
+    const stats = MidtermProgressTracker.getStats()
+    setProgressStats(stats)
+  }, [])
 
   useEffect(() => {
     if (mode && questions.length === 0) {
@@ -73,9 +80,18 @@ export default function MidtermQuizPage() {
     setIsLoading(true)
     try {
       const config = MODE_CONFIG[mode]
-      const response = await fetch(`/api/midterm-quiz?limit=${config.questions}&shuffle=true`)
+      const shouldShuffle = mode === 'test' ? true : shuffleEnabled
+      const response = await fetch(`/api/midterm-quiz?limit=${config.questions}&shuffle=${shouldShuffle}`)
       const data = await response.json()
       setQuestions(data.questions)
+
+      // In practice mode, start from next unanswered question
+      if (mode === 'practice' && !shouldShuffle) {
+        const nextUnanswered = MidtermProgressTracker.getNextUnansweredQuestion(data.questions.length)
+        if (nextUnanswered !== null) {
+          setCurrentIndex(nextUnanswered)
+        }
+      }
 
       if (config.time) {
         setTimeLeft(config.time * 60) // Convert to seconds
@@ -124,6 +140,13 @@ export default function MidtermQuizPage() {
       const newSkipped = new Set(skippedQuestions)
       newSkipped.delete(currentIndex)
       setSkippedQuestions(newSkipped)
+    }
+
+    // Track progress in practice mode
+    if (mode === 'practice') {
+      MidtermProgressTracker.markQuestionAnswered(currentIndex, isCorrect)
+      const stats = MidtermProgressTracker.getStats()
+      setProgressStats(stats)
     }
 
     setShowResult(true)
@@ -287,52 +310,126 @@ export default function MidtermQuizPage() {
 
           <div className="grid md:grid-cols-2 gap-6">
             {/* Practice Mode */}
+            <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg border border-slate-200 dark:border-slate-700">
+              <div className="text-4xl mb-4">📚</div>
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+                {MODE_CONFIG['practice'].name}
+              </h3>
+              <p className="text-slate-600 dark:text-slate-400 mb-4">
+                {MODE_CONFIG['practice'].desc}
+              </p>
+              <div className="flex items-center justify-between text-sm mb-6">
+                <span className="text-slate-500 dark:text-slate-500">{MODE_CONFIG['practice'].questions} otázek</span>
+                <span className="text-indigo-600 dark:text-indigo-400 font-semibold">Bez limitu ⏳</span>
+              </div>
+
+              {/* Progress display */}
+              {progressStats.completedQuestions > 0 && (
+                <div className="mb-6 p-4 bg-green-50 dark:bg-green-900/20 rounded-xl border border-green-200 dark:border-green-800">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-sm font-semibold text-green-900 dark:text-green-200">Progres</span>
+                    <span className="text-lg font-bold text-green-600 dark:text-green-400">{progressStats.percentage}%</span>
+                  </div>
+                  <div className="mb-2 bg-green-200 dark:bg-green-900/50 rounded-full h-2 overflow-hidden">
+                    <div
+                      className="bg-green-600 dark:bg-green-400 h-2 rounded-full transition-all"
+                      style={{ width: `${progressStats.percentage}%` }}
+                    ></div>
+                  </div>
+                  <p className="text-xs text-green-700 dark:text-green-300">
+                    Dokončeno {progressStats.completedQuestions} z {progressStats.totalQuestions} otázek
+                  </p>
+                </div>
+              )}
+
+              {/* Shuffle toggle */}
+              <div className="mb-6 p-4 bg-slate-50 dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-slate-700">
+                <label className="flex items-center justify-between cursor-pointer">
+                  <div>
+                    <div className="font-semibold text-slate-900 dark:text-white mb-1">Náhodné pořadí</div>
+                    <div className="text-xs text-slate-500 dark:text-slate-400">Zamíchat otázky namísto sekvenčního pořadí</div>
+                  </div>
+                  <div className="relative">
+                    <input
+                      type="checkbox"
+                      checked={shuffleEnabled}
+                      onChange={(e) => setShuffleEnabled(e.target.checked)}
+                      className="sr-only"
+                    />
+                    <div className={`w-14 h-8 rounded-full transition-colors ${
+                      shuffleEnabled ? 'bg-indigo-600 dark:bg-indigo-500' : 'bg-slate-300 dark:bg-slate-600'
+                    }`}>
+                      <div className={`absolute top-1 left-1 w-6 h-6 bg-white rounded-full transition-transform ${
+                        shuffleEnabled ? 'translate-x-6' : ''
+                      }`}></div>
+                    </div>
+                  </div>
+                </label>
+              </div>
+
+              <div className="flex gap-3">
+                {progressStats.completedQuestions > 0 && progressStats.completedQuestions < progressStats.totalQuestions && (
+                  <button
+                    onClick={() => {
+                      setMode('practice')
+                      // Will start from next unanswered question
+                    }}
+                    className="flex-1 bg-green-600 dark:bg-green-500 hover:bg-green-700 dark:hover:bg-green-600 text-white py-4 rounded-xl transition-all font-bold text-lg shadow-lg flex items-center justify-center gap-2"
+                  >
+                    <Play className="w-5 h-5" />
+                    Pokračovat
+                  </button>
+                )}
+                <button
+                  onClick={() => {
+                    if (progressStats.completedQuestions > 0) {
+                      if (confirm('Začít znovu? Současný progres bude resetován.')) {
+                        MidtermProgressTracker.resetProgress()
+                        setProgressStats({ totalQuestions: 94, completedQuestions: 0, percentage: 0, lastPosition: 0 })
+                        setMode('practice')
+                      }
+                    } else {
+                      setMode('practice')
+                    }
+                  }}
+                  className={`${
+                    progressStats.completedQuestions > 0 && progressStats.completedQuestions < progressStats.totalQuestions
+                      ? 'flex-1'
+                      : 'w-full'
+                  } bg-indigo-600 dark:bg-indigo-500 hover:bg-indigo-700 dark:hover:bg-indigo-600 text-white py-4 rounded-xl transition-all font-bold text-lg shadow-lg flex items-center justify-center gap-2`}
+                >
+                  {progressStats.completedQuestions > 0 ? (
+                    <>
+                      <RefreshCcw className="w-5 h-5" />
+                      Začít znovu
+                    </>
+                  ) : (
+                    'Začít procvičování'
+                  )}
+                </button>
+              </div>
+            </div>
+
+            {/* Test Mode */}
             <button
-              onClick={() => setMode('practice')}
+              onClick={() => setMode('test')}
               className="group relative overflow-hidden bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-1 border border-slate-200 dark:border-slate-700"
             >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-500/10 to-indigo-500/10 dark:from-blue-500/20 dark:to-indigo-500/20 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-orange-500/10 to-red-500/10 dark:from-orange-500/20 dark:to-red-500/20 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform" />
               <div className="relative">
-                <div className="text-4xl mb-4">📚</div>
+                <div className="text-4xl mb-4">⏱️</div>
                 <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
-                  {MODE_CONFIG['practice'].name}
+                  {MODE_CONFIG['test'].name}
                 </h3>
                 <p className="text-slate-600 dark:text-slate-400 mb-4">
-                  {MODE_CONFIG['practice'].desc}
+                  {MODE_CONFIG['test'].desc}
                 </p>
                 <div className="flex items-center justify-between text-sm">
-                  <span className="text-slate-500 dark:text-slate-500">{MODE_CONFIG['practice'].questions} otázek</span>
-                  <span className="text-indigo-600 dark:text-indigo-400 font-semibold">Bez limitu ⏳</span>
+                  <span className="text-slate-500 dark:text-slate-500">{MODE_CONFIG['test'].questions} otázek</span>
+                  <span className="text-orange-600 dark:text-orange-400 font-semibold">{MODE_CONFIG['test'].time} minut ⏰</span>
                 </div>
               </div>
             </button>
-
-            {/* Timed Modes */}
-            {(['timed-10', 'timed-20', 'timed-40'] as QuizMode[]).map((m) => {
-              const config = MODE_CONFIG[m]
-              return (
-                <button
-                  key={m}
-                  onClick={() => setMode(m)}
-                  className="group relative overflow-hidden bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-1 border border-slate-200 dark:border-slate-700"
-                >
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-orange-500/10 to-red-500/10 dark:from-orange-500/20 dark:to-red-500/20 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform" />
-                  <div className="relative">
-                    <div className="text-4xl mb-4">⏱️</div>
-                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
-                      {config.name}
-                    </h3>
-                    <p className="text-slate-600 dark:text-slate-400 mb-4">
-                      {config.desc}
-                    </p>
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-slate-500 dark:text-slate-500">{config.questions} otázek</span>
-                      <span className="text-orange-600 dark:text-orange-400 font-semibold">{config.time} minut ⏰</span>
-                    </div>
-                  </div>
-                </button>
-              )
-            })}
           </div>
         </div>
       </div>
