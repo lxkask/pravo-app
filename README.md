@@ -211,6 +211,7 @@ pravo-quiz-app/
 ## 📚 Dokumentace
 
 ### Začni tady! 👇
+- **[ROADMAP.md](./ROADMAP.md)** - 🗺️ **KOMPLETNÍ ROADMAP** k dotažení aplikace do dokonalosti
 - **[QUICKSTART-NEXT-SESSION.md](./QUICKSTART-NEXT-SESSION.md)** - ⚡ Quick start pro příští session
 - **[SESSION-STATUS.md](./SESSION-STATUS.md)** - 📍 Kde jsme skončili + co dělat příště
 
