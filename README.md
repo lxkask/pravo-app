@@ -22,13 +22,33 @@ Aplikace poběží na `http://localhost:3000`
 
 ## ✨ Hlavní Funkce
 
-### ✅ Otázky ke Zkoušce (Fáze 2.5 - DOKONČENO)
-- ✅ **40 zkouškových otázek** - Kompletní seznam otázek k ústní zkoušce
+### ✅ Moderní Study Hub (NOVÉ! 2025-12-11)
+- ✅ **Redesigned homepage** - Čistý, moderní dashboard
+- ✅ **Quick stats** - Live statistiky (94 testových otázek, 40 zkouškových otázek)
+- ✅ **Study streak tracker** - 🔥 Sledování denní série učení
+- ✅ **Gamifikace** - Achievements a confetti efekty
+- ✅ **Smooth animations** - Fade-in efekty s IntersectionObserver
+- ✅ **Glassmorphism design** - Průhledné pozadí s backdrop-blur
+
+### ✅ Průběžný Test (94 otázek)
+- ✅ **2 režimy** - Procvičování (všechny otázky) + Zkouškový test (25 otázek, 25 min)
+- ✅ **Progress tracking** - LocalStorage persistence
+- ✅ **Klávesové zkratky** - ↑↓ navigace, 1-9 výběr, Enter potvrzení
+- ✅ **Skip funkce** - Přeskakování těžkých otázek
+- ✅ **Visual feedback** - Barevné indikátory (správně/špatně/přeskočeno)
+
+### ✅ Otázky ke Zkoušce (40 otázek)
 - ✅ **Krátké odpovědi** - Základní body, které musíš umět říct
 - ✅ **AI formátování** - Přehledný markdown s headingy, bold, seznamy, citacemi
 - ✅ **Toggle režim** - Přepínání mezi krátkou a dlouhou odpovědí (dlouhé zatím "brzy")
 - ✅ **Mobile-first UI** - Perfektně optimalizováno pro mobil i desktop
 - ✅ **Navigace** - Předchozí/Další otázka, číslo otázky, zpět na seznam
+
+### 🎮 Gamifikace & Motivace
+- ✅ **5 Achievement typů** - První kroky, Perfekcionista, Týdenní hrdina, Quiz Master, Studijní šampion
+- ✅ **Confetti efekt** - Při dosažení 80%+ skóre
+- ✅ **Study streak** - Denní série s fire ikonou
+- ✅ **Toast notifications** - Auto-dismissing achievement notifikace
 
 ### 📖 Moderní Učebnice (Fáze 2 - PLÁNOVÁNO)
 - 🔜 **Souvislé čtení** - Dlouhé lekce bez fragmentace
@@ -36,12 +56,6 @@ Aplikace poběží na `http://localhost:3000`
 - 🔜 **Source tracking** - Každý text má odkaz na původní dokument
 - 🔜 **Zero hallucinations** - AI pouze cituje, nevymýšlí
 - 🔜 **Multi-source consolidation** - 6 dokumentů → jedna koherentní učebnice
-
-### ✅ Kvízový Režim (Fáze 1 - DOKONČENO)
-- ✅ **Testovací otázky** - Single/Multiple choice, True/False
-- ✅ **Kategorie** - Základy práva, Obchodní právo
-- ✅ **Vysvětlení** - Detailní vysvětlení správných odpovědí
-- ✅ **Admin rozhraní** - Správa kategorií a otázek
 
 ## 🛠️ Technologie
 
