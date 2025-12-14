@@ -2,6 +2,7 @@
 
 import { useDogCollection } from '@/hooks/use-dog-collection';
 import { DOGS_COLLECTION, Dog } from '@/lib/dogs-collection';
+import { DogAnimations } from '@/components/dog-animations';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { Suspense } from 'react';
@@ -33,12 +34,25 @@ function DogCard({ dog, isUnlocked }: { dog: Dog; isUnlocked: boolean }) {
     );
   }
 
+  const AnimationComponent = DogAnimations[dog.id as keyof typeof DogAnimations];
+
   return (
     <div
-      className={`bg-gradient-to-br ${rarityColors[dog.rarity]} rounded-2xl p-6 border-4 ${rarityBorders[dog.rarity]} shadow-xl hover:scale-105 transition-transform duration-200`}
+      className={`bg-gradient-to-br ${rarityColors[dog.rarity]} rounded-2xl p-6 border-4 ${rarityBorders[dog.rarity]} shadow-xl hover:scale-105 transition-transform duration-200 flex flex-col`}
     >
+      {/* Animation Container - Fixed Height */}
+      <div className="h-32 overflow-hidden rounded-xl mb-3 relative flex items-center justify-center">
+        {AnimationComponent ? (
+          <div className="absolute inset-0 flex items-center justify-center scale-[0.35] origin-center">
+            <AnimationComponent />
+          </div>
+        ) : (
+          <div className="text-6xl animate-bounce">{dog.emoji}</div>
+        )}
+      </div>
+
+      {/* Card Content */}
       <div className="text-center">
-        <div className="text-6xl mb-3 animate-bounce">{dog.emoji}</div>
         <div className="text-xs font-bold bg-white/20 text-white px-2 py-1 rounded-full uppercase inline-block mb-2">
           {dog.rarity === 'legendary' ? '⭐ Legendary' : dog.rarity === 'rare' ? '💎 Rare' : 'Common'}
         </div>
