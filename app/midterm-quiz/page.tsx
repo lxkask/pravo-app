@@ -9,6 +9,10 @@ import { ConfettiEffect } from '@/components/confetti-effect'
 import { AchievementToast, ACHIEVEMENTS } from '@/components/achievement-toast'
 import { FormattedAnswer } from '@/components/formatted-answer'
 import { DogCarAnimation } from '@/components/dog-car-animation'
+import { useDogCollection } from '@/hooks/use-dog-collection'
+import { DogAnimations } from '@/components/dog-animations'
+import { DogUnlockNotification } from '@/components/dog-unlock-notification'
+import { getDogById, type Dog } from '@/lib/dogs-collection'
 
 type QuizAnswer = {
   id: string
@@ -48,6 +52,10 @@ export default function MidtermQuizPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [quizCompleted, setQuizCompleted] = useState(false)
   const [timeLeft, setTimeLeft] = useState<number | null>(null)
+  const [unlockedDog, setUnlockedDog] = useState<Dog | null>(null)
+  const [showDogNotification, setShowDogNotification] = useState(false)
+  const [isNewDogUnlock, setIsNewDogUnlock] = useState(false)
+  const dogCollection = useDogCollection()
   const [timerActive, setTimerActive] = useState(false)
   const [focusedAnswerIndex, setFocusedAnswerIndex] = useState(0)
   const [showConfetti, setShowConfetti] = useState(false)
@@ -150,6 +158,16 @@ export default function MidtermQuizPage() {
         setAchievement(ACHIEVEMENTS.TEN_QUIZZES)
       }, 2000)
     }
+
+    // Unlock a random dog
+    const { dog, isNew } = dogCollection.unlockRandomDog()
+    setUnlockedDog(dog)
+    setIsNewDogUnlock(isNew)
+
+    // Show notification
+    setTimeout(() => {
+      setShowDogNotification(true)
+    }, 1500) // Show after confetti
   }
 
   const currentQuestion = questions[currentIndex]
@@ -546,9 +564,12 @@ export default function MidtermQuizPage() {
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-950 dark:via-slate-900 dark:to-indigo-950 flex items-center justify-center p-4">
         <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl max-w-2xl w-full p-12 border border-slate-200 dark:border-slate-700">
           <div className="text-center">
-            {/* Dog Car Animation */}
+            {/* Dog Animation */}
             <div className="mb-8">
-              <DogCarAnimation />
+              {unlockedDog ? (() => {
+                const DogComponent = DogAnimations[unlockedDog.id as keyof typeof DogAnimations]
+                return DogComponent ? <DogComponent /> : <DogCarAnimation />
+              })() : <DogCarAnimation />}
             </div>
 
             <div className="text-6xl mb-6">
@@ -593,6 +614,12 @@ export default function MidtermQuizPage() {
             </div>
 
             <div className="flex flex-col gap-4">
+              <Link
+                href="/hundy"
+                className="flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-500 dark:to-pink-500 hover:from-purple-700 hover:to-pink-700 dark:hover:from-purple-600 dark:hover:to-pink-600 text-white px-8 py-4 rounded-xl transition-all font-semibold text-lg shadow-lg transform hover:scale-105"
+              >
+                🐕 Sbírka Hundů ({dogCollection.getUnlockedCount()}/10)
+              </Link>
               <button
                 onClick={handleStartReview}
                 className="flex items-center justify-center gap-2 bg-green-600 dark:bg-green-500 hover:bg-green-700 dark:hover:bg-green-600 text-white px-8 py-4 rounded-xl transition-colors font-semibold text-lg shadow-lg"
@@ -959,6 +986,24 @@ export default function MidtermQuizPage() {
         </div>
       </div>
       </div>
+
+      {/* Confetti and Achievement notifications */}
+      {showConfetti && <ConfettiEffect trigger={showConfetti} />}
+      {achievement && (
+        <AchievementToast
+          achievement={achievement}
+          onClose={() => setAchievement(null)}
+        />
+      )}
+
+      {/* Dog unlock notification */}
+      {showDogNotification && unlockedDog && (
+        <DogUnlockNotification
+          dog={unlockedDog}
+          isNewUnlock={isNewDogUnlock}
+          onClose={() => setShowDogNotification(false)}
+        />
+      )}
     </>
   )
 }
