@@ -2,6 +2,7 @@
 
 import { useDogCollection } from '@/hooks/use-dog-collection';
 import { DOGS_COLLECTION, Dog } from '@/lib/dogs-collection';
+import { DogAnimations } from '@/components/dog-animations';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { Suspense } from 'react';
@@ -33,17 +34,26 @@ function DogCard({ dog, isUnlocked }: { dog: Dog; isUnlocked: boolean }) {
     );
   }
 
+  const AnimationComponent = DogAnimations[dog.id as keyof typeof DogAnimations];
+
   return (
-    <div
-      className={`bg-gradient-to-br ${rarityColors[dog.rarity]} rounded-2xl p-6 border-4 ${rarityBorders[dog.rarity]} shadow-xl hover:scale-105 transition-transform duration-200`}
-    >
-      <div className="text-center">
-        <div className="text-6xl mb-3 animate-bounce">{dog.emoji}</div>
-        <div className="text-xs font-bold bg-white/20 text-white px-2 py-1 rounded-full uppercase inline-block mb-2">
-          {dog.rarity === 'legendary' ? '⭐ Legendary' : dog.rarity === 'rare' ? '💎 Rare' : 'Common'}
+    <div className="relative">
+      {AnimationComponent && (
+        <div className="mb-4">
+          <AnimationComponent />
         </div>
-        <h3 className="text-lg font-bold text-white mb-2">{dog.name}</h3>
-        <p className="text-sm text-white/80 leading-relaxed">{dog.description}</p>
+      )}
+
+      <div
+        className={`bg-gradient-to-br ${rarityColors[dog.rarity]} rounded-2xl p-6 border-4 ${rarityBorders[dog.rarity]} shadow-xl hover:scale-105 transition-transform duration-200`}
+      >
+        <div className="text-center">
+          <div className="text-xs font-bold bg-white/20 text-white px-2 py-1 rounded-full uppercase inline-block mb-2">
+            {dog.rarity === 'legendary' ? '⭐ Legendary' : dog.rarity === 'rare' ? '💎 Rare' : 'Common'}
+          </div>
+          <h3 className="text-lg font-bold text-white mb-2">{dog.name}</h3>
+          <p className="text-sm text-white/80 leading-relaxed">{dog.description}</p>
+        </div>
       </div>
     </div>
   );
@@ -131,7 +141,7 @@ function DogCollectionContent() {
           {/* Legendary */}
           <div>
             <h2 className="text-2xl font-bold text-yellow-600 dark:text-yellow-400 mb-4 flex items-center gap-2">
-              ⭐ Legendární Hundy
+              ⭐ Legendární Hundi
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {DOGS_COLLECTION.filter(d => d.rarity === 'legendary').map(dog => (
@@ -143,7 +153,7 @@ function DogCollectionContent() {
           {/* Rare */}
           <div>
             <h2 className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-4 flex items-center gap-2">
-              💎 Vzácní Hundy
+              💎 Vzácní Hundi
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {DOGS_COLLECTION.filter(d => d.rarity === 'rare').map(dog => (
@@ -155,7 +165,7 @@ function DogCollectionContent() {
           {/* Common */}
           <div>
             <h2 className="text-2xl font-bold text-slate-600 dark:text-slate-400 mb-4 flex items-center gap-2">
-              🐾 Běžní Hundy
+              🐾 Běžní Hundi
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {DOGS_COLLECTION.filter(d => d.rarity === 'common').map(dog => (
@@ -170,7 +180,7 @@ function DogCollectionContent() {
           <h3 className="text-lg font-bold text-blue-900 dark:text-blue-100 mb-2">💡 Tip</h3>
           <p className="text-blue-800 dark:text-blue-200">
             Dokončuj průběžný test opakovaně a odemykej nové hundy! Každý dokončený test ti dá šanci na nového hunda.
-            Legendární hundy jsou velmi vzácní!
+            Legendární hundi jsou velmi vzácní!
           </p>
         </div>
       </div>
