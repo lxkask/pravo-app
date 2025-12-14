@@ -618,8 +618,8 @@ export default function MidtermQuizPage() {
         <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl max-w-2xl w-full p-12 border border-slate-200 dark:border-slate-700">
           <div className="text-center">
             {/* Dog Animation - Properly Contained */}
-            <div className="mb-12 overflow-hidden rounded-2xl h-48 relative">
-              <div className="absolute inset-0 flex items-center justify-center scale-75">
+            <div className="mb-12 overflow-hidden rounded-2xl h-40 relative bg-gradient-to-b from-sky-100 to-sky-200 dark:from-sky-950 dark:to-slate-900">
+              <div className="absolute inset-0 flex items-center justify-center scale-50">
                 {unlockedDog ? (() => {
                   const DogComponent = DogAnimations[unlockedDog.id as keyof typeof DogAnimations]
                   return DogComponent ? <DogComponent /> : <DogCarAnimation />

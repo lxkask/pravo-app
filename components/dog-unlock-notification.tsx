@@ -1,7 +1,6 @@
 'use client'
 
 import { Dog } from '@/lib/dogs-collection';
-import { DogAnimations } from '@/components/dog-animations';
 import { useEffect, useState } from 'react';
 
 interface DogUnlockNotificationProps {
@@ -12,7 +11,6 @@ interface DogUnlockNotificationProps {
 
 export function DogUnlockNotification({ dog, isNewUnlock, onClose }: DogUnlockNotificationProps) {
   const [isVisible, setIsVisible] = useState(true);
-  const AnimationComponent = DogAnimations[dog.id as keyof typeof DogAnimations];
 
   useEffect(() => {
     if (onClose) {
@@ -50,15 +48,9 @@ export function DogUnlockNotification({ dog, isNewUnlock, onClose }: DogUnlockNo
       }`}
     >
       <div
-        className={`bg-gradient-to-r ${rarityColors[dog.rarity]} ${rarityGlow[dog.rarity]} border-4 ${rarityBorders[dog.rarity]} rounded-2xl shadow-2xl max-w-sm overflow-hidden`}
+        className={`bg-gradient-to-r ${rarityColors[dog.rarity]} ${rarityGlow[dog.rarity]} border-4 ${rarityBorders[dog.rarity]} rounded-2xl shadow-2xl max-w-sm p-6`}
       >
-        {AnimationComponent && (
-          <div className="w-full transform scale-50 origin-top -mb-24">
-            <AnimationComponent />
-          </div>
-        )}
-
-        <div className="p-6 flex items-start gap-4">
+        <div className="flex items-start gap-4">
           <div className="text-6xl animate-bounce flex-shrink-0">{dog.emoji}</div>
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-1">
