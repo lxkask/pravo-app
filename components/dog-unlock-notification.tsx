@@ -50,15 +50,15 @@ export function DogUnlockNotification({ dog, isNewUnlock, onClose }: DogUnlockNo
       }`}
     >
       <div
-        className={`bg-gradient-to-r ${rarityColors[dog.rarity]} ${rarityGlow[dog.rarity]} border-4 ${rarityBorders[dog.rarity]} rounded-2xl p-6 shadow-2xl max-w-md`}
+        className={`bg-gradient-to-r ${rarityColors[dog.rarity]} ${rarityGlow[dog.rarity]} border-4 ${rarityBorders[dog.rarity]} rounded-2xl shadow-2xl max-w-sm overflow-hidden`}
       >
         {AnimationComponent && (
-          <div className="mb-4 scale-75 origin-top">
+          <div className="w-full transform scale-50 origin-top -mb-24">
             <AnimationComponent />
           </div>
         )}
 
-        <div className="flex items-start gap-4">
+        <div className="p-6 flex items-start gap-4">
           <div className="text-6xl animate-bounce flex-shrink-0">{dog.emoji}</div>
           <div className="flex-1">
             <div className="flex items-center gap-2 mb-1">

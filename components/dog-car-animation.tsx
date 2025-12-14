@@ -49,12 +49,9 @@ export function DogCarAnimation() {
       </div>
 
       {/* Success message */}
-      <div className="absolute top-8 left-1/2 -translate-x-1/2 text-center">
-        <div className="text-4xl font-bold text-slate-800 dark:text-white mb-2 animate-bounce-subtle">
+      <div className="absolute top-4 left-1/2 -translate-x-1/2 text-center pointer-events-none z-10">
+        <div className="text-3xl font-bold text-slate-800 dark:text-white drop-shadow-lg animate-bounce-subtle">
           Skvělá práce! 🎉
-        </div>
-        <div className="text-lg text-slate-600 dark:text-slate-300">
-          Máš to za sebou!
         </div>
       </div>
 

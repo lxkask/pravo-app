@@ -2,7 +2,6 @@
 
 import { useDogCollection } from '@/hooks/use-dog-collection';
 import { DOGS_COLLECTION, Dog } from '@/lib/dogs-collection';
-import { DogAnimations } from '@/components/dog-animations';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { Suspense } from 'react';
@@ -34,26 +33,17 @@ function DogCard({ dog, isUnlocked }: { dog: Dog; isUnlocked: boolean }) {
     );
   }
 
-  const AnimationComponent = DogAnimations[dog.id as keyof typeof DogAnimations];
-
   return (
-    <div className="relative">
-      {AnimationComponent && (
-        <div className="mb-4">
-          <AnimationComponent />
+    <div
+      className={`bg-gradient-to-br ${rarityColors[dog.rarity]} rounded-2xl p-6 border-4 ${rarityBorders[dog.rarity]} shadow-xl hover:scale-105 transition-transform duration-200`}
+    >
+      <div className="text-center">
+        <div className="text-6xl mb-3 animate-bounce">{dog.emoji}</div>
+        <div className="text-xs font-bold bg-white/20 text-white px-2 py-1 rounded-full uppercase inline-block mb-2">
+          {dog.rarity === 'legendary' ? '⭐ Legendary' : dog.rarity === 'rare' ? '💎 Rare' : 'Common'}
         </div>
-      )}
-
-      <div
-        className={`bg-gradient-to-br ${rarityColors[dog.rarity]} rounded-2xl p-6 border-4 ${rarityBorders[dog.rarity]} shadow-xl hover:scale-105 transition-transform duration-200`}
-      >
-        <div className="text-center">
-          <div className="text-xs font-bold bg-white/20 text-white px-2 py-1 rounded-full uppercase inline-block mb-2">
-            {dog.rarity === 'legendary' ? '⭐ Legendary' : dog.rarity === 'rare' ? '💎 Rare' : 'Common'}
-          </div>
-          <h3 className="text-lg font-bold text-white mb-2">{dog.name}</h3>
-          <p className="text-sm text-white/80 leading-relaxed">{dog.description}</p>
-        </div>
+        <h3 className="text-lg font-bold text-white mb-2">{dog.name}</h3>
+        <p className="text-sm text-white/80 leading-relaxed">{dog.description}</p>
       </div>
     </div>
   );

@@ -618,11 +618,13 @@ export default function MidtermQuizPage() {
         <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl max-w-2xl w-full p-12 border border-slate-200 dark:border-slate-700">
           <div className="text-center">
             {/* Dog Animation - Properly Contained */}
-            <div className="mb-8 overflow-hidden rounded-2xl max-h-64 relative">
-              {unlockedDog ? (() => {
-                const DogComponent = DogAnimations[unlockedDog.id as keyof typeof DogAnimations]
-                return DogComponent ? <DogComponent /> : <DogCarAnimation />
-              })() : <DogCarAnimation />}
+            <div className="mb-12 overflow-hidden rounded-2xl h-48 relative">
+              <div className="absolute inset-0 flex items-center justify-center scale-75">
+                {unlockedDog ? (() => {
+                  const DogComponent = DogAnimations[unlockedDog.id as keyof typeof DogAnimations]
+                  return DogComponent ? <DogComponent /> : <DogCarAnimation />
+                })() : <DogCarAnimation />}
+              </div>
             </div>
 
             <div className="text-6xl mb-6">
