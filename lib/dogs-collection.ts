@@ -87,6 +87,86 @@ export const DOGS_COLLECTION: Dog[] = [
     rarity: 'legendary',
     emoji: '🎓',
     theme: 'teaching'
+  },
+  {
+    id: 'meme-lord',
+    name: 'Meme Lord',
+    description: 'Zná všechny právní memes. Místo paragrafů posílá gify!',
+    rarity: 'common',
+    emoji: '🤣',
+    theme: 'internet'
+  },
+  {
+    id: 'bookworm',
+    name: 'Knihomol',
+    description: 'Žije v knihovně. Má víc výpisků než přátel.',
+    rarity: 'rare',
+    emoji: '📖',
+    theme: 'library'
+  },
+  {
+    id: 'procrastinator',
+    name: 'Procrastinator Pro',
+    description: 'Deadline za hodinu? Ideální čas začít! Pracuje nejlépe pod tlakem.',
+    rarity: 'common',
+    emoji: '⏰',
+    theme: 'procrastination'
+  },
+  {
+    id: 'court-dog',
+    name: 'Soudní Hund',
+    description: 'Vzácný případ! Už vyhrál 100 případů. Legenda mezi hundy!',
+    rarity: 'legendary',
+    emoji: '⚖️',
+    theme: 'courtroom'
+  },
+  {
+    id: 'paragraph-detective',
+    name: 'Paragrafový Detektiv',
+    description: 'Najde každou skulinku v zákoně. Sherlock práva!',
+    rarity: 'rare',
+    emoji: '🔍',
+    theme: 'investigation'
+  },
+  {
+    id: 'energy-dog',
+    name: 'Energy Hund',
+    description: 'Red Bull je jeho krev. Čtyři plechovky denně minimálně.',
+    rarity: 'common',
+    emoji: '⚡',
+    theme: 'energy'
+  },
+  {
+    id: 'netflix-dog',
+    name: 'Netflix Hund',
+    description: 'Právnické seriály = studium, ne? Suits odkoukané 3x.',
+    rarity: 'common',
+    emoji: '📺',
+    theme: 'entertainment'
+  },
+  {
+    id: 'sports-fan',
+    name: 'Sportovní Fanda',
+    description: 'Právo je super, ale hokej je život. Dres pod košilí!',
+    rarity: 'rare',
+    emoji: '⚽',
+    theme: 'sports'
+  },
+  {
+    id: 'traveler',
+    name: 'Cestovatel',
+    description: 'Erasmus warrior! Studuje právo v 5 zemích najednou.',
+    rarity: 'rare',
+    emoji: '✈️',
+    theme: 'travel'
+  },
+  {
+    id: 'romantic',
+    name: 'Romantický Hund',
+    description: 'Našel lásku i na právu. Tohle je ten pravý zázrak!',
+    rarity: 'rare',
+    emoji: '💖',
+    theme: 'romance'
   }
 ];
 

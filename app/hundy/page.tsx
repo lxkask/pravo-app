@@ -103,7 +103,7 @@ function DogCollectionContent() {
           </h1>
 
           <p className="text-lg text-slate-600 dark:text-slate-400 mb-6">
-            Dokončuj testy a sbírej všechny hundy! Každý má svůj příběh.
+            Dokončuj testy s úspěšností 80%+ a sbírej všechny hundy! Každý má svůj příběh.
           </p>
 
           {/* Progress bar */}
@@ -183,7 +183,8 @@ function DogCollectionContent() {
         <div className="mt-12 bg-blue-50 dark:bg-blue-950 border-2 border-blue-200 dark:border-blue-800 rounded-2xl p-6">
           <h3 className="text-lg font-bold text-blue-900 dark:text-blue-100 mb-2">💡 Tip</h3>
           <p className="text-blue-800 dark:text-blue-200">
-            Dokončuj průběžný test opakovaně a odemykej nové hundy! Každý dokončený test ti dá šanci na nového hunda.
+            Dokončuj průběžný test s úspěšností 80%+ a odemykej nové hundy!
+            Pouze testy s výsledkem 80 % a více ti dají šanci na nového hunda.
             Legendární hundi jsou velmi vzácní!
           </p>
         </div>

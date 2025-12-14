@@ -162,15 +162,17 @@ export default function MidtermQuizPage() {
       }, 2000)
     }
 
-    // Unlock a random dog
-    const { dog, isNew } = dogCollection.unlockRandomDog()
-    setUnlockedDog(dog)
-    setIsNewDogUnlock(isNew)
+    // Unlock a random dog only if score is 80% or higher
+    if (percentage >= 80) {
+      const { dog, isNew } = dogCollection.unlockRandomDog()
+      setUnlockedDog(dog)
+      setIsNewDogUnlock(isNew)
 
-    // Show notification
-    setTimeout(() => {
-      setShowDogNotification(true)
-    }, 1500) // Show after confetti
+      // Show notification
+      setTimeout(() => {
+        setShowDogNotification(true)
+      }, 1500) // Show after confetti
+    }
   }
 
   const currentQuestion = questions[currentIndex]
@@ -868,19 +870,36 @@ export default function MidtermQuizPage() {
 
             <div className="mb-10">
               {percentage >= 80 && (
-                <p className="text-green-600 dark:text-green-400 text-xl font-semibold">
-                  Výborně! Jste velmi dobře připraveni! 🎉
-                </p>
+                <div>
+                  <p className="text-green-600 dark:text-green-400 text-xl font-semibold mb-2">
+                    Výborně! Jste velmi dobře připraveni! 🎉
+                  </p>
+                  {unlockedDog && (
+                    <p className="text-purple-600 dark:text-purple-400 text-lg font-medium">
+                      {isNewDogUnlock ? '🐕 Odemkli jste nového hunda!' : '🐕 Získali jste dalšího hunda do sbírky!'}
+                    </p>
+                  )}
+                </div>
               )}
               {percentage >= 60 && percentage < 80 && (
-                <p className="text-yellow-600 dark:text-yellow-400 text-xl font-semibold">
-                  Dobře! Ještě trochu procvičit a budete připraveni. 📚
-                </p>
+                <div>
+                  <p className="text-yellow-600 dark:text-yellow-400 text-xl font-semibold mb-2">
+                    Dobře! Ještě trochu procvičit a budete připraveni. 📚
+                  </p>
+                  <p className="text-slate-600 dark:text-slate-400 text-sm">
+                    Pro odemknutí hunda potřebujete 80%+ úspěšnost.
+                  </p>
+                </div>
               )}
               {percentage < 60 && (
-                <p className="text-red-600 dark:text-red-400 text-xl font-semibold">
-                  Doporučujeme více se učit. Zkuste to znovu! 💪
-                </p>
+                <div>
+                  <p className="text-red-600 dark:text-red-400 text-xl font-semibold mb-2">
+                    Doporučujeme více se učit. Zkuste to znovu! 💪
+                  </p>
+                  <p className="text-slate-600 dark:text-slate-400 text-sm">
+                    Pro odemknutí hunda potřebujete 80%+ úspěšnost.
+                  </p>
+                </div>
               )}
             </div>
 
@@ -889,7 +908,7 @@ export default function MidtermQuizPage() {
                 href="/hundy"
                 className="flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-500 dark:to-pink-500 hover:from-purple-700 hover:to-pink-700 dark:hover:from-purple-600 dark:hover:to-pink-600 text-white px-8 py-4 rounded-xl transition-all font-semibold text-lg shadow-lg transform hover:scale-105"
               >
-                🐕 Sbírka Hundů ({dogCollection.getUnlockedCount()}/10)
+                🐕 Sbírka Hundů ({dogCollection.getUnlockedCount()}/{dogCollection.getTotalCount()})
               </Link>
               <button
                 onClick={handleStartReview}
