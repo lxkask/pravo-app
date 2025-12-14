@@ -21,10 +21,23 @@ export async function GET(request: Request) {
     // Build where clause
     const where = category ? { category } : {};
 
-    // Fetch questions with answers
+    // Fetch questions with answers and explanations
     const questions = await prisma.quizQuestion.findMany({
       where,
       include: {
+        answers: {
+          orderBy: {
+            order: 'asc',
+          },
+        },
+      },
+      select: {
+        id: true,
+        questionText: true,
+        explanation: true,
+        explanationConfidence: true,
+        originalId: true,
+        category: true,
         answers: {
           orderBy: {
             order: 'asc',

@@ -179,6 +179,7 @@ model QuizQuestion {
   id           String       @id @default(uuid())
   questionText String       @db.Text // Text otázky
   explanation  String?      @db.Text // Vysvětlení správné odpovědi (volitelné)
+  explanationConfidence String? // AI confidence: high, medium, low
 
   // Metadata
   originalId   Int?         // Původní číslo otázky z webu

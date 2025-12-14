@@ -7,6 +7,8 @@ import { MidtermProgressTracker } from '@/lib/midterm-progress-tracker'
 import { updateStudyStreak } from '@/components/study-streak'
 import { ConfettiEffect } from '@/components/confetti-effect'
 import { AchievementToast, ACHIEVEMENTS } from '@/components/achievement-toast'
+import { FormattedAnswer } from '@/components/formatted-answer'
+import { DogCarAnimation } from '@/components/dog-car-animation'
 
 type QuizAnswer = {
   id: string
@@ -18,6 +20,8 @@ type QuizAnswer = {
 type QuizQuestion = {
   id: string
   questionText: string
+  explanation: string | null
+  explanationConfidence: string | null
   originalId: number | null
   category: string | null
   answers: QuizAnswer[]
@@ -48,6 +52,7 @@ export default function MidtermQuizPage() {
   const [focusedAnswerIndex, setFocusedAnswerIndex] = useState(0)
   const [showConfetti, setShowConfetti] = useState(false)
   const [achievement, setAchievement] = useState<typeof ACHIEVEMENTS[keyof typeof ACHIEVEMENTS] | null>(null)
+  const [showExplanation, setShowExplanation] = useState(false)
 
   // Load progress stats on mount
   useEffect(() => {
@@ -190,6 +195,9 @@ export default function MidtermQuizPage() {
   }
 
   const handleNext = () => {
+    // Reset explanation state
+    setShowExplanation(false)
+
     // Find next unanswered question
     let nextIndex = currentIndex + 1
 
@@ -494,6 +502,11 @@ export default function MidtermQuizPage() {
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-950 dark:via-slate-900 dark:to-indigo-950 flex items-center justify-center p-4">
         <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl max-w-2xl w-full p-12 border border-slate-200 dark:border-slate-700">
           <div className="text-center">
+            {/* Dog Car Animation */}
+            <div className="mb-8">
+              <DogCarAnimation />
+            </div>
+
             <div className="text-6xl mb-6">
               {percentage >= 80 ? '🎉' : percentage >= 60 ? '👍' : '💪'}
             </div>
@@ -782,16 +795,85 @@ export default function MidtermQuizPage() {
                 </button>
               </>
             ) : (
-              <button
-                onClick={handleNext}
-                className="flex-1 bg-indigo-600 dark:bg-indigo-500 hover:bg-indigo-700 dark:hover:bg-indigo-600 text-white px-6 py-4 rounded-xl transition-all font-bold text-lg shadow-lg"
-              >
-                {currentIndex < questions.length - 1 || skippedQuestions.size > 0
-                  ? 'Další otázka →'
-                  : 'Dokončit test'}
-              </button>
+              <>
+                {currentQuestion.explanation && (
+                  <button
+                    onClick={() => setShowExplanation(!showExplanation)}
+                    className="flex-1 bg-slate-600 dark:bg-slate-700 hover:bg-slate-700 dark:hover:bg-slate-600 text-white px-6 py-4 rounded-xl transition-all font-bold text-lg shadow-lg"
+                  >
+                    {showExplanation ? '✕ Skrýt vysvětlení' : '💡 Zobrazit vysvětlení'}
+                  </button>
+                )}
+                <button
+                  onClick={handleNext}
+                  className="flex-1 bg-indigo-600 dark:bg-indigo-500 hover:bg-indigo-700 dark:hover:bg-indigo-600 text-white px-6 py-4 rounded-xl transition-all font-bold text-lg shadow-lg"
+                >
+                  {currentIndex < questions.length - 1 || skippedQuestions.size > 0
+                    ? 'Další otázka →'
+                    : 'Dokončit test'}
+                </button>
+              </>
             )}
           </div>
+
+          {/* AI Explanation Section */}
+          {showResult && showExplanation && currentQuestion.explanation && (
+            <div className="mt-6 p-6 bg-slate-50 dark:bg-slate-800 rounded-xl border-2 border-indigo-200 dark:border-indigo-700">
+              <div className="flex items-center gap-2 mb-4">
+                <span className="text-2xl">🧠</span>
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white">AI Vysvětlení</h3>
+
+                {/* Confidence Badge */}
+                {currentQuestion.explanationConfidence && (
+                  <div className="ml-auto flex items-center gap-2 group relative">
+                    <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${
+                      currentQuestion.explanationConfidence === 'high'
+                        ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 border border-green-300 dark:border-green-700'
+                        : currentQuestion.explanationConfidence === 'medium'
+                        ? 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400 border border-yellow-300 dark:border-yellow-700'
+                        : 'bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-400 border border-orange-300 dark:border-orange-700'
+                    }`}>
+                      {currentQuestion.explanationConfidence === 'high' ? 'Vysoká důvěra' :
+                       currentQuestion.explanationConfidence === 'medium' ? 'Střední důvěra' :
+                       'Nízká důvěra'}
+                    </span>
+
+                    {/* Info Icon with Tooltip */}
+                    <div className="relative">
+                      <div className="w-5 h-5 rounded-full bg-slate-300 dark:bg-slate-600 text-slate-700 dark:text-slate-300 flex items-center justify-center text-xs font-bold cursor-help">
+                        ℹ️
+                      </div>
+
+                      {/* Tooltip */}
+                      <div className="absolute right-0 top-8 w-80 p-4 bg-white dark:bg-slate-700 rounded-lg shadow-xl border border-slate-200 dark:border-slate-600 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 text-sm">
+                        <p className="font-semibold text-slate-900 dark:text-white mb-2">Co znamená důvěra AI?</p>
+                        <ul className="space-y-2 text-slate-600 dark:text-slate-300">
+                          <li className="flex gap-2">
+                            <span className="text-green-600 dark:text-green-400 font-bold">Vysoká:</span>
+                            <span>AI našla relevantní kontext ze zkouškových otázek</span>
+                          </li>
+                          <li className="flex gap-2">
+                            <span className="text-yellow-600 dark:text-yellow-400 font-bold">Střední:</span>
+                            <span>Obecné vysvětlení založené na právních principech</span>
+                          </li>
+                          <li className="flex gap-2">
+                            <span className="text-orange-600 dark:text-orange-400 font-bold">Nízká:</span>
+                            <span>Doporučujeme zkontrolovat v učebnici</span>
+                          </li>
+                        </ul>
+                        <p className="mt-3 text-xs text-slate-500 dark:text-slate-400 italic border-t border-slate-200 dark:border-slate-600 pt-2">
+                          Nízká důvěra neznamená, že vysvětlení je špatně - pouze že AI měla méně zdrojového kontextu.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+              <div className="prose prose-slate dark:prose-invert max-w-none">
+                <FormattedAnswer text={currentQuestion.explanation} />
+              </div>
+            </div>
+          )}
         </div>
       </div>
       </div>
