@@ -54,8 +54,8 @@ export function DogCarAnimation() {
       </div>
 
       {/* Success message */}
-      <div className="absolute top-8 left-1/2 -translate-x-1/2 text-center animate-bounce-subtle">
-        <div className="text-4xl font-bold text-slate-800 dark:text-white mb-2">
+      <div className="absolute top-8 left-1/2 -translate-x-1/2 text-center">
+        <div className="text-4xl font-bold text-slate-800 dark:text-white mb-2 animate-bounce-subtle">
           Skvělá práce! 🎉
         </div>
         <div className="text-lg text-slate-600 dark:text-slate-300">
@@ -122,15 +122,15 @@ export function DogCarAnimation() {
 
         @keyframes bounce-subtle {
           0%, 100% {
-            transform: translate(-50%, 0);
+            transform: translateY(0);
           }
           50% {
-            transform: translate(-50%, -10px);
+            transform: translateY(-10px);
           }
         }
 
         .animate-car-drive {
-          animation: car-drive 3.5s ease-in-out forwards;
+          animation: car-drive 4s ease-in-out infinite;
         }
 
         .animate-wheel-spin {
