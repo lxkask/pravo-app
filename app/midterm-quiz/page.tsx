@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { Clock, CheckCircle2, XCircle, SkipForward, Home, RotateCcw, Play, RefreshCcw } from 'lucide-react'
+import { Clock, CheckCircle2, XCircle, SkipForward, Home, RotateCcw, Play, RefreshCcw, BookOpen, ChevronLeft, ChevronRight } from 'lucide-react'
 import { MidtermProgressTracker } from '@/lib/midterm-progress-tracker'
 import { updateStudyStreak } from '@/components/study-streak'
 import { ConfettiEffect } from '@/components/confetti-effect'
@@ -53,6 +53,7 @@ export default function MidtermQuizPage() {
   const [showConfetti, setShowConfetti] = useState(false)
   const [achievement, setAchievement] = useState<typeof ACHIEVEMENTS[keyof typeof ACHIEVEMENTS] | null>(null)
   const [showExplanation, setShowExplanation] = useState(false)
+  const [reviewMode, setReviewMode] = useState(false)
 
   // Load progress stats on mount
   useEffect(() => {
@@ -261,6 +262,49 @@ export default function MidtermQuizPage() {
     setQuizCompleted(false)
     setTimeLeft(null)
     setTimerActive(false)
+    setReviewMode(false)
+    setShowExplanation(false)
+  }
+
+  const handleStartReview = () => {
+    setReviewMode(true)
+    setQuizCompleted(false)
+    setCurrentIndex(0)
+    setShowResult(true)
+    setShowExplanation(true)
+    // Set the selected answer for first question
+    const firstAnswer = answers.get(0)
+    if (firstAnswer) {
+      setSelectedAnswer(firstAnswer.answerId)
+    }
+  }
+
+  const handleReviewNavigation = (direction: 'prev' | 'next') => {
+    let nextIndex = direction === 'next' ? currentIndex + 1 : currentIndex - 1
+
+    // Boundary checks
+    if (nextIndex < 0) nextIndex = 0
+    if (nextIndex >= questions.length) {
+      // End of review
+      setReviewMode(false)
+      setQuizCompleted(true)
+      return
+    }
+
+    setCurrentIndex(nextIndex)
+
+    // Load answer for the question
+    const answer = answers.get(nextIndex)
+    if (answer) {
+      setSelectedAnswer(answer.answerId)
+    } else {
+      setSelectedAnswer(null)
+    }
+  }
+
+  const handleExitReview = () => {
+    setReviewMode(false)
+    setQuizCompleted(true)
   }
 
   const formatTime = (seconds: number) => {
@@ -548,21 +592,30 @@ export default function MidtermQuizPage() {
               )}
             </div>
 
-            <div className="flex gap-4 justify-center">
+            <div className="flex flex-col gap-4">
               <button
-                onClick={handleRestart}
-                className="flex items-center gap-2 bg-indigo-600 dark:bg-indigo-500 hover:bg-indigo-700 dark:hover:bg-indigo-600 text-white px-8 py-4 rounded-xl transition-colors font-semibold text-lg shadow-lg"
+                onClick={handleStartReview}
+                className="flex items-center justify-center gap-2 bg-green-600 dark:bg-green-500 hover:bg-green-700 dark:hover:bg-green-600 text-white px-8 py-4 rounded-xl transition-colors font-semibold text-lg shadow-lg"
               >
-                <RotateCcw className="w-5 h-5" />
-                Nový test
+                <BookOpen className="w-5 h-5" />
+                📖 Projít odpovědi
               </button>
-              <Link
-                href="/"
-                className="flex items-center gap-2 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-800 dark:text-white px-8 py-4 rounded-xl transition-colors font-semibold text-lg"
-              >
-                <Home className="w-5 h-5" />
-                Domů
-              </Link>
+              <div className="flex gap-4 justify-center">
+                <button
+                  onClick={handleRestart}
+                  className="flex items-center gap-2 bg-indigo-600 dark:bg-indigo-500 hover:bg-indigo-700 dark:hover:bg-indigo-600 text-white px-8 py-4 rounded-xl transition-colors font-semibold text-lg shadow-lg"
+                >
+                  <RotateCcw className="w-5 h-5" />
+                  Nový test
+                </button>
+                <Link
+                  href="/"
+                  className="flex items-center gap-2 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-800 dark:text-white px-8 py-4 rounded-xl transition-colors font-semibold text-lg"
+                >
+                  <Home className="w-5 h-5" />
+                  Domů
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -584,14 +637,16 @@ export default function MidtermQuizPage() {
         <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl shadow-lg p-6 mb-6 border border-slate-200 dark:border-slate-700">
           <div className="flex justify-between items-center mb-4">
             <button
-              onClick={handleRestart}
+              onClick={reviewMode ? handleExitReview : handleRestart}
               className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-semibold flex items-center gap-2 transition-colors"
             >
               <Home className="w-4 h-4" />
-              Změnit režim
+              {reviewMode ? 'Ukončit review' : 'Změnit režim'}
             </button>
             <div className="text-center">
-              <h1 className="text-2xl font-bold text-slate-900 dark:text-white">{config.name}</h1>
+              <h1 className="text-2xl font-bold text-slate-900 dark:text-white">
+                {reviewMode ? '📖 Review režim' : config.name}
+              </h1>
               <p className="text-sm text-slate-500 dark:text-slate-400">
                 Otázka {currentIndex + 1} z {questions.length}
               </p>
@@ -777,7 +832,33 @@ export default function MidtermQuizPage() {
 
           {/* Action buttons */}
           <div className="mt-8 flex gap-3">
-            {!showResult ? (
+            {reviewMode ? (
+              // Review mode navigation
+              <>
+                <button
+                  onClick={() => handleReviewNavigation('prev')}
+                  disabled={currentIndex === 0}
+                  className="flex items-center gap-2 bg-slate-600 dark:bg-slate-700 hover:bg-slate-700 dark:hover:bg-slate-600 disabled:bg-slate-300 dark:disabled:bg-slate-700 disabled:cursor-not-allowed text-white px-6 py-4 rounded-xl transition-all font-bold text-lg shadow-lg disabled:shadow-none"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                  Předchozí
+                </button>
+                <button
+                  onClick={handleExitReview}
+                  className="flex-1 bg-red-600 dark:bg-red-700 hover:bg-red-700 dark:hover:bg-red-600 text-white px-6 py-4 rounded-xl transition-all font-bold text-lg shadow-lg"
+                >
+                  Ukončit review
+                </button>
+                <button
+                  onClick={() => handleReviewNavigation('next')}
+                  className="flex items-center gap-2 bg-indigo-600 dark:bg-indigo-500 hover:bg-indigo-700 dark:hover:bg-indigo-600 text-white px-6 py-4 rounded-xl transition-all font-bold text-lg shadow-lg"
+                >
+                  {currentIndex < questions.length - 1 ? 'Další' : 'Dokončit'}
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+              </>
+            ) : !showResult ? (
+              // Normal quiz mode - selecting answer
               <>
                 <button
                   onClick={handleSubmit}
@@ -795,6 +876,7 @@ export default function MidtermQuizPage() {
                 </button>
               </>
             ) : (
+              // Normal quiz mode - after answering
               <>
                 {currentQuestion.explanation && (
                   <button
