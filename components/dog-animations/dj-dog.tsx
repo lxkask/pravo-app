@@ -34,11 +34,11 @@ export function DjDogAnimation() {
       </div>
 
       {/* Success message */}
-      <div className="absolute top-8 left-1/2 -translate-x-1/2 text-center">
-        <div className="text-3xl font-bold text-white mb-2 drop-shadow-lg">
+      <div className="absolute top-4 left-1/2 -translate-x-1/2 text-center">
+        <div className="text-2xl font-bold text-white mb-1 drop-shadow-lg">
           DJ Woofmaster! 🎵
         </div>
-        <div className="text-lg text-white/90 drop-shadow-md">
+        <div className="text-sm text-white/90 drop-shadow-md">
           Drop the bass!
         </div>
       </div>

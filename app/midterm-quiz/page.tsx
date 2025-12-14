@@ -417,7 +417,7 @@ export default function MidtermQuizPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-6 mb-6">
             {/* Practice Mode */}
             <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg border border-slate-200 dark:border-slate-700">
               <div className="text-4xl mb-4">📚</div>
@@ -540,6 +540,58 @@ export default function MidtermQuizPage() {
               </div>
             </button>
           </div>
+
+          {/* Dog Collection Card */}
+          <Link
+            href="/hundy"
+            className="group relative overflow-hidden bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/30 dark:to-orange-950/30 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-1 border-2 border-amber-300 dark:border-amber-700 block"
+          >
+            <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-amber-400/20 to-orange-400/20 dark:from-amber-500/30 dark:to-orange-500/30 rounded-full -mr-20 -mt-20 group-hover:scale-150 transition-transform" />
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-orange-400/10 to-amber-400/10 dark:from-orange-500/20 dark:to-amber-500/20 rounded-full -ml-16 -mb-16 group-hover:scale-150 transition-transform" />
+
+            <div className="relative">
+              <div className="flex items-start justify-between mb-4">
+                <div className="text-6xl group-hover:scale-110 transition-transform">🐕</div>
+                <div className="px-4 py-2 bg-amber-200 dark:bg-amber-900/50 rounded-full">
+                  <span className="text-sm font-bold text-amber-900 dark:text-amber-200">
+                    {dogCollection.isLoaded ? `${dogCollection.getUnlockedCount()}/${dogCollection.getTotalCount()}` : '...'} odemčeno
+                  </span>
+                </div>
+              </div>
+
+              <h3 className="text-3xl font-bold text-amber-900 dark:text-amber-100 mb-3">
+                Sbírka Hundů
+              </h3>
+              <p className="text-amber-800 dark:text-amber-200 mb-4 text-lg">
+                Sbírej roztomilé pejsky za správné odpovědi! Každý dokončený test ti odemkne nového kamaráda.
+              </p>
+
+              {/* Progress bar */}
+              {dogCollection.isLoaded && (
+                <div className="mb-4">
+                  <div className="mb-2 bg-amber-200 dark:bg-amber-900/50 rounded-full h-3 overflow-hidden">
+                    <div
+                      className="bg-gradient-to-r from-amber-500 to-orange-500 dark:from-amber-400 dark:to-orange-400 h-3 rounded-full transition-all duration-500"
+                      style={{ width: `${(dogCollection.getUnlockedCount() / dogCollection.getTotalCount()) * 100}%` }}
+                    ></div>
+                  </div>
+                  <p className="text-sm text-amber-700 dark:text-amber-300 font-medium">
+                    {dogCollection.isCollectionComplete()
+                      ? '🎉 Kompletní sbírka! Máš všechny pejsky!'
+                      : `Ještě ${dogCollection.getTotalCount() - dogCollection.getUnlockedCount()} pejsků čeká na odemčení`}
+                  </p>
+                </div>
+              )}
+
+              <div className="flex items-center justify-between pt-4 border-t border-amber-300 dark:border-amber-700">
+                <span className="text-amber-700 dark:text-amber-300 font-semibold flex items-center gap-2">
+                  <BookOpen className="w-5 h-5" />
+                  Prohlédnout sbírku
+                </span>
+                <ChevronRight className="w-6 h-6 text-amber-600 dark:text-amber-400 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </div>
+          </Link>
         </div>
       </div>
     )
@@ -564,8 +616,8 @@ export default function MidtermQuizPage() {
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-950 dark:via-slate-900 dark:to-indigo-950 flex items-center justify-center p-4">
         <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl max-w-2xl w-full p-12 border border-slate-200 dark:border-slate-700">
           <div className="text-center">
-            {/* Dog Animation */}
-            <div className="mb-8">
+            {/* Dog Animation - Properly Contained */}
+            <div className="mb-8 overflow-hidden rounded-2xl max-h-64 relative">
               {unlockedDog ? (() => {
                 const DogComponent = DogAnimations[unlockedDog.id as keyof typeof DogAnimations]
                 return DogComponent ? <DogComponent /> : <DogCarAnimation />

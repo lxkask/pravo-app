@@ -16,7 +16,7 @@ export function ProfessorAnimation() {
       <div className="absolute bottom-16 left-1/2 -translate-x-1/2 w-32 h-24 bg-amber-800 rounded-t-lg border-4 border-amber-900"></div>
 
       {/* Professor dog */}
-      <div className="relative z-10 mx-auto mt-32" style={{ width: '200px' }}>
+      <div className="relative mx-auto mt-32" style={{ width: '200px' }}>
         <div className="text-center">
           <div className="text-7xl mb-2 animate-teach">🐕</div>
           <div className="text-4xl">🎓</div>
