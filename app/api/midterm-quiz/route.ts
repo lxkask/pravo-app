@@ -21,8 +21,8 @@ export async function GET(request: Request) {
     // Build where clause
     const where = category ? { category } : {};
 
-    // Fetch questions with answers and explanations
-    const questions = await prisma.quizQuestion.findMany({
+    // Fetch ALL available questions first (to enable proper randomization)
+    const allQuestions = await prisma.quizQuestion.findMany({
       where,
       select: {
         id: true,
@@ -37,14 +37,16 @@ export async function GET(request: Request) {
           },
         },
       },
-      take: limit > 100 ? 100 : limit, // Max 100 questions per request
     });
 
-    // Shuffle if requested
-    let resultQuestions = questions;
+    // Shuffle ALL questions first if requested
+    let shuffledQuestions = allQuestions;
     if (shuffle) {
-      resultQuestions = questions.sort(() => Math.random() - 0.5);
+      shuffledQuestions = [...allQuestions].sort(() => Math.random() - 0.5);
     }
+
+    // THEN take the limit (this ensures different questions each time)
+    const resultQuestions = shuffledQuestions.slice(0, Math.min(limit, 100));
 
     return NextResponse.json({
       questions: resultQuestions,
