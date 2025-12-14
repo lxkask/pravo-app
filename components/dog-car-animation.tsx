@@ -28,11 +28,6 @@ export function DogCarAnimation() {
               <div className="absolute top-4 left-10 text-3xl animate-dog-bounce">
                 🐕
               </div>
-
-              {/* Dog tongue wagging */}
-              <div className="absolute top-7 left-16 text-xl animate-tongue-wag">
-                👅
-              </div>
             </div>
           </div>
 
@@ -91,15 +86,6 @@ export function DogCarAnimation() {
           }
         }
 
-        @keyframes tongue-wag {
-          0%, 100% {
-            transform: rotate(-5deg);
-          }
-          50% {
-            transform: rotate(5deg);
-          }
-        }
-
         @keyframes speed-lines {
           0% {
             opacity: 0.7;
@@ -141,10 +127,6 @@ export function DogCarAnimation() {
           animation: dog-bounce 0.6s ease-in-out infinite;
         }
 
-        .animate-tongue-wag {
-          animation: tongue-wag 0.3s ease-in-out infinite;
-        }
-
         .animate-speed-lines {
           animation: speed-lines 0.8s ease-out infinite;
         }
@@ -161,7 +143,6 @@ export function DogCarAnimation() {
           .animate-car-drive,
           .animate-wheel-spin,
           .animate-dog-bounce,
-          .animate-tongue-wag,
           .animate-speed-lines,
           .animate-road-markings,
           .animate-bounce-subtle {
