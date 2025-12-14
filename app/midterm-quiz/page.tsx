@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import Link from 'next/link'
 import { Clock, CheckCircle2, XCircle, SkipForward, Home, RotateCcw, Play, RefreshCcw, BookOpen, ChevronLeft, ChevronRight } from 'lucide-react'
 import { MidtermProgressTracker } from '@/lib/midterm-progress-tracker'
@@ -335,65 +335,65 @@ export default function MidtermQuizPage() {
   const score = Array.from(answers.values()).filter(a => a.correct).length
   const totalAnswered = answers.size
 
-  // Keyboard navigation
-  useEffect(() => {
+  // Keyboard navigation (optimized with useCallback)
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (!currentQuestion || quizCompleted) return
 
-    const handleKeyDown = (e: KeyboardEvent) => {
-      const answersCount = currentQuestion.answers.length
+    const answersCount = currentQuestion.answers.length
 
-      // Arrow Up/Down - navigate between answers
-      if (e.key === 'ArrowDown') {
-        e.preventDefault()
-        if (!showResult) {
-          setFocusedAnswerIndex(prev => (prev + 1) % answersCount)
-        }
-      } else if (e.key === 'ArrowUp') {
-        e.preventDefault()
-        if (!showResult) {
-          setFocusedAnswerIndex(prev => (prev - 1 + answersCount) % answersCount)
-        }
+    // Arrow Up/Down - navigate between answers
+    if (e.key === 'ArrowDown') {
+      e.preventDefault()
+      if (!showResult) {
+        setFocusedAnswerIndex(prev => (prev + 1) % answersCount)
       }
-      // Space - select focused answer
-      else if (e.key === ' ') {
-        e.preventDefault()
-        if (!showResult) {
-          const focusedAnswer = currentQuestion.answers[focusedAnswerIndex]
-          handleAnswerSelect(focusedAnswer.id)
-        }
-      }
-      // Enter - confirm answer, go to next, or skip
-      else if (e.key === 'Enter') {
-        e.preventDefault()
-        if (showResult) {
-          handleNext()
-        } else if (selectedAnswer) {
-          handleSubmit()
-        } else {
-          // Skip if no answer selected
-          handleSkip()
-        }
-      }
-      // Numbers 1-9 - select answer by number
-      else if (['1', '2', '3', '4', '5', '6', '7', '8', '9'].includes(e.key)) {
-        const answerIndex = parseInt(e.key) - 1
-        if (!showResult && answerIndex < answersCount) {
-          setFocusedAnswerIndex(answerIndex)
-          const answer = currentQuestion.answers[answerIndex]
-          handleAnswerSelect(answer.id)
-        }
-      }
-      // S key - skip question
-      else if (e.key === 's' || e.key === 'S') {
-        if (!showResult) {
-          handleSkip()
-        }
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault()
+      if (!showResult) {
+        setFocusedAnswerIndex(prev => (prev - 1 + answersCount) % answersCount)
       }
     }
+    // Space - select focused answer
+    else if (e.key === ' ') {
+      e.preventDefault()
+      if (!showResult) {
+        const focusedAnswer = currentQuestion.answers[focusedAnswerIndex]
+        handleAnswerSelect(focusedAnswer.id)
+      }
+    }
+    // Enter - confirm answer, go to next, or skip
+    else if (e.key === 'Enter') {
+      e.preventDefault()
+      if (showResult) {
+        handleNext()
+      } else if (selectedAnswer) {
+        handleSubmit()
+      } else {
+        // Skip if no answer selected
+        handleSkip()
+      }
+    }
+    // Numbers 1-9 - select answer by number
+    else if (['1', '2', '3', '4', '5', '6', '7', '8', '9'].includes(e.key)) {
+      const answerIndex = parseInt(e.key) - 1
+      if (!showResult && answerIndex < answersCount) {
+        setFocusedAnswerIndex(answerIndex)
+        const answer = currentQuestion.answers[answerIndex]
+        handleAnswerSelect(answer.id)
+      }
+    }
+    // S key - skip question
+    else if (e.key === 's' || e.key === 'S') {
+      if (!showResult) {
+        handleSkip()
+      }
+    }
+  }, [currentQuestion, showResult, focusedAnswerIndex, selectedAnswer, quizCompleted, handleAnswerSelect, handleNext, handleSubmit, handleSkip])
 
+  useEffect(() => {
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [currentQuestion, showResult, focusedAnswerIndex, selectedAnswer, quizCompleted])
+  }, [handleKeyDown])
 
   // Reset focused answer when question changes
   useEffect(() => {
@@ -741,18 +741,31 @@ export default function MidtermQuizPage() {
 
           {/* Timer */}
           {config.time && timeLeft !== null && (
-            <div className={`flex items-center justify-center gap-2 px-4 py-2 rounded-xl ${
-              timeLeft < 60 ? 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300' :
-              timeLeft < 300 ? 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300' :
-              'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300'
-            }`}>
-              <Clock className="w-5 h-5" />
+            <div
+              className={`flex items-center justify-center gap-2 px-4 py-2 rounded-xl ${
+                timeLeft < 60 ? 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-300' :
+                timeLeft < 300 ? 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300' :
+                'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300'
+              }`}
+              role="timer"
+              aria-live="polite"
+              aria-atomic="true"
+              aria-label={`Zbývající čas: ${formatTime(timeLeft)}`}
+            >
+              <Clock className="w-5 h-5" aria-hidden="true" />
               <span className="font-mono text-xl font-bold">{formatTime(timeLeft)}</span>
             </div>
           )}
 
           {/* Progress bar */}
-          <div className="mt-4 bg-slate-200 dark:bg-slate-700 rounded-full h-3 overflow-hidden">
+          <div
+            className="mt-4 bg-slate-200 dark:bg-slate-700 rounded-full h-3 overflow-hidden"
+            role="progressbar"
+            aria-valuenow={answeredQuestions.size}
+            aria-valuemin={0}
+            aria-valuemax={questions.length}
+            aria-label={`Postup v testu: ${answeredQuestions.size} z ${questions.length} otázek zodpovězeno`}
+          >
             <div
               className="bg-gradient-to-r from-indigo-500 to-purple-600 h-3 rounded-full transition-all duration-300"
               style={{ width: `${(answeredQuestions.size / questions.length) * 100}%` }}
@@ -825,7 +838,11 @@ export default function MidtermQuizPage() {
           </h2>
 
           {/* Answers */}
-          <div className="space-y-3">
+          <div
+            className="space-y-3"
+            role="radiogroup"
+            aria-label="Možné odpovědi"
+          >
             {currentQuestion?.answers.map((answer, idx) => {
               const isSelected = selectedAnswer === answer.id
               const isFocused = focusedAnswerIndex === idx && !showResult
@@ -837,6 +854,10 @@ export default function MidtermQuizPage() {
                   key={answer.id}
                   onClick={() => handleAnswerSelect(answer.id)}
                   disabled={showResult}
+                  role="radio"
+                  aria-checked={isSelected}
+                  aria-label={`Odpověď ${idx + 1}: ${answer.text}${showCorrect ? ' (správná odpověď)' : ''}${showIncorrect ? ' (špatná odpověď)' : ''}`}
+                  tabIndex={isFocused ? 0 : -1}
                   className={`w-full p-5 text-left rounded-xl border-2 transition-all ${
                     showCorrect
                       ? 'bg-green-50 dark:bg-green-900/20 border-green-500 dark:border-green-400'
