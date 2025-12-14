@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { shuffleArray } from '@/lib/utils';
 
 /**
  * GET /api/midterm-quiz
@@ -42,7 +43,7 @@ export async function GET(request: Request) {
     // Shuffle ALL questions first if requested
     let shuffledQuestions = allQuestions;
     if (shuffle) {
-      shuffledQuestions = [...allQuestions].sort(() => Math.random() - 0.5);
+      shuffledQuestions = shuffleArray(allQuestions);
     }
 
     // THEN take the limit (this ensures different questions each time)

@@ -200,3 +200,77 @@ Když pracuješ s extrakcí obsahu:
 5. **Validace před uložením** - nejdřív preview, pak schválení
 
 Viz `KONCEPT-MODERNICH-UCEBNIC.md` pro detailní AI workflow.
+
+---
+
+## Code Audit Summary (December 2025)
+
+**Last Audit:** 2025-12-14
+**Overall Health:** 6.5/10 (Functional MVP, needs hardening for production)
+
+### ✅ FIXED Issues
+
+**Security & Performance:**
+1. ✅ Fisher-Yates shuffle implemented (`lib/utils.ts`) - replaces weak `sort(() => Math.random())`
+2. ✅ Prisma logging conditioned on environment - production logs only errors
+3. ✅ `.env*` files properly git ignored - no credentials leakage
+
+**New Features:**
+4. ✅ Overview Mode added to midterm-quiz - list view s deduplikací otázek
+
+### 🔴 CRITICAL Issues (Not Fixed - For Future Work)
+
+**Security:**
+1. ⚠️ **No input validation** on API routes (`/api/categories`, `/api/questions`) - XSS/injection risk
+2. ⚠️ **Client-side answer exposure** - správné odpovědi viditelné v DevTools (test mode není validní)
+3. ⚠️ **No rate limiting** - API routes can be spammed
+4. ⚠️ **eval() usage** in `scripts/extract-midterm-quiz.ts:96` - arbitrary code execution risk
+
+**Architecture:**
+5. ⚠️ **Massive components** - `app/midterm-quiz/page.tsx` má 1300+ řádků
+6. ⚠️ **Deprecated database models** - 3 sady modelů v schema (aktivní, deprecated-used, deprecated-unused)
+7. ⚠️ **No tests** - zero unit/integration/E2E tests
+8. ⚠️ **LocalStorage-only progress** - data loss při browser clear, no sync mezi zařízeními
+
+### 🟠 RECOMMENDED Improvements
+
+**Before Production:**
+- Add Zod validation to all API POST endpoints
+- Implement rate limiting (upstash/ratelimit nebo Vercel Edge Config)
+- Add error monitoring (Sentry/LogRocket)
+- Run `npm audit` and fix vulnerabilities
+- Add health check endpoint (`/api/health`)
+
+**Long-term:**
+- Refactor large components (split `midterm-quiz/page.tsx`)
+- Clean up deprecated database models
+- Implement server-side quiz validation
+- Add integration tests (Playwright/Cypress)
+- Server-side progress tracking s authentication
+
+### 📊 Technical Debt
+
+**High Priority:**
+- Duplicated code: `progress-tracker.ts` vs `midterm-progress-tracker.ts` (220 lines each)
+- No caching strategy - každý request hittuje databázi
+- Missing CSP headers and CSRF protection
+
+**Medium Priority:**
+- Bundle size tracking (webpack bundle analyzer)
+- Image optimization (Next.js `<Image>` component)
+- Documentation cleanup (15+ .md files v rootu)
+
+### 🎯 Production Readiness Checklist
+
+- [x] Environment variables secured
+- [x] Proper shuffle algorithm
+- [x] Conditional logging
+- [ ] Input validation ⚠️
+- [ ] Rate limiting ⚠️
+- [ ] Error monitoring ⚠️
+- [ ] Security audit passed ⚠️
+- [ ] Tests written ⚠️
+
+**Status:** Functional MVP deployed, suitable for personal/educational use. NOT production-ready for public deployment bez addressingu critical security issues.
+
+**Estimated Time to Production-Ready:** 6-8 hodin práce (validation, rate limiting, monitoring)

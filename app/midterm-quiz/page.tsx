@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback } from 'react'
 import Link from 'next/link'
-import { Clock, CheckCircle2, XCircle, SkipForward, Home, RotateCcw, Play, RefreshCcw, BookOpen, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Clock, CheckCircle2, XCircle, SkipForward, Home, RotateCcw, Play, RefreshCcw, BookOpen, ChevronLeft, ChevronRight, Lightbulb, ChevronDown, ChevronUp } from 'lucide-react'
 import { MidtermProgressTracker } from '@/lib/midterm-progress-tracker'
 import { updateStudyStreak } from '@/components/study-streak'
 import { ConfettiEffect } from '@/components/confetti-effect'
@@ -31,11 +31,12 @@ type QuizQuestion = {
   answers: QuizAnswer[]
 }
 
-type QuizMode = 'practice' | 'test'
+type QuizMode = 'practice' | 'test' | 'overview'
 
 const MODE_CONFIG = {
   'practice': { name: 'Procvičování', questions: 94, time: null, desc: 'Všechny otázky, žádný časový limit', shuffle: false },
   'test': { name: 'Zkouškový test', questions: 25, time: 25, desc: '25 náhodných otázek za 25 minut', shuffle: true },
+  'overview': { name: 'Přehled', questions: 94, time: null, desc: 'Všechny otázky najednou se správnými odpověďmi', shuffle: false },
 }
 
 export default function MidtermQuizPage() {
@@ -62,6 +63,7 @@ export default function MidtermQuizPage() {
   const [achievement, setAchievement] = useState<typeof ACHIEVEMENTS[keyof typeof ACHIEVEMENTS] | null>(null)
   const [showExplanation, setShowExplanation] = useState(false)
   const [reviewMode, setReviewMode] = useState(false)
+  const [expandedExplanations, setExpandedExplanations] = useState<Set<string>>(new Set())
 
   // Load progress stats on mount
   useEffect(() => {
@@ -335,6 +337,31 @@ export default function MidtermQuizPage() {
   const score = Array.from(answers.values()).filter(a => a.correct).length
   const totalAnswered = answers.size
 
+  // Deduplicate questions by questionText (case-insensitive)
+  const deduplicateQuestions = (questions: QuizQuestion[]): QuizQuestion[] => {
+    const seen = new Map<string, QuizQuestion>()
+    questions.forEach(q => {
+      const key = q.questionText.toLowerCase().trim()
+      if (!seen.has(key)) {
+        seen.set(key, q)
+      }
+    })
+    return Array.from(seen.values())
+  }
+
+  // Toggle explanation for a question in overview mode
+  const toggleExplanation = (questionId: string) => {
+    setExpandedExplanations(prev => {
+      const newSet = new Set(prev)
+      if (newSet.has(questionId)) {
+        newSet.delete(questionId)
+      } else {
+        newSet.add(questionId)
+      }
+      return newSet
+    })
+  }
+
   // Keyboard navigation (optimized with useCallback)
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (!currentQuestion || quizCompleted) return
@@ -418,7 +445,7 @@ export default function MidtermQuizPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 mb-6">
+          <div className="grid md:grid-cols-3 gap-6 mb-6">
             {/* Practice Mode */}
             <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg border border-slate-200 dark:border-slate-700">
               <div className="text-4xl mb-4">📚</div>
@@ -540,6 +567,27 @@ export default function MidtermQuizPage() {
                 </div>
               </div>
             </button>
+
+            {/* Overview Mode */}
+            <button
+              onClick={() => setMode('overview')}
+              className="group relative overflow-hidden bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-1 border border-slate-200 dark:border-slate-700"
+            >
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-emerald-500/10 to-teal-500/10 dark:from-emerald-500/20 dark:to-teal-500/20 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform" />
+              <div className="relative">
+                <div className="text-4xl mb-4">📋</div>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+                  {MODE_CONFIG['overview'].name}
+                </h3>
+                <p className="text-slate-600 dark:text-slate-400 mb-4">
+                  {MODE_CONFIG['overview'].desc}
+                </p>
+                <div className="flex items-center justify-between text-sm">
+                  <span className="text-slate-500 dark:text-slate-500">{MODE_CONFIG['overview'].questions} otázek</span>
+                  <span className="text-emerald-600 dark:text-emerald-400 font-semibold">Bez duplicit 📖</span>
+                </div>
+              </div>
+            </button>
           </div>
 
           {/* Dog Collection Card */}
@@ -604,6 +652,174 @@ export default function MidtermQuizPage() {
         <div className="text-center">
           <div className="animate-spin rounded-full h-16 w-16 border-4 border-indigo-600 dark:border-indigo-400 border-t-transparent mx-auto"></div>
           <p className="mt-4 text-slate-600 dark:text-slate-400 text-lg">Načítání otázek...</p>
+        </div>
+      </div>
+    )
+  }
+
+  // Overview Mode - List view of all questions
+  if (mode === 'overview' && !isLoading) {
+    const dedupedQuestions = deduplicateQuestions(questions)
+    const duplicatesRemoved = questions.length - dedupedQuestions.length
+
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-950 dark:via-slate-900 dark:to-indigo-950 p-4">
+        <div className="max-w-4xl mx-auto py-6">
+          {/* Header */}
+          <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-2xl shadow-lg p-6 mb-6 border border-slate-200 dark:border-slate-700">
+            <div className="flex justify-between items-center mb-4">
+              <button
+                onClick={handleRestart}
+                className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 font-semibold flex items-center gap-2 transition-colors"
+              >
+                <Home className="w-4 h-4" />
+                Změnit režim
+              </button>
+              <div className="text-center">
+                <h1 className="text-2xl font-bold text-slate-900 dark:text-white">
+                  📋 Přehled všech otázek
+                </h1>
+                <p className="text-sm text-slate-500 dark:text-slate-400">
+                  {dedupedQuestions.length} otázek {duplicatesRemoved > 0 && `(${duplicatesRemoved} duplicit odstraněno)`}
+                </p>
+              </div>
+              <div className="text-right">
+                <div className="text-sm text-slate-500 dark:text-slate-400 mb-1">Režim</div>
+                <div className="text-lg font-bold text-emerald-600 dark:text-emerald-400">
+                  Přehled
+                </div>
+              </div>
+            </div>
+
+            {duplicatesRemoved > 0 && (
+              <div className="mt-4 p-3 bg-emerald-50 dark:bg-emerald-900/20 rounded-xl border border-emerald-200 dark:border-emerald-800">
+                <p className="text-sm text-emerald-800 dark:text-emerald-200 flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4" />
+                  Automaticky odstraněno {duplicatesRemoved} duplicitních otázek
+                </p>
+              </div>
+            )}
+          </div>
+
+          {/* Questions List */}
+          <div className="space-y-6">
+            {dedupedQuestions.map((question, idx) => {
+              const correctAnswer = question.answers.find(a => a.isCorrect)
+              const isExplanationExpanded = expandedExplanations.has(question.id)
+
+              return (
+                <div
+                  key={question.id}
+                  className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 border border-slate-200 dark:border-slate-700"
+                >
+                  {/* Question Header */}
+                  <div className="mb-4 flex gap-3 items-start">
+                    <div className="flex-shrink-0 w-10 h-10 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg flex items-center justify-center">
+                      <span className="text-lg font-bold text-indigo-600 dark:text-indigo-400">{idx + 1}</span>
+                    </div>
+                    <div className="flex-1">
+                      {question.category && (
+                        <span className="inline-block bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-lg text-xs font-semibold mb-2">
+                          {question.category}
+                        </span>
+                      )}
+                      <h2 className="text-xl font-bold text-slate-900 dark:text-white leading-relaxed">
+                        {question.questionText}
+                      </h2>
+                    </div>
+                  </div>
+
+                  {/* Answers */}
+                  <div className="space-y-2 mb-4">
+                    {question.answers.map((answer, answerIdx) => {
+                      const isCorrect = answer.isCorrect
+
+                      return (
+                        <div
+                          key={answer.id}
+                          className={`p-4 rounded-xl border-2 transition-all ${
+                            isCorrect
+                              ? 'bg-green-50 dark:bg-green-900/20 border-green-400 dark:border-green-600'
+                              : 'bg-slate-50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-700'
+                          }`}
+                        >
+                          <div className="flex items-start gap-3">
+                            <span className={`text-sm font-semibold ${
+                              isCorrect ? 'text-green-600 dark:text-green-400' : 'text-slate-400 dark:text-slate-500'
+                            }`}>
+                              {answerIdx + 1}.
+                            </span>
+                            {isCorrect && (
+                              <CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+                            )}
+                            <span className={`flex-1 ${
+                              isCorrect ? 'text-green-900 dark:text-green-100 font-semibold' : 'text-slate-700 dark:text-slate-300'
+                            }`}>
+                              {answer.text}
+                            </span>
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
+
+                  {/* Explanation Toggle */}
+                  {question.explanation && (
+                    <div>
+                      <button
+                        onClick={() => toggleExplanation(question.id)}
+                        className="w-full flex items-center justify-between p-4 bg-slate-100 dark:bg-slate-900/50 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-xl transition-colors border border-slate-200 dark:border-slate-700"
+                      >
+                        <div className="flex items-center gap-2">
+                          <Lightbulb className="w-5 h-5 text-yellow-600 dark:text-yellow-400" />
+                          <span className="font-semibold text-slate-900 dark:text-white">
+                            Vysvětlení
+                          </span>
+                          {question.explanationConfidence && (
+                            <span className={`ml-2 px-2 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider ${
+                              question.explanationConfidence === 'high'
+                                ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400'
+                                : question.explanationConfidence === 'medium'
+                                ? 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400'
+                                : 'bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-400'
+                            }`}>
+                              {question.explanationConfidence === 'high' ? 'Vysoká' :
+                               question.explanationConfidence === 'medium' ? 'Střední' : 'Nízká'}
+                            </span>
+                          )}
+                        </div>
+                        {isExplanationExpanded ? (
+                          <ChevronUp className="w-5 h-5 text-slate-600 dark:text-slate-400" />
+                        ) : (
+                          <ChevronDown className="w-5 h-5 text-slate-600 dark:text-slate-400" />
+                        )}
+                      </button>
+
+                      {/* Expanded Explanation */}
+                      {isExplanationExpanded && (
+                        <div className="mt-3 p-5 bg-slate-50 dark:bg-slate-800 rounded-xl border-2 border-indigo-200 dark:border-indigo-700">
+                          <div className="prose prose-slate dark:prose-invert max-w-none">
+                            <FormattedAnswer text={question.explanation} />
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              )
+            })}
+          </div>
+
+          {/* Footer */}
+          <div className="mt-8 text-center">
+            <button
+              onClick={handleRestart}
+              className="bg-indigo-600 dark:bg-indigo-500 hover:bg-indigo-700 dark:hover:bg-indigo-600 text-white px-8 py-4 rounded-xl transition-all font-bold text-lg shadow-lg inline-flex items-center gap-2"
+            >
+              <RotateCcw className="w-5 h-5" />
+              Zpět na výběr režimu
+            </button>
+          </div>
         </div>
       </div>
     )

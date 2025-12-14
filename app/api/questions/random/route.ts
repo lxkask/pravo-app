@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import { shuffleArray } from '@/lib/utils'
 
 export async function GET(request: Request) {
   try {
@@ -26,7 +27,7 @@ export async function GET(request: Request) {
     })
 
     // Fisher-Yates shuffle
-    const shuffled = questions.sort(() => Math.random() - 0.5)
+    const shuffled = shuffleArray(questions)
 
     return NextResponse.json(shuffled)
   } catch (error) {
