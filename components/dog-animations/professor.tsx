@@ -24,15 +24,6 @@ export function ProfessorAnimation() {
         </div>
       </div>
 
-      {/* Success message */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-center">
-        <div className="text-3xl font-bold text-white mb-2 drop-shadow-lg">
-          ⭐ Pan Profesor! 🎓
-        </div>
-        <div className="text-lg text-white/90 drop-shadow-md">
-          Legendární učitel práva!
-        </div>
-      </div>
 
       <style jsx>{`
         @keyframes teach {

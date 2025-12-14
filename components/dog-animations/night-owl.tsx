@@ -25,15 +25,6 @@ export function NightOwlAnimation() {
         </div>
       </div>
 
-      {/* Success message */}
-      <div className="absolute top-8 left-1/2 -translate-x-1/2 text-center">
-        <div className="text-3xl font-bold text-white mb-2 drop-shadow-lg">
-          Noční Válečník! 🌙
-        </div>
-        <div className="text-lg text-white/90 drop-shadow-md">
-          V klubu do rána!
-        </div>
-      </div>
 
       <style jsx>{`
         @keyframes strobe {

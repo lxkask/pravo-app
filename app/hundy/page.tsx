@@ -41,9 +41,9 @@ function DogCard({ dog, isUnlocked }: { dog: Dog; isUnlocked: boolean }) {
       className={`bg-gradient-to-br ${rarityColors[dog.rarity]} rounded-2xl p-6 border-4 ${rarityBorders[dog.rarity]} shadow-xl hover:scale-105 transition-transform duration-200 flex flex-col`}
     >
       {/* Animation Container - Fixed Height */}
-      <div className="h-32 overflow-hidden rounded-xl mb-3 relative flex items-center justify-center">
+      <div className="h-48 overflow-hidden rounded-xl mb-3 relative flex items-center justify-center bg-black/10">
         {AnimationComponent ? (
-          <div className="absolute inset-0 flex items-center justify-center scale-[0.35] origin-center">
+          <div className="absolute inset-0 flex items-center justify-center scale-[0.6] origin-center">
             <AnimationComponent />
           </div>
         ) : (
