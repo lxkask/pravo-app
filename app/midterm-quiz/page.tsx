@@ -577,8 +577,8 @@ export default function MidtermQuizPage() {
                   </div>
                   <p className="text-sm text-amber-700 dark:text-amber-300 font-medium">
                     {dogCollection.isCollectionComplete()
-                      ? '🎉 Kompletní sbírka! Máš všechny pejsky!'
-                      : `Ještě ${dogCollection.getTotalCount() - dogCollection.getUnlockedCount()} pejsků čeká na odemčení`}
+                      ? '🎉 Kompletní sbírka! Máš všechny psy!'
+                      : `Ještě ${dogCollection.getTotalCount() - dogCollection.getUnlockedCount()} ${dogCollection.getTotalCount() - dogCollection.getUnlockedCount() === 1 ? 'pes' : dogCollection.getTotalCount() - dogCollection.getUnlockedCount() < 5 ? 'psi' : 'psů'} čeká na odemčení`}
                   </p>
                 </div>
               )}
