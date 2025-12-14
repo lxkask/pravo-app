@@ -24,13 +24,6 @@ export async function GET(request: Request) {
     // Fetch questions with answers and explanations
     const questions = await prisma.quizQuestion.findMany({
       where,
-      include: {
-        answers: {
-          orderBy: {
-            order: 'asc',
-          },
-        },
-      },
       select: {
         id: true,
         questionText: true,
