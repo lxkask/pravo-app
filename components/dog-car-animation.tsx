@@ -64,7 +64,7 @@ export function DogCarAnimation() {
             transform: translateX(-150%);
           }
           100% {
-            transform: translateX(calc(100vw + 150%));
+            transform: translateX(calc(100% + 250px));
           }
         }
 

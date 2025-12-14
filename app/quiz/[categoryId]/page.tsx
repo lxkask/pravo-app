@@ -3,6 +3,16 @@
 import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { z } from 'zod'
+
+// Zod schema for quiz progress validation
+const QuizProgressEntrySchema = z.object({
+  score: z.number().int().min(0),
+  total: z.number().int().min(0),
+  lastUpdated: z.string()
+})
+
+const QuizProgressSchema = z.record(z.string(), QuizProgressEntrySchema)
 
 type Answer = {
   id: string
@@ -91,7 +101,22 @@ export default function QuizPage() {
     setAnsweredQuestions(answeredQuestions + 1)
 
     // Save progress to localStorage
-    const progress = JSON.parse(localStorage.getItem('quizProgress') || '{}')
+    let progress: Record<string, any> = {}
+    try {
+      const storedProgress = localStorage.getItem('quizProgress')
+      if (storedProgress) {
+        const parsed = JSON.parse(storedProgress)
+        const validated = QuizProgressSchema.safeParse(parsed)
+        if (validated.success) {
+          progress = validated.data
+        } else {
+          console.error('Invalid quiz progress data:', validated.error)
+        }
+      }
+    } catch (e) {
+      console.error('Failed to parse quiz progress:', e)
+    }
+
     progress[categoryId] = {
       score: isCorrect ? score + 1 : score,
       total: answeredQuestions + 1,

@@ -142,7 +142,8 @@ export default function MidtermQuizPage() {
     }
 
     // First quiz achievement
-    const completedQuizzes = parseInt(localStorage.getItem('completed-quizzes') || '0')
+    const completedQuizzesStr = localStorage.getItem('completed-quizzes') || '0'
+    const completedQuizzes = Math.max(0, parseInt(completedQuizzesStr, 10) || 0)
     if (completedQuizzes === 0) {
       setTimeout(() => {
         setAchievement(ACHIEVEMENTS.FIRST_QUIZ)

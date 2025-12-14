@@ -2,10 +2,17 @@
 
 import { Flame } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import { z } from 'zod'
 
 interface StudyStreakProps {
   className?: string
 }
+
+// Zod schema for streak data validation
+const StreakDataSchema = z.object({
+  streak: z.number().int().min(0),
+  lastStudyDate: z.string()
+})
 
 export function StudyStreak({ className = '' }: StudyStreakProps) {
   const [streak, setStreak] = useState(0)
@@ -17,7 +24,17 @@ export function StudyStreak({ className = '' }: StudyStreakProps) {
       try {
         const streakData = localStorage.getItem('study-streak')
         if (streakData) {
-          const { streak: savedStreak, lastStudyDate } = JSON.parse(streakData)
+          const parsed = JSON.parse(streakData)
+          const validated = StreakDataSchema.safeParse(parsed)
+
+          if (!validated.success) {
+            console.error('Invalid streak data:', validated.error)
+            setStreak(0)
+            setIsLoading(false)
+            return
+          }
+
+          const { streak: savedStreak, lastStudyDate } = validated.data
           const today = new Date().toDateString()
           const lastDate = new Date(lastStudyDate).toDateString()
 
@@ -89,7 +106,21 @@ export function updateStudyStreak() {
     const today = new Date().toDateString()
 
     if (streakData) {
-      const { streak, lastStudyDate } = JSON.parse(streakData)
+      const parsed = JSON.parse(streakData)
+      const validated = StreakDataSchema.safeParse(parsed)
+
+      if (!validated.success) {
+        console.error('Invalid streak data:', validated.error)
+        // Reset to defaults
+        localStorage.setItem('study-streak', JSON.stringify({
+          streak: 1,
+          lastStudyDate: new Date().toISOString()
+        }))
+        window.dispatchEvent(new Event('storage'))
+        return
+      }
+
+      const { streak, lastStudyDate } = validated.data
       const lastDate = new Date(lastStudyDate).toDateString()
 
       if (lastDate !== today) {

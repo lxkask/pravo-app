@@ -3,6 +3,8 @@
  * Handles LocalStorage persistence of practice mode progress
  */
 
+import { z } from 'zod';
+
 export interface QuestionProgress {
   answeredAt: string
   wasCorrect: boolean
@@ -17,6 +19,21 @@ export interface ExamProgress {
   lastUpdated: string
 }
 
+// Zod schemas for validation
+const QuestionProgressSchema = z.object({
+  answeredAt: z.string(),
+  wasCorrect: z.boolean(),
+  timesAnswered: z.number().int().min(1)
+});
+
+const ExamProgressSchema = z.object({
+  completedQuestions: z.record(z.string(), QuestionProgressSchema),
+  lastPosition: z.number().int().min(0),
+  shuffleEnabled: z.boolean(),
+  totalQuestions: z.number().int().min(1),
+  lastUpdated: z.string()
+});
+
 const STORAGE_KEY = 'examQuestions_progress'
 
 export class ProgressTracker {
@@ -30,8 +47,15 @@ export class ProgressTracker {
       const data = localStorage.getItem(STORAGE_KEY)
       if (!data) return null
 
-      const progress = JSON.parse(data) as ExamProgress
-      return progress
+      const parsed = JSON.parse(data)
+      const validated = ExamProgressSchema.safeParse(parsed)
+
+      if (validated.success) {
+        return validated.data as ExamProgress
+      } else {
+        console.error('Invalid exam progress data:', validated.error)
+        return null
+      }
     } catch (error) {
       console.error('Failed to load progress:', error)
       return null

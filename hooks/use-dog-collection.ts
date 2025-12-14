@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react';
+import { z } from 'zod';
 import { Dog, DOGS_COLLECTION, getRandomUnlockedDog } from '@/lib/dogs-collection';
 
 const STORAGE_KEY = 'pravo-app-dog-collection';
@@ -10,6 +11,13 @@ interface DogCollectionState {
   lastSeenDog: string | null;
   totalSeen: number;
 }
+
+// Zod schema for validation
+const DogCollectionSchema = z.object({
+  unlockedDogs: z.array(z.string()),
+  lastSeenDog: z.string().nullable(),
+  totalSeen: z.number().int().min(0)
+});
 
 export function useDogCollection() {
   const [state, setState] = useState<DogCollectionState>({
@@ -25,9 +33,27 @@ export function useDogCollection() {
     if (stored) {
       try {
         const parsed = JSON.parse(stored);
-        setState(parsed);
+        const validated = DogCollectionSchema.safeParse(parsed);
+
+        if (validated.success) {
+          setState(validated.data);
+        } else {
+          console.error('Invalid dog collection data:', validated.error);
+          // Reset to defaults on validation failure
+          setState({
+            unlockedDogs: [],
+            lastSeenDog: null,
+            totalSeen: 0
+          });
+        }
       } catch (e) {
         console.error('Failed to parse dog collection state:', e);
+        // Reset to defaults on parse failure
+        setState({
+          unlockedDogs: [],
+          lastSeenDog: null,
+          totalSeen: 0
+        });
       }
     }
     setIsLoaded(true);
